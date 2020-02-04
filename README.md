@@ -12,6 +12,12 @@ Team 25
 ### Running
 
 * Go to 'prototype' folder
-* Run the command, `scrapy crawl prototype`
-* To store the result in schools.json run the command, `scrapy crawl prototype -o schools.json`
-* 
+* Run the command 
+
+    `scrapy crawl prototype`
+* To store the result in schools.json run the command 
+
+    `scrapy crawl prototype -o schools.json`
+* To view the result from file use the command
+
+    `python3 -m json.tool schools.json`
