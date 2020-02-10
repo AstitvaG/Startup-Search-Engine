@@ -1,10 +1,33 @@
 input[type=text] {
     width: 130px;
     -webkit-transition: width 0.4s ease-in-out;
+    background-color: grey;
+    border-color: black;
+    border-radius: 20px;
+    border-width: 5px;
+    color: whitesmoke;
+    text-align:center ;
     transition: width 0.4s ease-in-out;
   }
-  
+  input[id="region"] {
+    width: 200px;
+    background-color: grey;
+    border-color: black;
+    border-radius: 20px;
+    border-width: 5px;
+    color: whitesmoke;
+    text-align:center ;
+  }
   /* When the input field gets focus, change its width to 100% */
   input[type=text]:focus {
-    width: 100%;
+    width: 50%;
   }
+
+  body {
+    background-color: #282c34;
+    color: white;
+    padding: 40px;
+    font-family: Arial;
+    text-align: center;
+  }
+  
