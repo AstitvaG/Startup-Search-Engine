@@ -12,4 +12,5 @@
 * Updated project design document.
 * Rudimentary UI
 * Web crawling for searches involving "schools".
+* Integration with front-end.
 * Sign-off/verfication of sprint backlog.
