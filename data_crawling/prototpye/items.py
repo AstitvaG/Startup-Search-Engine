@@ -5,10 +5,16 @@
 # See documentation in:
 # https://doc.scrapy.org/en/latest/topics/items.html
 
-import scrapy
+# import scrapy
 
 
-class PrototpyeItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+# class PrototpyeItem(scrapy.Item):
+#     # define the fields for your item here like:
+#     # name = scrapy.Field()
+#     pass
+from scrapy.item import Item, Field
+
+
+class StackItem(Item):
+    title = Field()
+    address = Field()
