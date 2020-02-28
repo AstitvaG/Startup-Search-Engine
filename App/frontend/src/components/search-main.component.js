@@ -26,7 +26,7 @@ export default class MainSearch extends Component {
     }
 
     componentDidMount() {
-        document.body.style.background='#fff'
+        // document.body.style.background='#999'
         var query = queryString.parse(this.props.location.search);
         if (query.token) {
             var obj = JSON.parse(query.token)
