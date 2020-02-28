@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './login-google.component.css';
+import back from './PmdesY.png'
 
 
 export default class LoginGoogle extends Component {
@@ -12,19 +13,19 @@ export default class LoginGoogle extends Component {
 
     render() {
         return (
-            <div >
+            <div className="home">
                 <link href="https://fonts.googleapis.com/css?family=Spartan" rel="stylesheet"></link>
                 <center>
                     <h1>Welcome! <br/> Grow your Business!</h1>
-                    <h4>By entering your ICP </h4>
+                    <h4>Get Started! </h4>
                     <a href="http://localhost:4000/auth/google" class="button small-btn">
                         <div>
                             <span class="svgIcon t-popup-svg">
                                 <button className="rounded-pill btn btn-dark">
                                     <svg
                                         class="svgIcon-use"
-                                        width="25"
-                                        height="37"
+                                        width="45"
+                                        height="45"
                                         viewBox="0 0 25 25"
                                     >
                                         <g fill="none" fill-rule="evenodd">

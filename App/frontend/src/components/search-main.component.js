@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import queryString from "query-string";
 import Navbar from "./navbar.component";
+// import './search-main.component.css';
 
 const { OAuth2Client } = require('google-auth-library');
 const client = [];
@@ -25,6 +26,7 @@ export default class MainSearch extends Component {
     }
 
     componentDidMount() {
+        document.body.style.background='#fff'
         var query = queryString.parse(this.props.location.search);
         if (query.token) {
             var obj = JSON.parse(query.token)
@@ -60,7 +62,7 @@ export default class MainSearch extends Component {
     render() {
         return (
             <div className="App" >
-                <Navbar />
+                <Navbar/>
                 <form onSubmit={this.onSubmit} style={{ display: "flex", justifyContent: "center", alignItems: "center", height:800  }}>
                     <input type="text" id="search" placeholder="Search.." onChange={this.onChangeSearch}></input>
                     <br />

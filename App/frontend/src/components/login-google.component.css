@@ -6,7 +6,7 @@ a {
 
 body {
     font-family: 'Spartan', sans-serif;
-    background: url(https://img.wallpapersafari.com/desktop/1920/1080/91/94/PmdesY.png);
+    background-image: url(https://img.wallpapersafari.com/desktop/1920/1080/91/94/PmdesY.png);
     /* min-height: 75rem; */
     /* padding-top: 4.5rem; */
   }
@@ -45,7 +45,7 @@ p {
     position: absolute;
     /* width: 37px; */
     /* height: 37px; */
-    left: 45%;
+    left: 44%;
     top: 400px;
 }
 
@@ -55,4 +55,8 @@ p {
     padding-right: 4px;
     height: 37px;
     display: inline-block;
+}
+
+.home {
+    /* background-image: url(https://img.wallpapersafari.com/desktop/1920/1080/91/94/PmdesY.png); */
 }
