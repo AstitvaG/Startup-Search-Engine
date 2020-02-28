@@ -1,26 +1,52 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Spartan') */
 a {
     -webkit-tap-highlight-color: transparent;
     text-decoration: none;
 }
 
+body {
+    font-family: 'Spartan', sans-serif;
+    background: url(https://img.wallpapersafari.com/desktop/1920/1080/91/94/PmdesY.png);
+    /* min-height: 75rem; */
+    /* padding-top: 4.5rem; */
+  }
+
+h1,h2,h3,h4,h5,h6 {
+    font-family: 'Spartan', sans-serif;
+    padding-top: 4.5rem;
+}
+h1 {
+    font-size: 60px;
+}
+p {
+    font-size: 18px;
+    font-family: 'Spartan', sans-serif;
+}
+
 .button {
     display: inline-block;
-    max-width: 300px;
-    margin-top: 50px;
+    /* max-width: 300px; */
+    /* margin-top: 50px; */
     border: 0;
-    padding: 0 18px;
-    text-align: left;
-    width: 100%;
-    height: 37px;
-    border-radius: 4px;
+    /* padding: 0 18px; */
+    /* text-align: left; */
+    /* border-radius: 20px; */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    -moz-font-feature-settings: "liga" on;
+    /* -moz-font-feature-settings: "liga" on; */
     color: rgba(0, 0, 0, 0.84) !important;
     fill: rgba(0, 0, 0, 0.84) !important;
     box-shadow: 0 1px 7px rgba(0, 0, 0, 0.05);
     font: inherit;
     outline: none;
+}
+
+.small-btn {
+    position: absolute;
+    /* width: 37px; */
+    /* height: 37px; */
+    left: 45%;
+    top: 400px;
 }
 
 .button .svgIcon {
