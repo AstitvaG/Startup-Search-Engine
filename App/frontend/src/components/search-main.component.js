@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import queryString from "query-string";
+import Navbar from "./navbar.component";
+
 const { OAuth2Client } = require('google-auth-library');
 const client = [];
 
@@ -58,6 +60,7 @@ export default class MainSearch extends Component {
     render() {
         return (
             <div className="App">
+                <Navbar />
                 <form onSubmit={this.onSubmit}>
                     <input type="text" id="search" placeholder="Search.." onChange={this.onChangeSearch}></input>
                     <br />
