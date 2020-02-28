@@ -25,10 +25,12 @@ export default class MainSearch extends Component {
     componentDidMount() {
         var query = queryString.parse(this.props.location.search);
         if (query.token) {
-            window.localStorage.setItem("jwt", query.token);
-            alert(query.token);
-            console.log(query.token)
-            this.props.history.push("/");
+            var obj = JSON.parse(query.token)
+            window.localStorage.setItem("token", obj.token);
+            window.localStorage.setItem("name", obj.name);
+            window.localStorage.setItem("email", obj.email);
+            console.log(obj)
+            this.props.history.push("/search");
         }
     }
 

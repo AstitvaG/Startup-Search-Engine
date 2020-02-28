@@ -14,23 +14,8 @@ function App() {
   return (
     <Router>
       <div className="container">
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <Link to="/" className="navbar-brand">App</Link>
-          <div className="collapse navbar-collapse">
-            <ul className="navbar-nav mr-auto">
-              <li className="navbar-item">
-                <Link to="/" className="nav-link">Users</Link>
-              </li>
-              <li className="navbar-item">
-                <Link to="/create" className="nav-link">Create User</Link>
-              </li>
-            </ul>
-          </div>
-        </nav>
-
-        <br />
-        <Route path="/" exact component={MainSearch} />
-        <Route path="/login" exact component={LoginGoogle} />
+        <Route path="/search" exact component={MainSearch} />
+        <Route path="/" exact component={LoginGoogle} />
         <Route path="/users" exact component={UsersList} />
         <Route path="/create" component={CreateUser} />
       </div>
