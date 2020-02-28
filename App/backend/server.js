@@ -9,6 +9,8 @@ const PORT = 4000;
 const userRoutes = express.Router();
 
 let User = require('./models/user');
+let Table = require('./models/table');
+let Table_sno = require('./models/table_sno');
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -43,7 +45,7 @@ userRoutes.route('/').get(function(req, res) {
         if (err) {
             console.log(err);
         } else {
-            res.json(users);
+            res.json(users);                                        
         }
     });
 });

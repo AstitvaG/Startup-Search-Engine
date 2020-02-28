@@ -59,9 +59,9 @@ export default class MainSearch extends Component {
 
     render() {
         return (
-            <div className="App">
+            <div className="App" >
                 <Navbar />
-                <form onSubmit={this.onSubmit}>
+                <form onSubmit={this.onSubmit} style={{ display: "flex", justifyContent: "center", alignItems: "center", height:800  }}>
                     <input type="text" id="search" placeholder="Search.." onChange={this.onChangeSearch}></input>
                     <br />
                     <input list="regionData" id="region" placeholder="Region" onChange={this.onChangeRegion} />
