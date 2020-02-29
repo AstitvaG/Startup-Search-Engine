@@ -14,13 +14,13 @@ let Table_sno = require('./models/table_sno');
 
 app.use(cors());
 app.use(bodyParser.json());
-app.use(passport.initialize()); 
+app.use(passport.initialize());
 require("./config/passport");
 
 // Connection to mongodb
 mongoose.connect('mongodb://127.0.0.1:27017/users', { useNewUrlParser: true });
 const connection = mongoose.connection;
-connection.once('open', function() {
+connection.once('open', function () {
     console.log("MongoDB database connection established succesfully.");
 })
 
@@ -32,7 +32,7 @@ userRoutes.route('/auth/google').get(
 
 userRoutes.route('/auth/google/callback').get(
     passport.authenticate("google", { failureRedirect: "/", session: false }),
-    function(req, res) {
+    function (req, res) {
         res.redirect("http://localhost:3000/search?token=" + JSON.stringify(req.user));
     }
 );
@@ -40,22 +40,42 @@ userRoutes.route('/auth/google/callback').get(
 // API endpoints
 
 // Getting all the users
-userRoutes.route('/').get(function(req, res) {
-    User.find(function(err, users) {
+userRoutes.route('/').get(function (req, res) {
+    User.find(function (err, users) {
         if (err) {
             console.log(err);
         } else {
-            res.json(users);                                        
+            res.json(users);
         }
     });
 });
 
+
+userRoutes.route('/schools').get(function (req, res) {
+    const { exec } = require("child_process");
+
+    exec("sh crawl.sh && cat data_crawling/schools.json", (error, stdout, stderr) => {
+        if (error) {
+            console.log(`error: ${error.message}`);
+            res.send("Error")
+            return;
+        }
+        else if (stderr) {
+            console.log(`stderr: ${stderr}`);
+            res.send("Error2")
+            return;
+        }
+        console.log(`stdout: ${stdout}`);
+        res.send(`${stdout}`)
+    });
+})
+
 // Adding a new user
-userRoutes.route('/add').post(function(req, res) {
+userRoutes.route('/add').post(function (req, res) {
     let user = new User(req.body);
     user.save()
         .then(user => {
-            res.status(200).json({'User': 'User added successfully'});
+            res.status(200).json({ 'User': 'User added successfully' });
         })
         .catch(err => {
             res.status(400).send('Error');
@@ -63,15 +83,15 @@ userRoutes.route('/add').post(function(req, res) {
 });
 
 // Getting a user by id
-userRoutes.route('/:id').get(function(req, res) {
+userRoutes.route('/:id').get(function (req, res) {
     let id = req.params.id;
-    User.findById(id, function(err, user) {
+    User.findById(id, function (err, user) {
         res.json(user);
     });
 });
 
 app.use('/', userRoutes);
 
-app.listen(PORT, function() {
+app.listen(PORT, function () {
     console.log("Server is running on port: " + PORT);
 });
