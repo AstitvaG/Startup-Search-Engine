@@ -62,7 +62,7 @@ userRoutes.route('/schools').get(function (req, res) {
         }
         else if (stderr) {
             console.log(`stderr: ${stderr}`);
-            res.send("Error2")
+            res.send("Error2 :"+stderr)
             return;
         }
         console.log(`stdout: ${stdout}`);
