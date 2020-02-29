@@ -70,23 +70,27 @@ export default class MainSearch extends Component {
         return (
             <div className="App" >
                 <Navbar />
-                <form onSubmit={this.onSubmit} style={{ display: "block", position: "absolute", top: 450, left: 500 }}>
-                    <div className="form-group d-flex justify-content-center">
-                        <input className="form-control rounded-pill" type="text" id="search" placeholder="Search.." onChange={this.onChangeSearch}></input>
-                    </div>
-                    <div className="form-group">
-                        <input className="form-control rounded-pill" list="regionData" id="region" placeholder="Region" onChange={this.onChangeRegion} />
-                        <datalist id="regionData">
-                            {this.listitems}
-                        </datalist>
-                    </div>
-                    <div className="form-group">
-                        <button className="rounded-pill btn btn-dark" type="submit">Search</button>
-                        <div id="output">
-                            {this.state.response}
+                <div className="row h-100">
+                <div className="col-sm-12 mx-auto my-auto">
+                    <form onSubmit={this.onSubmit} style={{ display: "block", position: "absolute", top: 450, left: 500 }}>
+                        <div className="form-group">
+                            <input className="form-control rounded-pill" type="text" id="search" placeholder="Search.." onChange={this.onChangeSearch}></input>
                         </div>
-                    </div>
-                </form>
+                        <div className="form-group">
+                            <input className="form-control rounded-pill" list="regionData" id="region" placeholder="Region" onChange={this.onChangeRegion} />
+                            <datalist id="regionData">
+                                {this.listitems}
+                            </datalist>
+                        </div>
+                        <div className="form-group">
+                            <button className="rounded-pill btn btn-dark" type="submit">Search</button>
+                            <div id="output">
+                                {this.state.response}
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                </div>
             </div>
         )
     }
