@@ -56,17 +56,17 @@ userRoutes.route('/schools').get(function (req, res) {
 
     exec("sh crawl.sh && cat data_crawling/schools.json", (error, stdout, stderr) => {
         if (error) {
-            console.log(`error: ${error.message}`);
             res.send("Error")
             return;
         }
         else if (stderr) {
-            console.log(`stderr: ${stderr}`);
             res.send("Error2 :"+stderr)
             return;
         }
-        console.log(`stdout: ${stdout}`);
-        res.send(`${stdout}`)
+        // res.send(JSON.parse(stdout))
+        stdout = JSON.parse(stdout)
+        Table.collection.insertMany(stdout);
+        res.send("Completed")
     });
 })
 
