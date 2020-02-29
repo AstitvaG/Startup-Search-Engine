@@ -61,7 +61,11 @@ userRoutes.route('/showresult').get(function (req, res) {
     });
 });
 
-userRoutes.route('/schools').get(function (req, res) {
+userRoutes.route('/schools').post(function (req, res) {
+    if (!req.body.userid) {
+        res.send("Invalid");
+        return;
+    }
     const { exec } = require("child_process");
 
     exec("sh crawl.sh && cat data_crawling/schools.json", (error, stdout, stderr) => {
@@ -70,11 +74,26 @@ userRoutes.route('/schools').get(function (req, res) {
             return;
         }
         else if (stderr) {
-            res.send("Error2 :"+stderr)
+            res.send("Error2 :" + stderr)
             return;
         }
         // res.send(JSON.parse(stdout))
         stdout = JSON.parse(stdout)
+        for (var i = 0; i < stdout.length; i++) {
+            var temp = stdout[i];
+            let table = new Table({
+                userid: req.body.userid,
+                title: temp['title'],
+                c1: "Address:" + temp['address'][0],
+                c2: temp['address'][1],
+                c3: temp['address'][2],
+                c4: temp['address'][3],
+                c5: temp['address'][4],
+                c6: temp['address'][5],
+                c7: temp['address'][6],
+            });
+            table.save();
+        }
         Table.collection.insertMany(stdout);
         res.send("Completed")
     });

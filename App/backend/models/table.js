@@ -1,15 +1,52 @@
 const mongoose = require('mongoose');
 
 let Table = new mongoose.Schema({
-    // sno: {
-    //     type: Number
-    // },
+    userid: {
+        type: String,
+        default: null
+    },
     title: {
         type: String,
         default : null
     },
-    address: {
-        type: Object,
+    c1: {
+        type: String,
+        default : null
+    },
+    c2: {
+        type: String,
+        default : null
+    },
+    c3: {
+        type: String,
+        default : null
+    },
+    c4: {
+        type: String,
+        default : null
+    },
+    c5: {
+        type: String,
+        default : null
+    },
+    c6: {
+        type: String,
+        default : null
+    },
+    c7: {
+        type: String,
+        default : null
+    },
+    c8: {
+        type: String,
+        default : null
+    },
+    c9: {
+        type: String,
+        default : null
+    },
+    c10: {
+        type: String,
         default : null
     }
 });
