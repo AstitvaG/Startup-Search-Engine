@@ -50,6 +50,16 @@ userRoutes.route('/').get(function (req, res) {
     });
 });
 
+// Getting all the results
+userRoutes.route('/showresult').get(function (req, res) {
+    Table.find(function (err, users) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json(users);
+        }
+    });
+});
 
 userRoutes.route('/schools').get(function (req, res) {
     const { exec } = require("child_process");
