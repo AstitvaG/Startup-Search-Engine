@@ -52,10 +52,17 @@ export default class MainSearch extends Component {
     onSubmit(e) {
         e.preventDefault();
         if (this.state.search && this.state.region) {
-            alert(this.state.region + " " + this.state.search);
-            this.setState({
-                response: this.state.region + ":" + this.state.search
-            })
+            axios.get('http://localhost:4000/schools')
+                .then(response => {
+                    window.location = '/showresult';
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+            // alert(this.state.region + " " + this.state.search);
+            // this.setState({
+            //     response: this.state.region + ":" + this.state.search
+            // })
         } else alert("Invalid input")
     }
 
@@ -63,7 +70,7 @@ export default class MainSearch extends Component {
         return (
             <div className="App" >
                 <Navbar />
-                <form onSubmit={this.onSubmit} style={{ display: "block", position: "absolute", top:450, left:500}}>
+                <form onSubmit={this.onSubmit} style={{ display: "block", position: "absolute", top: 450, left: 500 }}>
                     <div className="form-group d-flex justify-content-center">
                         <input className="form-control rounded-pill" type="text" id="search" placeholder="Search.." onChange={this.onChangeSearch}></input>
                     </div>
