@@ -22,7 +22,7 @@ export default class Navbar extends Component {
                 <div className="container-fluid">
                     <ul className="navbar-nav mr-auto navbar-left">
                         <li className="nav-item active">
-                            <a href="/" className="nav-link">Stealth Mode<span className="sr-only">(current)</span></a>
+                            <a href="/search" className="nav-link">Stealth Mode<span className="sr-only">(current)</span></a>
                         </li>
                     </ul>
                     <button className="navbar-toggler" type="button" onClick={this.toggle} data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
