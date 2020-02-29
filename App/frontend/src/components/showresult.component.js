@@ -23,6 +23,8 @@ export default class Showresult extends Component {
         return (
             <div>
                 <table className="table table-striped">
+                        
+                    <Navbar />
                     <thead>
                         <tr>
                             <th>Username</th>
