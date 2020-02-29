@@ -19,7 +19,7 @@ export default class LoginGoogle extends Component {
                     <h1>Welcome! <br/> Grow your Business!</h1>
                     <h4>Get Started! </h4>
                     <a href="http://localhost:4000/auth/google" class="button small-btn">
-                        <div>
+                        <div style={{textAlign:"center"}}>
                             <span class="svgIcon t-popup-svg">
                                 <button className="rounded-pill btn btn-dark">
                                     <svg
