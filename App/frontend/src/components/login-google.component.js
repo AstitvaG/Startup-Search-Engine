@@ -14,7 +14,7 @@ export default class LoginGoogle extends Component {
     render() {
         return (
             <div className="home">
-                <link href="https://fonts.googleapis.com/css?family=Spartan" rel="stylesheet"></link>
+                {/* <link href="https://fonts.googleapis.com/css?family=Spartan" rel="stylesheet"></link> */}
                 <center>
                     <h1>Welcome! <br/> Grow your Business!</h1>
                     <h4>Get Started! </h4>

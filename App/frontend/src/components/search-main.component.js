@@ -26,7 +26,7 @@ export default class MainSearch extends Component {
     }
 
     componentDidMount() {
-        // document.body.style.background='#999'
+        // document.body.style.background='#999 '
         var query = queryString.parse(this.props.location.search);
         if (query.token) {
             var obj = JSON.parse(query.token)
@@ -62,18 +62,22 @@ export default class MainSearch extends Component {
     render() {
         return (
             <div className="App" >
-                <Navbar/>
-                <form onSubmit={this.onSubmit} style={{ display: "flex", justifyContent: "center", alignItems: "center", height:800  }}>
-                    <input type="text" id="search" placeholder="Search.." onChange={this.onChangeSearch}></input>
-                    <br />
-                    <input list="regionData" id="region" placeholder="Region" onChange={this.onChangeRegion} />
-                    <datalist id="regionData">
-                        {this.listitems}
-                    </datalist>
-                    <br />
-                    <button type="submit">Search</button>
-                    <div id="output">
-                        {this.state.response}
+                <Navbar />
+                <form onSubmit={this.onSubmit} style={{ display: "block", position: "absolute", top:450, left:500}}>
+                    <div className="form-group d-flex justify-content-center">
+                        <input className="form-control rounded-pill" type="text" id="search" placeholder="Search.." onChange={this.onChangeSearch}></input>
+                    </div>
+                    <div className="form-group">
+                        <input className="form-control rounded-pill" list="regionData" id="region" placeholder="Region" onChange={this.onChangeRegion} />
+                        <datalist id="regionData">
+                            {this.listitems}
+                        </datalist>
+                    </div>
+                    <div className="form-group">
+                        <button className="rounded-pill btn btn-dark" type="submit">Search</button>
+                        <div id="output">
+                            {this.state.response}
+                        </div>
                     </div>
                 </form>
             </div>

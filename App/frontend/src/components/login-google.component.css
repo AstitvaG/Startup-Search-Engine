@@ -1,4 +1,6 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Spartan') */
+@import url(https://fonts.googleapis.com/css?family=Spartan);
+
 a {
     -webkit-tap-highlight-color: transparent;
     text-decoration: none;
@@ -6,7 +8,8 @@ a {
 
 body {
     font-family: 'Spartan', sans-serif;
-    background-image: url(https://img.wallpapersafari.com/desktop/1920/1080/91/94/PmdesY.png);
+    background: url(https://img.wallpapersafari.com/desktop/1920/1080/91/94/PmdesY.png) no-repeat;
+    background-size: cover;
     /* min-height: 75rem; */
     /* padding-top: 4.5rem; */
   }
@@ -47,6 +50,24 @@ p {
     /* height: 37px; */
     left: 44%;
     top: 400px;
+}
+
+.rounded-pill {
+
+    /* border-radius: initial;
+    border-color: steelblue;
+    border-style: solid;
+    border-width: thick; */
+    /* box-shadow: 10px 10px 10px rgb(rgb(124, 55, 55), rgb(111, 167, 111), rgb(104, 104, 153)); */
+    /* box-shadow: 2mm; */
+    border-color:#cccccc;
+    box-shadow:0 0 10px #cccccc;
+}
+
+button:hover {
+    outline:none;
+    border-color:#aaaaaa;
+    box-shadow:0 0 50px #aaaaaa;
 }
 
 .button .svgIcon {
