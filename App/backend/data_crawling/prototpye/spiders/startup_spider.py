@@ -7,6 +7,8 @@ class StackItem(Item):
     title = Field()
     description = Field()
     domains = Field()
+    url = Field()
+    image = Field()
 class QuotesSpider(scrapy.Spider):
     d = "none"
     def __init__(self,domain=None, *args, **kwargs):
@@ -14,7 +16,7 @@ class QuotesSpider(scrapy.Spider):
         print("domain is ",self.domain)
         self.start_urls = [domain+"&page=0"]
         self.p = 1
-    name = "startupprototype"
+    name = "prototype"
     # start_urls = [
     #     # 'https://study4sure.com/institutes/schools/telangana/hyderabad/',
     #     # 'https://study4sure.com/institutes/schools/telangana/hyderabad/school.php?place=Musheerbad',
@@ -28,7 +30,7 @@ class QuotesSpider(scrapy.Spider):
     def parse(self, response):
         # print("d is",d)
         page = response.url.split("/")[-2]
-        for quote in response.css('div._ujwuvl'):
+        for quote in response.css('div._jmleooi'):
             item = StackItem()
             # item[quote.css('h3::text').get()] = quote.css('p::text').getall()
             # item['title'] = quote.css('h3::text').get()
@@ -36,8 +38,17 @@ class QuotesSpider(scrapy.Spider):
             item['title'] = quote.css('p._cty35ls::text').get()
             item['description'] = quote.css('p._1ygjwwud::text').get()
             item['domains'] = quote.css('span._1yjc2n9b::text').getall()
+            item['url'] = quote.css('a::attr(href)').get()
+            item['image'] = quote.css('div._1765bnk::attr(style)').get()
             yield item
-        # next_page = response.css('div._1db1909').get()
+        for quote in response.css('div._bnto90'):
+            item = StackItem()
+            item['title'] = quote.css('p._cty35ls::text').get()
+            item['description'] = quote.css('p._1ygjwwud::text').get()
+            item['domains'] = quote.css('span._1yjc2n9b::text').getall()
+            item['url'] = quote.css('a::attr(href)').get()
+            item['image'] = quote.css('div._1765bnk::attr(style)').get()
+            yield item
         next_page = self.domain+"&page=0"
         l = response.selector.xpath('/html/body/div[1]/div/div[5]/div/div/div[5]/span[3]').get()
         # print("hello ",l)
