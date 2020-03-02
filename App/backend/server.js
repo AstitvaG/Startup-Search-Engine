@@ -61,6 +61,7 @@ userRoutes.route('/showresult').get(function (req, res) {
     });
 });
 
+//putting values in db
 userRoutes.route('/schools').post(function (req, res) {
     if (!req.body.userid) {
         res.send("Invalid");
@@ -98,6 +99,41 @@ userRoutes.route('/schools').post(function (req, res) {
         res.send("Completed")
     });
 })
+
+//putting values in db
+userRoutes.route('/startups').post(function (req, res) {
+    if (!req.body.userid) {
+        res.send("Invalid");
+        return;
+    }
+    const { exec } = require("child_process");
+
+    exec("sh crawl_startups.sh && cat data_crawling/startups.json", (error, stdout, stderr) => {
+        if (error) {
+            res.send("Error : "+error)
+            return;
+        }
+        else if (stderr) {
+            res.send("Error2 :" + stderr)
+            return;
+        }
+        // res.send(JSON.parse(stdout))
+        stdout = JSON.parse(stdout)
+        for (var i = 0; i < stdout.length; i++) {
+            var temp = stdout[i];
+            let table = new Table({
+                userid: req.body.userid,
+                title: temp['title'],
+                c1: temp['description'],
+                c2: temp['domain']
+            });
+            table.save();
+        }
+        Table.collection.insertMany(stdout);
+        res.send("Completed")
+    });
+})
+
 
 // Adding a new user
 userRoutes.route('/add').post(function (req, res) {
