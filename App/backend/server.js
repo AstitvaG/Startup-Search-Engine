@@ -108,7 +108,7 @@ userRoutes.route('/startups').post(function (req, res) {
     }
     const { exec } = require("child_process");
 
-    exec("sh crawl_startups.sh && cat data_crawling/startups.json", (error, stdout, stderr) => {
+    exec("cat data_crawling/items.json", (error, stdout, stderr) => {
         if (error) {
             res.send("Error : "+error)
             return;
