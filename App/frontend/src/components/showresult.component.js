@@ -10,6 +10,7 @@ export default class Showresult extends Component {
         this.state = { result: [] }
     }
     componentDidMount() {
+        document.body.style.background='#444'
         axios.get('http://localhost:4000/showresult')
             .then(response => {
                 this.setState({ result: response.data });
