@@ -16,7 +16,7 @@ class QuotesSpider(scrapy.Spider):
         print("domain is ",self.domain)
         self.start_urls = [domain+"&page=0"]
         self.p = 1
-    name = "prototype"
+    name = "startupprototype"
     # start_urls = [
     #     # 'https://study4sure.com/institutes/schools/telangana/hyderabad/',
     #     # 'https://study4sure.com/institutes/schools/telangana/hyderabad/school.php?place=Musheerbad',

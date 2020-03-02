@@ -70,7 +70,7 @@ userRoutes.route('/schools').post(function (req, res) {
 
     exec("sh crawl.sh && cat data_crawling/schools.json", (error, stdout, stderr) => {
         if (error) {
-            res.send("Error")
+            res.send("Error : "+error)
             return;
         }
         else if (stderr) {

@@ -33,12 +33,11 @@ export default class MainSearch extends Component {
             window.localStorage.setItem("token", obj.token);
             window.localStorage.setItem("name", obj.name);
             window.localStorage.setItem("email", obj.email);
-            console.log(obj)
             this.props.history.push("/search");
         }
     }
 
-    myLists = ["A", "B", "C", "D", "E"]
+    myLists = ["Hyderabad"]
     listitems = this.myLists.map((mylist) => <option value={mylist} />)
 
     onChangeSearch(e) {
@@ -51,14 +50,24 @@ export default class MainSearch extends Component {
 
     onSubmit(e) {
         e.preventDefault();
-        if (this.state.search && this.state.region) {
-            axios.get('http://localhost:4000/schools')
+        if (this.state.search === "School" && this.state.region === "Hyderabad") {
+            console.log("email:", window.localStorage.getItem("email"))
+            axios.post('http://localhost:4000/schools', {
+                userid: window.localStorage.getItem("email")
+            })
                 .then(response => {
                     window.location = '/showresult';
+                    // this.setState({ result: response.data });
                 })
                 .catch(function (error) {
                     console.log(error);
                 })
+            // axios.get('http://localhost:4000/schools')
+            //     .then(response => {
+            //     })
+            //     .catch(function (error) {
+            //         console.log(error);
+            //     })
             // alert(this.state.region + " " + this.state.search);
             // this.setState({
             //     response: this.state.region + ":" + this.state.search
@@ -71,25 +80,25 @@ export default class MainSearch extends Component {
             <div className="App" >
                 <Navbar />
                 <div className="row h-100">
-                <div className="col-sm-12 mx-auto my-auto">
-                    <form onSubmit={this.onSubmit} style={{ display: "block", position: "absolute", top: 450, left: 500 }}>
-                        <div className="form-group">
-                            <input className="form-control rounded-pill" type="text" id="search" placeholder="Search.." onChange={this.onChangeSearch}></input>
-                        </div>
-                        <div className="form-group">
-                            <input className="form-control rounded-pill" list="regionData" id="region" placeholder="Region" onChange={this.onChangeRegion} />
-                            <datalist id="regionData">
-                                {this.listitems}
-                            </datalist>
-                        </div>
-                        <div className="form-group">
-                            <button className="rounded-pill btn btn-dark" type="submit">Search</button>
-                            <div id="output">
-                                {this.state.response}
+                    <div className="col-sm-12 mx-auto my-auto">
+                        <form onSubmit={this.onSubmit} style={{ display: "block", position: "absolute", top: 450, left: 500 }}>
+                            <div className="form-group">
+                                <input className="form-control rounded-pill" type="text" id="search" placeholder="Search.." onChange={this.onChangeSearch}></input>
                             </div>
-                        </div>
-                    </form>
-                </div>
+                            <div className="form-group">
+                                <input className="form-control rounded-pill" list="regionData" id="region" placeholder="Region" onChange={this.onChangeRegion} />
+                                <datalist id="regionData">
+                                    {this.listitems}
+                                </datalist>
+                            </div>
+                            <div className="form-group">
+                                <button className="rounded-pill btn btn-dark" type="submit">Search</button>
+                                <div id="output">
+                                    {this.state.response}
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         )
