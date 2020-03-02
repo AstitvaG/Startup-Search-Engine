@@ -5,6 +5,9 @@ let Table = new mongoose.Schema({
         type: String,
         default: null
     },
+    searchid :{
+        type: String
+    },
     title: {
         type: String,
         default : null
@@ -48,7 +51,11 @@ let Table = new mongoose.Schema({
     c10: {
         type: String,
         default : null
-    }
+    },
+    time: {
+        type: Date,
+        default: Date.now
+    } 
 });
 
 module.exports = mongoose.model('Table', Table);

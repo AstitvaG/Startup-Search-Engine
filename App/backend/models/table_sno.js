@@ -1,11 +1,15 @@
 const mongoose = require('mongoose');
 
 let Table_sno = new mongoose.Schema({
-    name: {
+    userid: {
         type: String
     },
-    sno: {
-        type: Number
+    searchval: {
+        type: String
+    },
+    time: {
+        type: Date,
+        default: Date.now
     }
 });
 

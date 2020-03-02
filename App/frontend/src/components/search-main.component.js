@@ -53,7 +53,8 @@ export default class MainSearch extends Component {
         if (this.state.search === "School" && this.state.region === "Hyderabad") {
             console.log("email:", window.localStorage.getItem("email"))
             axios.post('http://localhost:4000/schools', {
-                userid: window.localStorage.getItem("email")
+                userid: window.localStorage.getItem("email"),
+                searchval: this.state.search + ":" + this.state.region
             })
                 .then(response => {
                     window.location = '/showresult';
