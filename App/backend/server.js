@@ -50,6 +50,19 @@ userRoutes.route('/').get(function (req, res) {
     });
 });
 
+// Getting previous_searches
+userRoutes.route('/previoussearches').post(function (req, res) {
+    Table_sno.find({ userid: req.body.userid })
+    .sort({ time: -1 })
+    .exec(function (err, body) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json(body);
+        }
+    });
+});
+
 // Getting all the results
 userRoutes.route('/showresult').get(function (req, res) {
     Table.find(function (err, users) {

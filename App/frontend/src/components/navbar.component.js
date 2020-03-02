@@ -41,7 +41,7 @@ export default class Navbar extends Component {
                                     Account
                             </a>
                                 <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a className="dropdown-item" href='/history'>Search History</a>
+                                    <a className="dropdown-item" href="/previoussearches">Search History</a>
                                     <a className="dropdown-item" href="#" onClick={this.logout}>Logout</a>
                                 </div>
                             </li>
