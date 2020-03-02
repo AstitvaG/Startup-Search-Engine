@@ -8,16 +8,19 @@ import MainSearch from './components/search-main.component'
 import Showresult from './components/showresult.component'
 import LoginGoogle from './components/login-google.component'
 
+function checkLogin() {
+  if (window.localStorage.getItem("username")!=="null")
+    return MainSearch;
+  else return LoginGoogle;
+}
 
 function App() {
-  
-
   return (
     <Router>
       <div className="container">
-      <Route path="/search" exact component={MainSearch} />
+        <Route path="/search" exact component={MainSearch} />
         <Route path="/showresult" exact component={Showresult} />
-        <Route path="/" exact component={LoginGoogle} />
+        <Route path="/" exact component={checkLogin()} />
         <Route path="/users" exact component={UsersList} />
         <Route path="/create" component={CreateUser} />
       </div>
