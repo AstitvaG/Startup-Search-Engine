@@ -30,7 +30,7 @@ export default class Showresult extends Component {
                 <br />
                 <br />
                 <br />
-                <table className="table mx-0">
+                <table className="table">
                     <thead>
                         {
                             this.state.result.map((currentUser, i) => {

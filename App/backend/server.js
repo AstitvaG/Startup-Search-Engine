@@ -69,7 +69,7 @@ userRoutes.route('/schools').post(function (req, res) {
     }
     const { exec } = require("child_process");
 
-    exec("sh crawl.sh && cat data_crawling/schools.json", (error, stdout, stderr) => {
+    exec("sh crawl.sh", (error, stdout, stderr) => {
         if (error) {
             res.send("Error : "+error)
             return;
@@ -108,7 +108,7 @@ userRoutes.route('/startups').post(function (req, res) {
     }
     const { exec } = require("child_process");
 
-    exec("cat data_crawling/items.json", (error, stdout, stderr) => {
+    exec("sh crawl_startups.sh", (error, stdout, stderr) => {
         if (error) {
             res.send("Error : "+error)
             return;
