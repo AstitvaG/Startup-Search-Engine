@@ -17,7 +17,7 @@
     "popper.js": "^1.16.1"
   },
   "devDependencies": {
-    "concurrently": "^4.0.1",
+    "concurrently": "^4.1.2",
     "eslint": "^6.8.0",
     "eslint-plugin-react": "^7.18.3"
   }
