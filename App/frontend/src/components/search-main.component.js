@@ -57,7 +57,7 @@ export default class MainSearch extends Component {
                 searchval: this.state.search + ":" + this.state.region
             })
                 .then(response => {
-                    window.location = '/showresult';
+                    window.location = '/previoussearches';
                     // this.setState({ result: response.data });
                 })
                 .catch(function (error) {
@@ -71,7 +71,7 @@ export default class MainSearch extends Component {
                         searchval: this.state.search + ":" + this.state.region
                     })
                         .then(response => {
-                            window.location = '/showresult';
+                            window.location = '/previoussearches';
                             // this.setState({ result: response.data });
                         })
                         .catch(function (error) {
