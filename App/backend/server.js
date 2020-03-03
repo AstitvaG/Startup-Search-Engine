@@ -39,6 +39,8 @@ userRoutes.route('/auth/google/callback').get(
 
 // API endpoints
 
+show=[];
+
 // Getting all the users
 userRoutes.route('/').get(function (req, res) {
     User.find(function (err, users) {
@@ -65,7 +67,7 @@ userRoutes.route('/previoussearches').post(function (req, res) {
 
 // Getting all the results
 userRoutes.route('/showresult').get(function (req, res) {
-    Table.find(function (err, users) {
+    Table.find({ searchid: show },function (err, users) {
         if (err) {
             console.log(err);
         } else {
@@ -73,6 +75,15 @@ userRoutes.route('/showresult').get(function (req, res) {
         }
     });
 });
+
+// Add searchid
+userRoutes.route('/show').post(function (req, res) {
+    show=req.data.id;
+    res.send('1');
+
+});
+
+
 
 //putting values in db
 userRoutes.route('/schools').post(function (req, res) {

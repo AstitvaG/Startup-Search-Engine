@@ -8,6 +8,7 @@ export default class Previoussearches extends Component {
     constructor(props) {
         super(props);
         this.state = { result: [] }
+        this.onShow = this.onShow.bind(this);
     }
     componentDidMount() {
         document.body.style.background = '#444'
@@ -21,6 +22,17 @@ export default class Previoussearches extends Component {
                     console.log(error);
                 })
     }
+    onShow(e){
+        const show={
+            id:e
+        }
+        axios.post('http://localhost:4000/show', show)
+        .then(function(res){
+            console.log(res.data)
+            window.location='/showresult'
+            
+        })
+}
     render() {
         return (
             <div className="container container-fluid">
@@ -38,9 +50,8 @@ export default class Previoussearches extends Component {
                                     <tr >
                                         <th className="fit w-0"><p className="text-white">S.No</p></th>
                                         <th className="fit w-0"><p className="text-white">Search</p></th>
+                                        <th className="fit w-0"><p className="text-white">Show Search Result</p></th>
                                     </tr>
-                                
-                        
                     }
                 </thead>
                 <tbody>
@@ -50,6 +61,13 @@ export default class Previoussearches extends Component {
                                     <tr key={i}>
                                         <td className="fit w-0"><p className="text-white">{i+1}</p></td>
                                         <td className="fit w-0"><p className="text-white">{currentUser.searchval}</p></td>
+                                        <td className="fit w-0"><p className="text-white">
+                                        <button class="btn btn-outline-success my-2 my-sm-0" onClick={e => this.onShow(currentUserd._id)}>
+                                            Show Result
+                                        </button>
+                                        </p>
+                                        </td>
+
                                     </tr>
                                 )
                         })

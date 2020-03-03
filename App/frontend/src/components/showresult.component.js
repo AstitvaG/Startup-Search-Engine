@@ -20,6 +20,7 @@ export default class Showresult extends Component {
             })
     }
     render() {
+        console.log()
         return (
             <div className="container container-fluid">
                 <Navbar />
