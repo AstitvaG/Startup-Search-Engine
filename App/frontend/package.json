@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
+    "concurrently": "^5.1.0",
     "google-auth-library": "^5.10.1",
     "path-to-regexp": "^6.1.0",
     "query-string": "^6.11.0",

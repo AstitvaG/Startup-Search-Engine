@@ -8,7 +8,7 @@ a {
 
 body {
     font-family: 'Spartan', sans-serif;
-    background: url(https://img.wallpapersafari.com/desktop/1920/1080/91/94/PmdesY.png) no-repeat;
+    background: url('./PmdesY.png') no-repeat;
     background-size: auto;
     /* min-height: 75rem; */
     /* padding-top: 4.5rem; */
@@ -72,6 +72,12 @@ p {
     outline:none;
     border-color:#aaaaaa;
     box-shadow:0 0 50px #aaaaaa;
+}
+
+.button:hover {
+    outline: none;
+    border-color: #444444;
+    box-shadow: #444444;
 }
 
 .button .svgIcon {
