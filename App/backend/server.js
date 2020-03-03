@@ -146,7 +146,7 @@ userRoutes.route('/startups').post(function (req, res) {
 
         const { exec } = require("child_process");
 
-        exec("sh crawl_startups.sh "+req.body.domain+" "+req.body.country+" ", (error, stdout, stderr) => {
+        exec("sh crawl_startups.sh \""+req.body.domain+"\" \""+req.body.country+"\" ", (error, stdout, stderr) => {
             if (error) {
                 res.send("Error : " + error)
                 return;
