@@ -68,7 +68,7 @@ p {
     box-shadow:0 0 10px #cccccc;
 }
 
-button:hover {
+.glogin:hover {
     outline:none;
     border-color:#aaaaaa;
     box-shadow:0 0 50px #aaaaaa;
