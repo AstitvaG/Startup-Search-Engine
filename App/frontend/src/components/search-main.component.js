@@ -63,17 +63,23 @@ export default class MainSearch extends Component {
                 .catch(function (error) {
                     console.log(error);
                 })
-            // axios.get('http://localhost:4000/schools')
-            //     .then(response => {
-            //     })
-            //     .catch(function (error) {
-            //         console.log(error);
-            //     })
-            // alert(this.state.region + " " + this.state.search);
-            // this.setState({
-            //     response: this.state.region + ":" + this.state.search
-            // })
-        } else alert("Invalid input")
+            }
+                else if(this.state.search === "Startups" && this.state.region === "India") {
+                    console.log("email:", window.localStorage.getItem("email"))
+                    axios.post('http://localhost:4000/startups', {
+                        userid: window.localStorage.getItem("email"),
+                        searchval: this.state.search + ":" + this.state.region
+                    })
+                        .then(response => {
+                            window.location = '/showresult';
+                            // this.setState({ result: response.data });
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        })
+                }
+           
+         else alert("Invalid input")
     }
 
     render() {

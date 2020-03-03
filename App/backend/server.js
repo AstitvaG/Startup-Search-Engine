@@ -65,6 +65,7 @@ userRoutes.route('/previoussearches').post(function (req, res) {
 
 // Getting all the results
 userRoutes.route('/showresult').get(function (req, res) {
+    console.log("bzcvhzvx");
     Table.find(function (err, users) {
         if (err) {
             console.log(err);
@@ -73,6 +74,8 @@ userRoutes.route('/showresult').get(function (req, res) {
         }
     });
 });
+
+
 
 //putting values in db
 userRoutes.route('/schools').post(function (req, res) {
