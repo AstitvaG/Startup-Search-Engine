@@ -33,7 +33,7 @@ userRoutes.route('/auth/google').get(
 userRoutes.route('/auth/google/callback').get(
     passport.authenticate("google", { failureRedirect: "/", session: false }),
     function (req, res) {
-        res.redirect("http://localhost:3000/search?token=" + JSON.stringify(req.user));
+        res.redirect("http://localhost:3000/previoussearches?token=" + JSON.stringify(req.user));
     }
 );
 
@@ -133,7 +133,7 @@ userRoutes.route('/schools').post(function (req, res) {
 
 //putting values in db
 userRoutes.route('/startups').post(function (req, res) {
-    if (!req.body.userid || !req.body.searchval) {
+    if (!req.body.userid || !req.body.searchval || !req.body.domain || !req.body.country) {
         res.send("Invalid");
         return;
     }
@@ -146,7 +146,7 @@ userRoutes.route('/startups').post(function (req, res) {
 
         const { exec } = require("child_process");
 
-        exec("sh crawl_startups.sh IN", (error, stdout, stderr) => {
+        exec("sh crawl_startups.sh "+req.body.domain+" "+req.body.country+" ", (error, stdout, stderr) => {
             if (error) {
                 res.send("Error : " + error)
                 return;

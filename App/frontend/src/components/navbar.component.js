@@ -22,7 +22,7 @@ export default class Navbar extends Component {
                 <div className="container-fluid">
                     <ul className="navbar-nav mr-auto navbar-left">
                         <li className="nav-item active">
-                            <a href="/search" className="nav-link">Stealth Mode<span className="sr-only">(current)</span></a>
+                            <a href="/previoussearches" className="nav-link">Stealth Mode<span className="sr-only">(current)</span></a>
                         </li>
                     </ul>
                     <button className="navbar-toggler" type="button" onClick={this.toggle} data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,7 +34,7 @@ export default class Navbar extends Component {
                         </ul>
                         <ul className="navbar-nav navbar-right">
                             <li className="nav-item">
-                                <a href="/search" className="nav-link" href="/enter">Hey <strong>{window.localStorage.getItem('name')}</strong>!</a>
+                                <a href="/search" className="nav-link" href="/previoussearches">Hey <strong>{window.localStorage.getItem('name')}</strong>!</a>
                             </li>
                             <li className="nav-item dropdown">
                                 <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
