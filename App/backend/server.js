@@ -71,7 +71,6 @@ userRoutes.route('/show/showresult').get(function (req, res) {
         if (err) {
             console.log(err);
         } else {
-           // console.log("trusha");
             res.json(users);
         }
     });
@@ -147,7 +146,7 @@ userRoutes.route('/startups').post(function (req, res) {
 
         const { exec } = require("child_process");
 
-        exec("sh crawl_startups.sh", (error, stdout, stderr) => {
+        exec("sh crawl_startups.sh IN", (error, stdout, stderr) => {
             if (error) {
                 res.send("Error : " + error)
                 return;
