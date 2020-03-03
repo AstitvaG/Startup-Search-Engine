@@ -28,7 +28,6 @@ export default class Previoussearches extends Component {
         }
         axios.post('http://localhost:4000/show', show)
         .then(function(res){
-            console.log(res.data)
             window.location='/showresult'
             
         })
