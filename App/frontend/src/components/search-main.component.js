@@ -14,15 +14,17 @@ export default class MainSearch extends Component {
         super(props);
 
         this.state = {
-            region: '',
+            country: '',
             search: '',
-            response: ''
+            response: '',
+            dom: ''
         }
 
 
         this.onSubmit = this.onSubmit.bind(this);
         this.onChangeSearch = this.onChangeSearch.bind(this);
-        this.onChangeRegion = this.onChangeRegion.bind(this);
+        this.onChangeCountry = this.onChangeCountry.bind(this);
+        this.onChangeDomain = this.onChangeDomain.bind(this);
     }
 
     componentDidMount() {
@@ -38,14 +40,22 @@ export default class MainSearch extends Component {
     }
 
     myLists = ["Hyderabad"]
-    listitems = this.myLists.map((mylist) => <option value={mylist} />)
+    myCountries = ["India", "Cannada"]
+    listCountries = this.myCountries.map((mylist) => <option value={mylist} />)
+    myDomains = ["AI", "Health"]
+    listDomains = this.myDomains.map((mylist) => <option value={mylist} />)
+    
 
     onChangeSearch(e) {
         this.setState({ search: e.target.value });
     }
 
-    onChangeRegion(e) {
-        this.setState({ region: e.target.value });
+    onChangeCountry(e) {
+        this.setState({ country: e.target.value });
+    }
+
+    onChangeDomain(e) {
+        this.setState({ dom: e.target.value });
     }
 
     onSubmit(e) {
@@ -53,7 +63,7 @@ export default class MainSearch extends Component {
         if (this.state.search === "School" && this.state.region === "Hyderabad") {
             axios.post('http://localhost:4000/schools', {
                 userid: window.localStorage.getItem("email"),
-                searchval: this.state.search + ":" + this.state.region
+                searchval: this.state.search + ":" + this.state.dom + ":" + this.state.country
             })
                 .then(response => {
                     window.location = '/previoussearches';
@@ -91,9 +101,15 @@ export default class MainSearch extends Component {
                                 <input className="form-control rounded-pill" type="text" id="search" placeholder="Search.." onChange={this.onChangeSearch}></input>
                             </div>
                             <div className="form-group">
-                                <input className="form-control rounded-pill" list="regionData" id="region" placeholder="Region" onChange={this.onChangeRegion} />
-                                <datalist id="regionData">
-                                    {this.listitems}
+                                <input className="form-control rounded-pill" list="domainData" id="domain" placeholder="Domain" onChange={this.onChangeDomain} />
+                                <datalist id="domainData">
+                                    {this.listDomains}
+                                </datalist>
+                            </div>
+                            <div className="form-group">
+                                <input className="form-control rounded-pill" list="countryData" id="country" placeholder="Country" onChange={this.onChangeCountry} />
+                                <datalist id="countryData">
+                                    {this.listCountries}
                                 </datalist>
                             </div>
                             <div className="form-group">
