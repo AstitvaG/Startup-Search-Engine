@@ -11,7 +11,7 @@ export default class Showresult extends Component {
     }
     componentDidMount() {
         document.body.style.background='#444'
-        axios.get('http://localhost:4000/showresult')
+        axios.get('http://localhost:4000/show/showresult')
             .then(response => {
                 this.setState({ result: response.data });
             })
@@ -20,7 +20,6 @@ export default class Showresult extends Component {
             })
     }
     render() {
-        console.log()
         return (
             <div className="container container-fluid">
                 <Navbar />
@@ -35,10 +34,10 @@ export default class Showresult extends Component {
                     <thead>
                         {
                             this.state.result.map((currentUser, i) => {
-                                if (currentUser.c1 && i==999)
+                                if (currentUser.c1 && i==0)
                                     return (
                                         <tr key={i}>
-                                            <th className="fit w-0"><p className="text-white">title</p></th>
+                                            <th className="fit w-0"><p className="text-white">Title</p></th>
                                             {
                                                 currentUser.c1 &&
                                                 <th className="fit w-0"><p className="text-white">{currentUser.c1.split(":")[0]}</p></th>

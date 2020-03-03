@@ -39,7 +39,7 @@ userRoutes.route('/auth/google/callback').get(
 
 // API endpoints
 
-show=[];
+show = [];
 
 // Getting all the users
 userRoutes.route('/').get(function (req, res) {
@@ -55,19 +55,19 @@ userRoutes.route('/').get(function (req, res) {
 // Getting previous_searches
 userRoutes.route('/previoussearches').post(function (req, res) {
     Table_sno.find({ userid: req.body.userid })
-    .sort({ time: -1 })
-    .exec(function (err, body) {
-        if (err) {
-            console.log(err);
-        } else {
-            res.json(body);
-        }
-    });
+        .sort({ time: -1 })
+        .exec(function (err, body) {
+            if (err) {
+                console.log(err);
+            } else {
+                res.json(body);
+            }
+        });
 });
 
 // Getting all the results
-userRoutes.route('/showresult').get(function (req, res) {
-    Table.find({ searchid: show },function (err, users) {
+userRoutes.route('/show/showresult').get(function (req, res) {
+    Table.find({ searchid: show }, function (err, users) {
         if (err) {
             console.log(err);
         } else {
@@ -78,9 +78,8 @@ userRoutes.route('/showresult').get(function (req, res) {
 
 // Add searchid
 userRoutes.route('/show').post(function (req, res) {
-    show=req.data.id;
+    show = req.body.id;
     res.send('1');
-
 });
 
 
@@ -162,9 +161,11 @@ userRoutes.route('/startups').post(function (req, res) {
                 var temp = stdout[i];
                 let table = new Table({
                     userid: req.body.userid,
+                    searchid: table_sno._id,
                     title: temp['title'],
-                    c1: temp['description'],
-                    c2: temp['domain']
+                    c1: "Description:"+temp['description'],
+                    c2: "Domain(s):"+JSON.stringify(temp['domains']),
+                    c3: "Url:www.startuptracker.io"+temp['url']
                 });
                 table.save();
             }
