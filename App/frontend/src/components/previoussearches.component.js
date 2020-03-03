@@ -62,7 +62,7 @@ export default class Previoussearches extends Component {
                                         <td className="fit w-0"><p className="text-white">{i+1}</p></td>
                                         <td className="fit w-0"><p className="text-white">{currentUser.searchval}</p></td>
                                         <td className="fit w-0"><p className="text-white">
-                                        <button class="btn btn-outline-success my-2 my-sm-0" onClick={e => this.onShow(currentUserd._id)}>
+                                        <button class="btn btn-outline-success my-2 my-sm-0" onClick={e => this.onShow(currentUser._id)}>
                                             Show Result
                                         </button>
                                         </p>

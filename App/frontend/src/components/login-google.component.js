@@ -21,7 +21,7 @@ export default class LoginGoogle extends Component {
                     <a href="http://localhost:4000/auth/google" class="button small-btn">
                         <div style={{textAlign:"center"}}>
                             <span class="svgIcon t-popup-svg">
-                                <button className="rounded-pill btn btn-dark">
+                                <button className="rounded-pill btn btn-dark glogin">
                                     <svg
                                         class="svgIcon-use"
                                         width="45"
