@@ -60,7 +60,7 @@ export default class MainSearch extends Component {
 
     onSubmit(e) {
         e.preventDefault();
-        if (this.state.search === "School" && this.state.region === "Hyderabad") {
+        if (this.state.search === "School") {
             axios.post('http://localhost:4000/schools', {
                 userid: window.localStorage.getItem("email"),
                 searchval: this.state.search + ":" + this.state.dom + ":" + this.state.country
@@ -73,10 +73,10 @@ export default class MainSearch extends Component {
                     console.log(error);
                 })
             }
-                else if(this.state.search === "Startups" && this.state.region === "India") {
+                else if(this.state.search === "Startups") {
                     axios.post('http://localhost:4000/startups', {
                         userid: window.localStorage.getItem("email"),
-                        searchval: this.state.search + ":" + this.state.region
+                        searchval: this.state.search + ":" + this.state.dom + ":" + this.state.country
                     })
                         .then(response => {
                             window.location = '/previoussearches';

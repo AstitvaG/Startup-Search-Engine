@@ -71,6 +71,7 @@ userRoutes.route('/show/showresult').get(function (req, res) {
         if (err) {
             console.log(err);
         } else {
+           // console.log("trusha");
             res.json(users);
         }
     });
