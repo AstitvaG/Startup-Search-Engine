@@ -165,7 +165,8 @@ userRoutes.route('/startups').post(function (req, res) {
                     title: temp['title'],
                     c1: "Description:"+temp['description'],
                     c2: "Domain(s):"+JSON.stringify(temp['domains']),
-                    c3: "Url:www.startuptracker.io"+temp['url']
+                    c3: "Url:www.startuptracker.io" + temp['url'],
+                    c4: "Image@"+temp['image']
                 });
                 table.save();
             }
