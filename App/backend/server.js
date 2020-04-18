@@ -9,6 +9,7 @@ const PORT = 4000;
 const userRoutes = express.Router();
 
 let User = require('./models/user');
+let View_individual = require('./models/view_individual');
 let Table = require('./models/table');
 let Table_sno = require('./models/table_sno');
 
@@ -178,9 +179,47 @@ userRoutes.route('/startups').post(function (req, res) {
 
 //putting values in db individual startup
 userRoutes.route('/viewdetails').post(function (req, res) {
+
+    View_individual.find({name : req.body.name}, function (err, user) {
+        console.log(user);
+        
+        if(!(user==[]))
+        {
+            res.json(user);
+        }
+        else
+        {
+                const { exec } = require("child_process");
+        
+                exec("sh crawl_startups_ind.sh \""+req.body.url+"\ ", (error, stdout, stderr) => {
+                    if (error) {
+                        res.send("Error : " + error)
+                        return;
+                    }
+                    else if (stderr) {
+                        res.send("Error2 :" + stderr)
+                        return;
+                    }
+                    // res.send(JSON.parse(stdout))
+                    stdout = JSON.parse(stdout)
+                    for (var i = 0; i < stdout.length; i++) {
+                        var temp = stdout[i];
+                        let table = new View_individual({
+                            name: req.body.name,
+                            c1:"test"
+                        });
+                        table.save();
+                    }
+                   // Table.collection.insertMany(stdout);
+                    res.send("Completed")
+                })
+        }
+
+    });
     console.log("ok cool fine yes");
     res.send("hdhgfh");
     
+
 })
 
 // Adding a new user
