@@ -24,7 +24,8 @@ export default class Showresult extends Component {
     }
     onViewdetails(e,f) {
         const show = {
-            id: e
+            url: e,
+            name:f
         }
         axios.post('http://localhost:4000/viewdetails', show)
             .then(function (res) {
@@ -65,7 +66,7 @@ export default class Showresult extends Component {
                                     image={currentUser.c4.split("@")[1].split("(")[1].split(")")[0]}
                                     domains={currentUser.c2.split(":")[1]} />
                                    <div>
-                                   <button class="btn glogin btn-outline-success my-2 my-sm-0" onClick={e => this.onViewdetails(currentUser.c3.split(":")[1],currentUser._id)}>
+                                   <button class="btn glogin btn-outline-success my-2 my-sm-0" onClick={e => this.onViewdetails(currentUser.c3.split(":")[1],currentUser.title)}>
                                     View Details
                         </button>
                         </div>
