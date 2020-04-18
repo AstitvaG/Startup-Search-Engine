@@ -176,6 +176,12 @@ userRoutes.route('/startups').post(function (req, res) {
     })
 })
 
+//putting values in db individual startup
+userRoutes.route('/viewdetails').post(function (req, res) {
+    console.log("ok cool fine yes");
+    res.send("hdhgfh");
+    
+})
 
 // Adding a new user
 userRoutes.route('/add').post(function (req, res) {
