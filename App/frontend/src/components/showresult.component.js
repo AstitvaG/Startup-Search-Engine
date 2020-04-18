@@ -103,7 +103,7 @@ export default class Showresult extends Component {
                 {/* <tbody> */}
                 <div className="container-fluid m-auto d-block">
                     <p className="display-1 text-light" align="center">
-                        <strong><b>SearchLayout</b></strong>
+                        <strong><b>Search Result</b></strong>
                     </p>
                 </div>
                 <br />
