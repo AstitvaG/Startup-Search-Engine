@@ -9,7 +9,7 @@ export default class Showresult extends Component {
     constructor(props) {
         super(props);
         this.state = { result: [] }
-        this.onViewdetails = this.onViewdetails.bind(this);
+        // this.onViewdetails = this.onViewdetails.bind(this);
 
     }
     componentDidMount() {
@@ -20,21 +20,6 @@ export default class Showresult extends Component {
             })
             .catch(function (error) {
                 console.log(error);
-            })
-    }
-    onViewdetails(e,f) {
-        const show = {
-            url: e,
-            name:f
-        }
-        axios.post('http://localhost:4000/viewdetails', show)
-            .then(function (res) {
-              //  console.log(res.data)
-                localStorage.setItem("viewdetails",f);
-                //console.log("ok cool fine yes")
-    
-              window.location = '/viewdetails'
-
             })
     }
     render() {
@@ -60,19 +45,16 @@ export default class Showresult extends Component {
                         if (currentUser.c1)
                             return (
                                 <div>
-                                <SearchLayout key={i}
-                                    name={currentUser.title}
-                                    description={currentUser.c1.split(":")[1]}
-                                    image={currentUser.c4.split("@")[1].split("(")[1].split(")")[0]}
-                                    domains={currentUser.c2.split(":")[1]} />
-                                   <div>
-                                   <button class="btn glogin btn-outline-success my-2 my-sm-0" onClick={e => this.onViewdetails(currentUser.c3.split(":")[1],currentUser.title)}>
-                                    View Details
-                        </button>
-                        </div>
-                            </div>
-                            )}
-                    )}
+                                    <SearchLayout key={i}
+                                        name={currentUser.title}
+                                        description={currentUser.c1.split(":")[1]}
+                                        image={currentUser.c4.split("@")[1].split("(")[1].split(")")[0]}
+                                        domains={currentUser.c2.split(":")[1]}
+                                        url={currentUser.c3.split(":")[1]} />
+                                </div>
+                            )
+                    })
+                }
             </div>
         )
     }

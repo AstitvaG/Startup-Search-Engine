@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import basicimage from "./basic.png"
+import axios from 'axios';
 
 export default class SearchLayout extends Component {
 
@@ -17,7 +18,26 @@ export default class SearchLayout extends Component {
         this.setState({
             isHidden: !this.state.isHidden
         })
-        // $('.collapse').collapse()
+        if (!this.state.isHidden) {
+            this.onViewdetails(this.props.url, this.props.name)
+        }
+    }
+
+
+    onViewdetails(url, name) {
+        const show = {
+            url: url,
+            name: name
+        }
+        axios.post('http://localhost:4000/viewdetails', show)
+            .then(function (res) {
+                //  console.log(res.data)
+                localStorage.setItem("viewdetails", name);
+                //console.log("ok cool fine yes")
+
+                window.location = '/viewdetails'
+
+            })
     }
 
     hashCode(str) { // java String#hashCode
@@ -58,9 +78,7 @@ export default class SearchLayout extends Component {
                 <small>
                     {this.state.domains[i].toLowerCase()}
                 </small>
-                {/* {"ANALYTICS".charAt(0).toUpperCase() + "ANALYTICS".slice(1).toLowerCase()} */}
             </div>)
-            // console.log(temp)
         }
         return temp;
     }
