@@ -57,7 +57,7 @@ export default class Showresult extends Component {
                                         description={currentUser.c1.split(":")[1]}
                                         image={currentUser.c4.split("@")[1].split("(")[1].split(")")[0]}
                                         domains={currentUser.c2.split(":")[1]}
-                                        url={currentUser.c3.split(":")[1]} />
+                                        url={currentUser.c3.split("@")[1]} />
                                 </div>
                             )
                     })

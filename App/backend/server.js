@@ -55,14 +55,14 @@ userRoutes.route('/').get(function (req, res) {
 // Getting previous_searches
 userRoutes.route('/previoussearches').post(function (req, res) {
     Table_sno.find({ userid: req.body.userid })
-    .sort({ time: -1 })
-    .exec(function (err, body) {
-        if (err) {
-            console.log(err);
-        } else {
-            res.json(body);
-        }
-    });
+        .sort({ time: -1 })
+        .exec(function (err, body) {
+            if (err) {
+                console.log(err);
+            } else {
+                res.json(body);
+            }
+        });
 });
 
 show = [];
@@ -150,7 +150,7 @@ userRoutes.route('/startups').post(function (req, res) {
 
         const { exec } = require("child_process");
 
-        exec("sh crawl_startups.sh \""+req.body.domain+"\" \""+req.body.country+"\" ", (error, stdout, stderr) => {
+        exec("sh crawl_startups.sh \"" + req.body.domain + "\" \"" + req.body.country + "\" ", (error, stdout, stderr) => {
             if (error) {
                 res.send("Error : " + error)
                 return;
@@ -167,10 +167,10 @@ userRoutes.route('/startups').post(function (req, res) {
                     userid: req.body.userid,
                     searchid: table_sno._id,
                     title: temp['title'],
-                    c1: "Description:"+temp['description'],
-                    c2: "Domain(s):"+JSON.stringify(temp['domains']),
-                    c3: "Url:www.startuptracker.io" + temp['url'],
-                    c4: "Image@"+temp['image']
+                    c1: "Description:" + temp['description'],
+                    c2: "Domain(s):" + JSON.stringify(temp['domains']),
+                    c3: "Url@https://www.startuptracker.io" + temp['url'],
+                    c4: "Image@" + temp['image']
                 });
                 table.save();
             }
@@ -183,46 +183,39 @@ userRoutes.route('/startups').post(function (req, res) {
 //putting values in db individual startup
 userRoutes.route('/viewdetails').post(function (req, res) {
 
-    View_individual.find({name : req.body.name}, function (err, user) {
+    View_individual.find({ name: req.body.name }, function (err, user) {
         console.log(user);
-        
-        if(!(user==[]))
-        {
+        if (user.length>0) {
             res.json(user);
         }
-        else
-        {
-                const { exec } = require("child_process");
-        
-                exec("sh crawl_startups_ind.sh \""+req.body.url+"\ ", (error, stdout, stderr) => {
-                    if (error) {
-                        res.send("Error : " + error)
-                        return;
-                    }
-                    else if (stderr) {
-                        res.send("Error2 :" + stderr)
-                        return;
-                    }
-                    // res.send(JSON.parse(stdout))
-                    stdout = JSON.parse(stdout)
-                    for (var i = 0; i < stdout.length; i++) {
-                        var temp = stdout[i];
-                        let table = new View_individual({
-                            name: req.body.name,
-                            c1:"test"
-                        });
-                        table.save();
-                    }
-                   // Table.collection.insertMany(stdout);
-                    res.send("Completed")
-                })
+        else {
+            console.error("sh crawl_startups_ind.sh \"" + req.body.url + "\" ")
+            const { exec } = require("child_process");
+            exec("sh crawl_startups_ind.sh \"" + req.body.url + "\" ", (error, stdout, stderr) => {
+                if (error) {
+                    res.send("Error : " + error)
+                    return;
+                }
+                else if (stderr) {
+                    res.send("Error2 :" + stderr)
+                    return;
+                }
+                // res.send(JSON.parse(stdout))
+                stdout = JSON.parse(stdout)
+                for (var i = 0; i < stdout.length; i++) {
+                    var temp = stdout[i];
+                    let table = new View_individual({
+                        name: req.body.name,
+                        // name: "test"
+                    });
+                    table.save();
+                }
+                // Table.collection.insertMany(stdout);
+                res.send("Completed")
+            })
         }
 
     });
-    console.log("ok cool fine yes");
-    res.send("hdhgfh");
-    
-
 })
 
 // Adding a new user

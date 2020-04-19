@@ -5,43 +5,55 @@ let View_individual = new mongoose.Schema({
         type: String,
         default : null
     },
-    c1: {
+    website: {
         type: String,
         default : null
     },
-    c2: {
+    description: {
         type: String,
         default : null
     },
-    c3: {
+    city: {
         type: String,
         default : null
     },
-    c4: {
+    country: {
         type: String,
         default : null
     },
-    c5: {
+    foundingdate: {
         type: String,
         default : null
     },
-    c6: {
+    size_employees: {
         type: String,
         default : null
     },
-    c7: {
+    twitter: {
         type: String,
         default : null
     },
-    c8: {
+    facebook: {
         type: String,
         default : null
     },
-    c9: {
+    linkedin: {
         type: String,
         default : null
     },
-    c10: {
+    alexaviews: {
+        type: String,
+        default : null
+    },
+    alexarank: {
+        type: String,
+        default : null
+    },
+    founders: {
+        type: String,
+        default : null
+    },
+    providers: {
         type: String,
         default : null
     },
