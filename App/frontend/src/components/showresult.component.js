@@ -8,7 +8,7 @@ export default class Showresult extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { result: [] }
+        this.state = { result: [], searchval: "" }
         // this.onViewdetails = this.onViewdetails.bind(this);
 
     }
@@ -16,7 +16,8 @@ export default class Showresult extends Component {
         document.body.style.background = '#444'
         axios.get('http://localhost:4000/show/showresult')
             .then(response => {
-                this.setState({ result: response.data });
+                console.log("response:", response)
+                this.setState({ result: response.data.body, searchval: response.data.val });
             })
             .catch(function (error) {
                 console.log(error);
@@ -34,8 +35,14 @@ export default class Showresult extends Component {
                 <br />
                 <br />
                 <div className="container-fluid m-auto d-block">
-                    <p className="display-1 text-light" align="center">
+                    <p className="display-2 text-light" align="center">
                         <strong><b>Search Result</b></strong>
+                    </p>
+                    <p className="h1 text-light" align="center">
+                        <small>
+                            {this.state.searchval.split(":")[1]} <i class="fas fa-arrow-right"></i>
+                            {this.state.searchval.split(":")[3]}
+                        </small>
                     </p>
                 </div>
                 <br />

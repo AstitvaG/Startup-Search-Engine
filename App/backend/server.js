@@ -40,7 +40,6 @@ userRoutes.route('/auth/google/callback').get(
 
 // API endpoints
 
-show = [];
 
 // Getting all the users
 userRoutes.route('/').get(function (req, res) {
@@ -56,15 +55,18 @@ userRoutes.route('/').get(function (req, res) {
 // Getting previous_searches
 userRoutes.route('/previoussearches').post(function (req, res) {
     Table_sno.find({ userid: req.body.userid })
-        .sort({ time: -1 })
-        .exec(function (err, body) {
-            if (err) {
-                console.log(err);
-            } else {
-                res.json(body);
-            }
-        });
+    .sort({ time: -1 })
+    .exec(function (err, body) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json(body);
+        }
+    });
 });
+
+show = [];
+searchval = ""
 
 // Getting all the results
 userRoutes.route('/show/showresult').get(function (req, res) {
@@ -72,7 +74,7 @@ userRoutes.route('/show/showresult').get(function (req, res) {
         if (err) {
             console.log(err);
         } else {
-            res.json(users);
+            res.send({ body: users, val: searchval });
         }
     });
 });
@@ -80,6 +82,7 @@ userRoutes.route('/show/showresult').get(function (req, res) {
 // Add searchid
 userRoutes.route('/show').post(function (req, res) {
     show = req.body.id;
+    searchval = req.body.val
     res.send('1');
 });
 

@@ -34,14 +34,14 @@ export default class Previoussearches extends Component {
     onClick() {
         window.location = '/search';
     }
-    onShow(e) {
+    onShow(e,val) {
         const show = {
-            id: e
+            id: e,
+            val: val
         }
         axios.post('http://localhost:4000/show', show)
             .then(function (res) {
                 window.location = '/showresult'
-
             })
     }
     render() {
@@ -81,9 +81,9 @@ export default class Previoussearches extends Component {
                                             <td className="fit w-0"><p className="text-white">{i + 1}</p></td>
                                             <td className="fit w-0"><p className="text-white">{currentUser.searchval}</p></td>
                                             <td className="fit w-0"><p className="text-white">
-                                                <button class="btn glogin btn-outline-success my-2 my-sm-0" onClick={e => this.onShow(currentUser._id)}>
+                                                <button class="btn glogin btn-outline-success my-2 my-sm-0" onClick={e => this.onShow(currentUser._id,currentUser.searchval)}>
                                                     Show Result
-                                        </button>
+                                                </button>
                                             </p>
                                             </td>
 

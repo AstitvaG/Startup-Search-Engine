@@ -25,7 +25,6 @@ function App() {
         <Route path="/" exact component={LoginGoogle} />
         <Route path="/users" exact component={UsersList} />
         <Route path="/create" component={CreateUser} />
-        <Route path="/ls" component={SearchLayout} />
       </div>
     </Router>
   );
