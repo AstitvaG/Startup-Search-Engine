@@ -3,7 +3,7 @@ import scrapy
 import json
 from scrapy.item import Item, Field
 from scrapy.selector import Selector
-
+import time
 class StackItem(Item):
     name = Field()
     website = Field()
@@ -56,7 +56,7 @@ class QuotesSpider(scrapy.Spider):
         item['description'] = j['startupProfile']['data']['info']['shortDescription']
         item['city'] = j['startupProfile']['data']['info']['city']
         item['country'] = j['startupProfile']['data']['info']['country']
-        item['foundingdate'] = j['startupProfile']['data']['info']['foundingDate']
+        item['foundingdate'] = time.strftime('%Y-%m-%d', time.localtime(j['startupProfile']['data']['info']['foundingDate']))
         item['size_employees'] = j['startupProfile']['data']['size']['employees']
         item['twitter'] = j['startupProfile']['data']['size']['twitter']
         item['facebook'] = j['startupProfile']['data']['size']['facebook']
