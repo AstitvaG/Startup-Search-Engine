@@ -1,3 +1,51 @@
+@font-face {
+    font-family: 'Fiesta';
+    src: local('Fiest'), url(./fonts/fiesta.ttf) format('truetype');
+  }
+  
+  @font-face {
+      font-family: 'humblle';
+      font-weight: 900;
+      src: local('humblle'), url(./fonts/humblle.ttf) format('truetype');
+  }
+  
+  @font-face {
+      font-family: 'qb';
+      font-weight: 900;
+      src: local('qb'), url(./fonts/qanelas_bold.otf) format('opentype');
+  }
+  
+  @font-face {
+    font-family: 'qeb';
+    font-weight: 900;
+    src: local('qeb'), url(./fonts/qanelas_extrabold.otf) format('opentype');
+  }
+  
+  @font-face {
+    font-family: 'qh';
+    font-weight: 900;
+    src: local('qh'), url(./fonts/qanelas_heavy.otf) format('opentype');
+  }
+  
+  @font-face {
+    font-family: 'qsb';
+    font-weight: 900;
+    src: local('qsb'), url(./fonts/qanelas_soft_bold.otf) format('opentype');
+  }
+  
+  @font-face {
+    font-family: 'qsl';
+    font-weight: 900;
+    src: local('qsl'), url(./fonts/qanelas_soft_light.otf) format('opentype');
+  }
+  
+  @font-face {
+    font-family: 'qsm';
+    font-weight: 900;
+    src: local('qsm'), url(./fonts/qanelas_soft_medium.otf) format('opentype');
+  }
+  
+
 body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
@@ -18,4 +66,107 @@ code {
     -moz-transition: all 1s linear;
     -o-transition: all 1s linear;
     transition: all 1s linear;
+}
+
+.xyz { 
+    background-size: auto; 
+    text-align: center; 
+    padding-top: 100px; 
+} 
+.btn-circle.btn-sm { 
+    width: 30px; 
+    height: 30px; 
+    padding: 6px 0px; 
+    border-radius: 15px; 
+    font-size: 8px; 
+    text-align: center; 
+} 
+.btn-circle.btn-md { 
+    width: 50px; 
+    height: 50px; 
+    padding: 7px 10px; 
+    border-radius: 25px; 
+    font-size: 10px; 
+    text-align: center; 
+} 
+.btn-circle.btn-xl { 
+    width: 70px; 
+    height: 70px; 
+    padding: 10px 16px; 
+    border-radius: 35px; 
+    font-size: 12px; 
+    text-align: center; 
+} 
+
+.acrylic::before {
+    background: url("components/bg3.png") center/cover;
+    background-attachment: fixed;
+  }
+
+.acrylic {
+    padding: 4em 6em;
+    position: relative;
+    overflow: hidden;
+    margin: 1em;
+  }
+  
+  .acrylic::before {
+    filter: blur(20px);
+    content: "";
+    position: absolute;
+    left: -20px;
+    top: -20px;
+    width: calc(100% + 40px);
+    height: calc(100% + 40px);
+    z-index: -1;
+  }
+  
+  .acrylic::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    opacity: 0.35;
+    /* border: 1px solid #fff; */
+    background: #fff;
+    background-image: url(data:image/png;base64,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);
+  }
+
+  .fontx{
+      font-family: 'qb';
+  }
+
+  fieldset.scheduler-border {
+    border: 2px groove #000 !important;
+}
+
+legend.scheduler-border {
+    width:inherit; /* Or auto */
+    border-bottom:none;
+    font-family: 'qsm';
+}
+
+img.ovf{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    /* filter: invert(39%) sepia(20%) saturate(6412%) hue-rotate(315deg) brightness(95%) contrast(80%); */
+    opacity: 0.6;
+    margin: auto;
+    z-index: -1;
+}
+
+img.ovfx{
+    position: absolute;
+    /* left: 0; */
+    right: calc(-8%);
+    top: calc(25%);
+    /* filter: invert(39%) sepia(20%) saturate(6412%) hue-rotate(315deg) brightness(95%) contrast(80%); */
+    opacity: 0.4;
+    margin: auto;
+    z-index: -1;
 }

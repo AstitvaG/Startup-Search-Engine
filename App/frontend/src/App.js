@@ -13,19 +13,19 @@ import SearchLayout from './components/search-layout.component'
 
 
 function App() {
-  
+
 
   return (
     <Router>
       <div className="container">
-      <Route path="/search" exact component={MainSearch} />
-      <Route path="/showresult" exact component={Showresult} />
-        <Route path="/viewdetails" exact component={Viewdetails} />
+        <Route path="/search" exact component={MainSearch} />
+        <Route path="/showresult" exact component={Showresult} />
         <Route path="/previoussearches" exact component={Previoussearches} />
         <Route path="/" exact component={LoginGoogle} />
         <Route path="/users" exact component={UsersList} />
         <Route path="/create" component={CreateUser} />
       </div>
+      <Route path="/viewdetails" exact component={Viewdetails} />
     </Router>
   );
 }
