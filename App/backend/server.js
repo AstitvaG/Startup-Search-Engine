@@ -38,6 +38,52 @@ userRoutes.route('/auth/google/callback').get(
     }
 );
 
+obj=[
+    {
+        "country": "IN",
+        "providers": [
+            {
+                "updateDate": 1574153541,
+                "name": "STARTUP_TRACKER"
+            },
+            {
+                "url": "https://fedger.io",
+                "name": "FEDGER"
+            }
+        ],
+        "size_employees": "51-100",
+        "facebook": {
+            "url": null,
+            "page": null
+        },
+        "twitter": {
+            "handle": "GetLeadMi",
+            "followers": 603
+        },
+        "linkedin": {
+            "url": null,
+            "page": null
+        },
+        "alexaviews": 42745,
+        "founders": {
+            "handles": [
+                {
+                    "profileImage": "https://pbs.twimg.com/profile_images/1181179727723126784/wUyjuOeq.png",
+                    "handle": "GetLeadMi",
+                    "name": "LeadMi"
+                }
+            ],
+            "startups": []
+        },
+        "foundingdate": 1575225000,
+        "city": "bangalore",
+        "website": "http://www.leadmi.io",
+        "alexarank": "111851",
+        "name": "LeadMi",
+        "description": "marketing automation platform to manage social media platforms and lead generation with CRM integration"
+    }
+]
+
 // API endpoints
 
 
@@ -189,34 +235,67 @@ userRoutes.route('/viewdetails').post(function (req, res) {
             res.json(user);
         }
         else {
-            console.error("sh crawl_startups_ind.sh \"" + req.body.url + "\" ")
-            const { exec } = require("child_process");
-            exec("sh crawl_startups_ind.sh \"" + req.body.url + "\" ", (error, stdout, stderr) => {
-                if (error) {
-                    res.send("Error : " + error)
-                    return;
-                }
-                else if (stderr) {
-                    res.send("Error2 :" + stderr)
-                    return;
-                }
+            // console.error("sh crawl_startups_ind.sh \"" + req.body.url + "\" ")
+            // const { exec } = require("child_process");
+            // exec("sh crawl_startups_ind.sh \"" + req.body.url + "\" ", (error, stdout, stderr) => {
+            //     if (error) {
+            //         res.send("Error : " + error)
+            //         return;
+            //     }
+            //     else if (stderr) {
+            //         res.send("Error2 :" + stderr)
+            //         return;
+            //     }
                 // res.send(JSON.parse(stdout))
-                stdout = JSON.parse(stdout)
-                for (var i = 0; i < stdout.length; i++) {
-                    var temp = stdout[i];
-                    let table = new View_individual({
-                        name: req.body.name,
-                        // name: "test"
-                    });
-                    table.save();
-                }
-                // Table.collection.insertMany(stdout);
-                res.send("Completed")
-            })
+                // stdout = JSON.parse(stdout)
+                // for (var i = 0; i < stdout.length; i++) {
+                //     var temp = stdout[i];
+                //     let table = new View_individual({
+                //         name: req.body.name,
+                //         // name: "test"
+                //     });
+                //     table.save();
+                // }
+                // // Table.collection.insertMany(stdout);
+                // res.send("Completed")
+            
+            console.log(obj[0].name);
+        //    let v = new View_individual({
+        //         name: obj[0].name,
+        //         website: obj[0].website,
+        //         description: obj[0].description,
+        //         city: obj[0].city,
+        //         country:obj[0].country,
+        //         foundingdate:obj[0].foundingdate,
+        //         size_employees: obj[0].size_employees,
+        //         twitter:obj[0].twitter,
+        //         facebook:obj[0].facebook,
+        //         linkedin:obj[0].linkedin,
+        //         alexaviews:obj[0].alexaviews,
+        //         alexarank:obj[0].alexarank,
+        //         founders:obj[0].founders,
+        //         providers:obj[0].providers
+        //    });
+        //    v.save();
+           res.send("puttt");
         }
 
     });
 })
+
+// Getting ind_details
+userRoutes.route('/get_ind_details').post(function (req, res) {
+    console.log(req.body.name);
+
+    View_individual.find({ name: req.body.name }, function (err, users) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json(users);
+        }
+    });
+});
+
 
 // Adding a new user
 userRoutes.route('/add').post(function (req, res) {

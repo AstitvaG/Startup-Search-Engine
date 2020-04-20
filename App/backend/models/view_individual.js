@@ -22,7 +22,7 @@ let View_individual = new mongoose.Schema({
         default : null
     },
     foundingdate: {
-        type: String,
+        type: Number,
         default : null
     },
     size_employees: {
@@ -30,19 +30,19 @@ let View_individual = new mongoose.Schema({
         default : null
     },
     twitter: {
-        type: String,
+        type: Object,
         default : null
     },
     facebook: {
-        type: String,
+        type: Object,
         default : null
     },
     linkedin: {
-        type: String,
+        type: Object,
         default : null
     },
     alexaviews: {
-        type: String,
+        type: Number,
         default : null
     },
     alexarank: {
@@ -50,11 +50,11 @@ let View_individual = new mongoose.Schema({
         default : null
     },
     founders: {
-        type: String,
+        type: Object,
         default : null
     },
     providers: {
-        type: String,
+        type: Array,
         default : null
     },
     time: {

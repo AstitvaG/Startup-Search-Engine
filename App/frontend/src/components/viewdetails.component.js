@@ -5,7 +5,7 @@ import bgimage from "./bg3.png"
 import blackcircle from "./black-circle.png"
 import detailsimg from "./details.png"
 import ownersimg from "./owners.png"
-
+import axios from 'axios';
 
 export default class Viewdetails extends Component {
 
@@ -15,7 +15,8 @@ export default class Viewdetails extends Component {
             domains: [
                 "Accounts",
                 "Class"
-            ]
+            ],
+            result:{}
         }
     }
     componentDidMount() {
@@ -25,6 +26,21 @@ export default class Viewdetails extends Component {
         document.body.style.backgroundAttachment = 'fixed'
         document.body.style.backgroundRepeat = 'no-repeat'
         // document.body.style.fontFamily =
+
+        const h={
+            name:localStorage.getItem("viewdetails")
+        }
+        axios.post('http://localhost:4000/get_ind_details',h)
+        .then(response => {
+            console.log("response:", response.data)
+
+            this.setState({ result: response.data[0]});
+            console.log("response:", this.state.result.country)
+
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
     }
 
     hashCode(str) { // java String#hashCode
@@ -79,12 +95,16 @@ export default class Viewdetails extends Component {
     }
 
     render() {
+         const k=this.state.result;
+         console.log("k",k);
         return (
             <div className="w-100 container-fluid" >
                 <Navbar />
                 <br />
                 <br />
                 <br />
+                
+                   
                 <div class="container-fluid text-center">
                     <div class="row content rounded-xlg p-3" >
 
@@ -101,20 +121,20 @@ export default class Viewdetails extends Component {
                                 <p className="h2" align="center">Select your university today</p>
                             </div> */}
                             <fieldset className="scheduler-border rounded-xlg w-75 mx-auto mb-3 mt-5" >
-                                <legend class="scheduler-border">Location</legend>
-                                <p align="center">Delhi <i class="fas fa-location-arrow"></i> India <i class="fas fa-globe-americas"></i></p>
+                                <legend class="scheduler-border">Location </legend>
+                                <p align="center">{k.city} <i class="fas fa-location-arrow"></i> India <i class="fas fa-globe-americas"></i></p>
                             </fieldset>
                             <fieldset className="scheduler-border rounded-xlg w-75 mx-auto mb-3" >
                                 <legend class="scheduler-border">Foundation Date</legend>
-                                <p align="center">Feb 20 2019 <i class="fas fa-birthday-cake"></i></p>
+                                <p align="center">{k.foundingdate} <i class="fas fa-birthday-cake"></i></p>
                             </fieldset>
                             <fieldset className="scheduler-border rounded-xlg w-75 mx-auto mb-3" >
                                 <legend class="scheduler-border">Members</legend>
-                                <p align="center">20m <i class="fas fa-users"></i></p>
+                                <p align="center">{k.size_employees} <i class="fas fa-users"></i></p>
                             </fieldset>
                             <fieldset className="scheduler-border rounded-xlg w-75 mx-auto mb-3" >
                                 <legend class="scheduler-border">Ranking and Views</legend>
-                                <p align="center">2.2m <i class="fas fa-medal"></i> and 2.2m <i class="fab fa-searchengin"></i></p>
+                                <p align="center">{k.alexarank}<i class="fas fa-medal"></i> and {k.alexaviews}<i class="fab fa-searchengin"></i></p>
                             </fieldset>
 
                             {/* <p><a href="#">Link</a></p>
@@ -126,7 +146,7 @@ export default class Viewdetails extends Component {
                                 <img src={detailsimg} className="w-25 ovfx"></img>
                                 <div className="w-75 mx-auto d-block" >
                                     { /* Company Name */}
-                                    <p className="display-4 fontx" align="center">Select your university</p>
+                                    <p className="display-4 fontx" align="center">{k.name}</p>
                                 </div>
                                 <div className="mx-auto d-block" >
                                     { /* Domain(s) */}
@@ -138,7 +158,7 @@ export default class Viewdetails extends Component {
                                     <br />
                                     <p className="h4">
                                         {this.props.description}
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                        {k.description}
                                     </p>
                                     <div className="w-100" align="center">
                                         <button type="button" class="btn btn-primary btn-circle btn-xl m-1">
@@ -161,6 +181,7 @@ export default class Viewdetails extends Component {
                                                 <i className="fab fa-facebook-f m-auto"></i>
                                             </p>
                                         </button>
+                                       
                                     </div>
 
                                 </div>
@@ -226,6 +247,7 @@ export default class Viewdetails extends Component {
                         </div> */}
                     </div>
                 </div>
+    
 
                 {/* <footer class="container-fluid text-center">
                     <p>Footer Text</p>

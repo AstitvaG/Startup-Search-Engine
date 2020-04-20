@@ -14,14 +14,7 @@ export default class SearchLayout extends Component {
         }
     }
 
-    toggleHidden() {
-        this.setState({
-            isHidden: !this.state.isHidden
-        })
-        if (!this.state.isHidden) {
-            this.onViewdetails(this.props.url, this.props.name)
-        }
-    }
+    
 
 
     onViewdetails(url, name) {
@@ -39,7 +32,14 @@ export default class SearchLayout extends Component {
 
             })
     }
-
+    toggleHidden() {
+        this.setState({
+            isHidden: !this.state.isHidden
+        })
+        if (!this.state.isHidden) {
+            this.onViewdetails(this.props.url, this.props.name)
+        }
+    }
     hashCode(str) { // java String#hashCode
         var hash = 0;
         for (var i = 0; i < str.length; i++) {
