@@ -55,7 +55,7 @@ export default class Showresult extends Component {
                                     <SearchLayout key={i}
                                         name={currentUser.title}
                                         description={currentUser.c1.split(":")[1]}
-                                        image={currentUser.c4.split("@")[1].split("(")[1].split(")")[0]}
+                                        image={currentUser.c4.split("@")[1].split("(")[1] ? currentUser.c4.split("@")[1].split("(")[1].split(")")[0]: "  "}
                                         domains={currentUser.c2.split(":")[1]}
                                         url={currentUser.c3.split("@")[1]} />
                                 </div>
