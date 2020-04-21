@@ -38,7 +38,7 @@ userRoutes.route('/auth/google/callback').get(
     }
 );
 
-obj=[
+obj = [
     {
         "country": "IN",
         "providers": [
@@ -231,23 +231,25 @@ userRoutes.route('/viewdetails').post(function (req, res) {
 
     View_individual.find({ name: req.body.name }, function (err, user) {
         console.log(user);
-        if (user.length>0) {
+        if (user.length > 0) {
             res.json(user);
         }
         else {
-            // console.error("sh crawl_startups_ind.sh \"" + req.body.url + "\" ")
-            // const { exec } = require("child_process");
-            // exec("sh crawl_startups_ind.sh \"" + req.body.url + "\" ", (error, stdout, stderr) => {
-            //     if (error) {
-            //         res.send("Error : " + error)
-            //         return;
-            //     }
-            //     else if (stderr) {
-            //         res.send("Error2 :" + stderr)
-            //         return;
-            //     }
+            console.error("sh crawl_startups_ind.sh \"" + req.body.url + "\" ")
+            const { exec } = require("child_process");
+            exec("sh crawl_startups_ind.sh \"" + req.body.url + "\" ", (error, stdout, stderr) => {
+                if (error) {
+                    res.send("Error : " + error)
+                    return;
+                }
+                else if (stderr) {
+                    res.send("Error2 :" + stderr)
+                    return;
+                }
                 // res.send(JSON.parse(stdout))
-                // stdout = JSON.parse(stdout)
+                stdout = JSON.parse(stdout)
+                console.log(stdout[0])
+                temp = stdout[0]
                 // for (var i = 0; i < stdout.length; i++) {
                 //     var temp = stdout[i];
                 //     let table = new View_individual({
@@ -258,28 +260,28 @@ userRoutes.route('/viewdetails').post(function (req, res) {
                 // }
                 // // Table.collection.insertMany(stdout);
                 // res.send("Completed")
-            
-            console.log(obj[0].name);
-        //    let v = new View_individual({
-        //         name: obj[0].name,
-        //         website: obj[0].website,
-        //         description: obj[0].description,
-        //         city: obj[0].city,
-        //         country:obj[0].country,
-        //         foundingdate:obj[0].foundingdate,
-        //         size_employees: obj[0].size_employees,
-        //         twitter:obj[0].twitter,
-        //         facebook:obj[0].facebook,
-        //         linkedin:obj[0].linkedin,
-        //         alexaviews:obj[0].alexaviews,
-        //         alexarank:obj[0].alexarank,
-        //         founders:obj[0].founders,
-        //         providers:obj[0].providers
-        //    });
-        //    v.save();
-           res.send("puttt");
-        }
 
+                // console.log(obj[0].name);
+                let v = new View_individual({
+                    name: temp.name,
+                    website: temp.website,
+                    description: temp.description,
+                    city: temp.city,
+                    country: temp.country,
+                    foundingdate: temp.foundingdate,
+                    size_employees: temp.size_employees,
+                    twitter: temp.twitter,
+                    facebook: temp.facebook,
+                    linkedin: temp.linkedin,
+                    alexaviews: temp.alexaviews,
+                    alexarank: temp.alexarank,
+                    founders: temp.founders,
+                    providers: temp.providers
+                });
+                v.save();
+                res.send("Completed")
+            })
+        }
     });
 })
 

@@ -12,10 +12,8 @@ export default class SearchLayout extends Component {
             domains: JSON.parse(props.domains),
             url: encodeURI(props.image.substring(1, props.image.length - 1))
         }
+        this.onViewdetails = this.onViewdetails.bind(this);
     }
-
-    
-
 
     onViewdetails(url, name) {
         const show = {
@@ -26,6 +24,7 @@ export default class SearchLayout extends Component {
             .then(function (res) {
                 //  console.log(res.data)
                 localStorage.setItem("viewdetails", name);
+                localStorage.setItem("viewdetails_img", this.state.url);
                 //console.log("ok cool fine yes")
 
                 window.location = '/viewdetails'

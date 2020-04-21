@@ -22,7 +22,7 @@ let View_individual = new mongoose.Schema({
         default : null
     },
     foundingdate: {
-        type: Number,
+        type: String,
         default : null
     },
     size_employees: {

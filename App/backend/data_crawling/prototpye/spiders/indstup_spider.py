@@ -49,8 +49,12 @@ class QuotesSpider(scrapy.Spider):
         # print("===========\n\n\n\n")
         # yield item
         # item['keywords'] = j['startupProfile']['data']['detailedInfo']['keywords']
-       
-       
+           
+        item['image'] = j['startupProfile']['data']['image']['url']
+        item['domains'] = j['startupProfile']['data']['detailedInfo']['keywords']
+        item['funding_raised'] = j['startupProfile']['data']['size']['fundingRaised']
+        item['funding_rounds'] = j['startupProfile']['data']['size']['fundingRounds']
+
         item['name'] = j['startupProfile']['data']['info']['name']
         item['website'] = j['startupProfile']['data']['info']['website']
         item['description'] = j['startupProfile']['data']['info']['shortDescription']
