@@ -2,3 +2,11 @@
   text-align: center;
 }
 
+.loading{
+  line-height: 200px;
+  height: 200px;
+  padding: 400px 0;
+  /* border: 3px solid green; */
+  text-align: center;
+  vertical-align: middle;
+}

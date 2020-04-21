@@ -3,7 +3,9 @@ import axios from 'axios';
 import queryString from "query-string";
 import Navbar from "./navbar.component";
 // import './search-main.component.css';
-
+import {Ripple} from 'react-spinners-css';
+import '../App.css';
+const Loading = require('react-loading-animation');
 const { OAuth2Client } = require('google-auth-library');
 const client = [];
 
@@ -17,7 +19,8 @@ export default class MainSearch extends Component {
             country: '',
             search: '',
             response: '',
-            dom: ''
+            dom: '',
+            isFetching: false
         }
 
 
@@ -62,6 +65,10 @@ export default class MainSearch extends Component {
 
     onSubmit(e) {
         e.preventDefault();
+        this.state.isFetching = true;
+        console.log("made true",this.state.isFetching);
+        this.setState({ state: this.state });
+        this.forceUpdate();
         if (this.state.search === "School" || this.state.search === "Schools") {
             axios.post('http://localhost:4000/schools', {
                 userid: window.localStorage.getItem("email"),
@@ -83,6 +90,8 @@ export default class MainSearch extends Component {
                 domain: this.state.dom.toString().toUpperCase()
             })
                 .then(response => {
+                    this.state.isFetching = false;
+                    console.log("made false",this.state.isFetching);
                     window.location = '/previoussearches';
                     // this.setState({ result: response.data });
                 })
@@ -98,33 +107,40 @@ export default class MainSearch extends Component {
         return (
             <div className="App" >
                 <Navbar />
-                <div className="row h-100">
-                    <div className="col-sm-12 mx-auto my-auto">
-                        <form onSubmit={this.onSubmit} style={{ display: "block", position: "absolute", top: 450, left: 500 }}>
-                            <div className="form-group">
-                                <input className="form-control rounded-pill" type="text" id="search" placeholder="Search.." onChange={this.onChangeSearch}></input>
-                            </div>
-                            <div className="form-group">
-                                <input className="form-control rounded-pill" list="domainData" id="domain" placeholder="Domain" onChange={this.onChangeDomain} />
-                                <datalist id="domainData">
-                                    {this.listDomains}
-                                </datalist>
-                            </div>
-                            <div className="form-group">
-                                <input className="form-control rounded-pill" list="countryData" id="country" placeholder="Country" onChange={this.onChangeCountry} />
-                                <datalist id="countryData">
-                                    {this.listCountries}
-                                </datalist>
-                            </div>
-                            <div className="form-group">
-                                <button className="rounded-pill btn btn-dark" type="submit">Search</button>
-                                <div id="output">
-                                    {this.state.response}
-                                </div>
-                            </div>
-                        </form>
+                {this.state.isFetching ? (
+                    <div className="loading">
+                    <Ripple color="#05bd26" />
                     </div>
-                </div>
+                    ) : (
+                        <div className="row h-100">
+                            <div className="col-sm-12 mx-auto my-auto">
+                                <form onSubmit={this.onSubmit} style={{ display: "block", position: "absolute", top: 450, left: 500 }}>
+                                    <div className="form-group">
+                                        <input className="form-control rounded-pill" type="text" id="search" placeholder="Search.." onChange={this.onChangeSearch}></input>
+                                    </div>
+                                    <div className="form-group">
+                                        <input className="form-control rounded-pill" list="domainData" id="domain" placeholder="Domain" onChange={this.onChangeDomain} />
+                                        <datalist id="domainData">
+                                            {this.listDomains}
+                                        </datalist>
+                                    </div>
+                                    <div className="form-group">
+                                        <input className="form-control rounded-pill" list="countryData" id="country" placeholder="Country" onChange={this.onChangeCountry} />
+                                        <datalist id="countryData">
+                                            {this.listCountries}
+                                        </datalist>
+                                    </div>
+                                    <div className="form-group">
+                                        <button className="rounded-pill btn btn-dark" type="submit">Search</button>
+                                        <div id="output">
+                                            {this.state.response}
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    )
+                }
             </div>
         )
     }
