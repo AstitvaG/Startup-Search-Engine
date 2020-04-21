@@ -21,6 +21,10 @@ let View_individual = new mongoose.Schema({
         type: String,
         default : null
     },
+    image: {
+        type: String,
+        default : null
+    },
     foundingdate: {
         type: String,
         default : null

@@ -24,7 +24,7 @@ export default class SearchLayout extends Component {
             .then(function (res) {
                 //  console.log(res.data)
                 localStorage.setItem("viewdetails", name);
-                localStorage.setItem("viewdetails_img", this.state.url);
+                // localStorage.setItem("viewdetails_img", this.state.url);
                 //console.log("ok cool fine yes")
 
                 window.location = '/viewdetails'

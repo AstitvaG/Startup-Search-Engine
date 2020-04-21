@@ -248,7 +248,7 @@ userRoutes.route('/viewdetails').post(function (req, res) {
                 }
                 // res.send(JSON.parse(stdout))
                 stdout = JSON.parse(stdout)
-                console.log(stdout[0])
+                console.log("STDOUT:",stdout)
                 temp = stdout[0]
                 // for (var i = 0; i < stdout.length; i++) {
                 //     var temp = stdout[i];
@@ -276,7 +276,8 @@ userRoutes.route('/viewdetails').post(function (req, res) {
                     alexaviews: temp.alexaviews,
                     alexarank: temp.alexarank,
                     founders: temp.founders,
-                    providers: temp.providers
+                    providers: temp.providers,
+                    image: temp.image
                 });
                 v.save();
                 res.send("Completed")

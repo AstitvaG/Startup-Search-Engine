@@ -39,7 +39,7 @@ export default class Viewdetails extends Component {
         }
         axios.post('http://localhost:4000/get_ind_details', h)
             .then(response => {
-                // console.log("response:", response.data)
+                console.log("response:", response)
 
                 this.setState({ result: response.data[0] });
                 // console.log("response:", this.state.result.country)
@@ -86,7 +86,7 @@ export default class Viewdetails extends Component {
     getdomains() {
         var temp = [];
         for (var i = 0; i < this.state.domains.length; i++) {
-            temp.push(<div className="rounded-pill p-2 m-1 text-capitalize fontx"
+            temp.push(<div key={i} className="rounded-pill p-2 m-1 text-capitalize fontx"
                 style={
                     {
                         backgroundColor: this.intToRGB(this.hashCode(this.state.domains[i])),
@@ -106,24 +106,22 @@ export default class Viewdetails extends Component {
 
 
         var temp = []
-        console.log(this.state.result.founders)
         try {
             for (var i = 0; i < this.state.result.founders.handles.length; i++) {
                 var person = this.state.result.founders.handles[i]
-                console.log(person)
                 temp.push(
-                    <div class="col-sm-4 p-2">
+                    <div key={i} className="col-sm-4 p-2">
                         <div className=" bg-light rounded-xlg shadow m-2">
 
-                            <div class="row p-3">
-                                <div class="col-8 col-sm-6 m-auto">
+                            <div className="row p-3">
+                                <div className="col-8 col-sm-6 m-auto">
                                     {/* Level 2: .col-8 .col-sm-6 */}
                                     <img className="w-75 mx-auto rounded-circle" src={person.profileImage} />
                                 </div>
                                 <div className="col-4 col-sm-6 m-auto">
-                                    <strong><bold><p className="h3 m-auto" align="center" style={{wordWrap:"break-word"}}>{person.name}</p></bold></strong>
+                                    <strong><p className="h4 m-auto" align="center" style={{wordWrap:"break-word"}}>{person.name}</p></strong>
                                     <a href={"https://twitter.com/" + person.handle} target="_blank">
-                                        <p className="m-auto text-dark" align="center" style={{wordWrap:"break-word"}}>{person.handle} <i class="text-primary fab fa-twitter"></i></p>
+                                        <p className="m-auto text-dark" align="center" style={{wordWrap:"break-word"}}>{person.handle} <i className="text-primary fab fa-twitter"></i></p>
                                     </a>
                                 </div>
                             </div>
@@ -157,11 +155,11 @@ export default class Viewdetails extends Component {
                             <img src={blackcircle} className="w-100 ovf"></img>
                             <div className="w-75 mx-auto d-block">
                                 {/* Image here */}
-                                <img src={this.customerprofile}
+                                <img src={k.image}
                                     className="rounded-xlg mx-auto d-block w-75 shadow-lg"
                                     alt={this.props.name}
                                     onError={this.onError} />
-                                {console.log("USUSUS",this.customerprofile)}
+                                {/* {console.log("USUSUS",this.customerprofile)} */}
                             </div>
                             {/* <div className="w-75 mx-auto my-3" >
                                 <p className="h2" align="center">Select your university today</p>
@@ -180,7 +178,7 @@ export default class Viewdetails extends Component {
                             </fieldset>
                             <fieldset className="scheduler-border rounded-xlg w-75 mx-auto mb-3" >
                                 <legend className="scheduler-border">Ranking and Views</legend>
-                                <p align="center">{k.alexarank}<i className="fas fa-medal"></i> and {k.alexaviews}<i className="fab fa-searchengin"></i></p>
+                                <p align="center">{k.alexarank} <i className="fas fa-medal"></i> and {k.alexaviews} <i className="fab fa-searchengin"></i></p>
                             </fieldset>
 
                             {/* <p><a href="#">Link</a></p>
@@ -242,7 +240,7 @@ export default class Viewdetails extends Component {
                                     <p className="display-4 fontx" align="center">Founders / Team</p>
                                 </div>
                                 <div className="container w-100 m-auto d-block" >
-                                    <div class="row d-flex align-items-center justify-content-center" align="center">
+                                    <div className="row d-flex align-items-center justify-content-center" align="center">
                                         {this.getMembers()}
                                     </div>
                                     {/* <div className="row">
