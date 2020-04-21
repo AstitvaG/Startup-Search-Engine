@@ -41,7 +41,7 @@ export default class Viewdetails extends Component {
             .then(response => {
                 console.log("response:", response)
 
-                this.setState({ result: response.data[0] });
+                this.setState({ result: response.data[0] ,domains: response.data[0].domains});
                 // console.log("response:", this.state.result.country)
 
             })
@@ -85,16 +85,25 @@ export default class Viewdetails extends Component {
 
     getdomains() {
         var temp = [];
-        for (var i = 0; i < this.state.domains.length; i++) {
+        var alldomains = (this.state.domains + "").split(",")
+        console.log(alldomains)
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const page_type = urlParams.get('domains')
+        console.log("Domains:", decodeURI(page_type));
+        if(alldomains[0]=="null") alldomains = JSON.parse(decodeURI(page_type))
+
+        for (var i = 0; i < alldomains.length; i++) {
+            if (alldomains[i] === "") continue;
             temp.push(<div key={i} className="rounded-pill p-2 m-1 text-capitalize fontx"
                 style={
                     {
-                        backgroundColor: this.intToRGB(this.hashCode(this.state.domains[i])),
-                        color: this.textcolor(this.intToRGB(this.hashCode(this.state.domains[i])), '#FFFFFF', '#000000')
+                        backgroundColor: this.intToRGB(this.hashCode(alldomains[i])),
+                        color: this.textcolor(this.intToRGB(this.hashCode(alldomains[i])), '#FFFFFF', '#000000')
                     }
                 } >
                 <small>
-                    {this.state.domains[i].toLowerCase()}
+                    {alldomains[i].toLowerCase()}
                 </small>
             </div>)
         }

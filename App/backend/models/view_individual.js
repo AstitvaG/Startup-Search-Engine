@@ -1,70 +1,74 @@
 const mongoose = require('mongoose');
 
 let View_individual = new mongoose.Schema({
-    name:{
+    name: {
         type: String,
-        default : null
+        default: null
     },
     website: {
         type: String,
-        default : null
+        default: null
     },
     description: {
         type: String,
-        default : null
+        default: null
     },
     city: {
         type: String,
-        default : null
+        default: null
     },
     country: {
         type: String,
-        default : null
+        default: null
     },
     image: {
         type: String,
-        default : null
+        default: null
+    },
+    domains: {
+        type: String,
+        default: null
     },
     foundingdate: {
         type: String,
-        default : null
+        default: null
     },
     size_employees: {
         type: String,
-        default : null
+        default: null
     },
     twitter: {
         type: Object,
-        default : null
+        default: null
     },
     facebook: {
         type: Object,
-        default : null
+        default: null
     },
     linkedin: {
         type: Object,
-        default : null
+        default: null
     },
     alexaviews: {
         type: Number,
-        default : null
+        default: null
     },
     alexarank: {
         type: String,
-        default : null
+        default: null
     },
     founders: {
         type: Object,
-        default : null
+        default: null
     },
     providers: {
         type: Array,
-        default : null
+        default: null
     },
     time: {
         type: Date,
         default: Date.now
-    } 
+    }
 });
 
-module.exports = mongoose.model('ViewView_individual',View_individual);
+module.exports = mongoose.model('ViewView_individual', View_individual);

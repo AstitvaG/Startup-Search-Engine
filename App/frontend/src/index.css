@@ -1,4 +1,4 @@
-@font-face {
+/* @font-face {
     font-family: 'Fiesta';
     src: local('Fiest'), url(./fonts/fiesta.ttf) format('truetype');
   }
@@ -7,7 +7,7 @@
       font-family: 'humblle';
       font-weight: 900;
       src: local('humblle'), url(./fonts/humblle.ttf) format('truetype');
-  }
+  } */
   
   @font-face {
       font-family: 'qb';
@@ -15,7 +15,7 @@
       src: local('qb'), url(./fonts/qanelas_bold.otf) format('opentype');
   }
   
-  @font-face {
+  /* @font-face {
     font-family: 'qeb';
     font-weight: 900;
     src: local('qeb'), url(./fonts/qanelas_extrabold.otf) format('opentype');
@@ -44,7 +44,7 @@
     font-weight: 900;
     src: local('qsm'), url(./fonts/qanelas_soft_medium.otf) format('opentype');
   }
-  
+   */
 
 body {
     margin: 0;
@@ -146,7 +146,7 @@ code {
 legend.scheduler-border {
     width:inherit; /* Or auto */
     border-bottom:none;
-    font-family: 'qsm';
+    font-family: 'qb';
 }
 
 img.ovf{

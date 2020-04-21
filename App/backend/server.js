@@ -277,7 +277,8 @@ userRoutes.route('/viewdetails').post(function (req, res) {
                     alexarank: temp.alexarank,
                     founders: temp.founders,
                     providers: temp.providers,
-                    image: temp.image
+                    image: temp.image,
+                    domains: temp.domains
                 });
                 v.save();
                 res.send("Completed")

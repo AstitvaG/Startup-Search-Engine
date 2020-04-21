@@ -15,7 +15,7 @@ export default class SearchLayout extends Component {
         this.onViewdetails = this.onViewdetails.bind(this);
     }
 
-    onViewdetails(url, name) {
+    onViewdetails(url, name, domains) {
         const show = {
             url: url,
             name: name
@@ -27,7 +27,7 @@ export default class SearchLayout extends Component {
                 // localStorage.setItem("viewdetails_img", this.state.url);
                 //console.log("ok cool fine yes")
 
-                window.location = '/viewdetails'
+                window.location = '/viewdetails/?domains='+encodeURI(JSON.stringify(domains))
 
             })
     }
@@ -36,7 +36,7 @@ export default class SearchLayout extends Component {
             isHidden: !this.state.isHidden
         })
         if (!this.state.isHidden) {
-            this.onViewdetails(this.props.url, this.props.name)
+            this.onViewdetails(this.props.url, this.props.name, this.state.domains)
         }
     }
     hashCode(str) { // java String#hashCode
