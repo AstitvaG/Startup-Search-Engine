@@ -1,0 +1,79 @@
+.btnx {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    outline: none;
+    border: 0;
+    vertical-align: middle ;
+    text-decoration: none;
+    background: transparent;
+    padding: 0;
+    font-size: inherit;
+    font-family: inherit;
+    width: 12rem;
+    height: auto;
+  }
+  .btnx .circle {
+    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+    position: relative;
+    display: block;
+    margin: 0;
+    width: 3rem;
+    height: 3rem;
+    background: #282936;
+    border-radius: 1.625rem;
+  }
+  .btnx .circle .icon {
+    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    background: #fff;
+  }
+  .btnx .circle .icon.arrow {
+    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+    left: 0.625rem;
+    width: 1.125rem;
+    height: 0.125rem;
+    background: none;
+  }
+  .btnx .circle .icon.arrow::before {
+    position: absolute;
+    content: '';
+    top: -0.25rem;
+    right: 0.0625rem;
+    width: 0.625rem;
+    height: 0.625rem;
+    border-top: 0.125rem solid #fff;
+    border-right: 0.125rem solid #fff;
+    -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+  }
+
+
+  .btnx .button-text {
+    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+    margin: 0 0 0 3.4rem;
+    color: #282936;
+    font-weight: 700;
+    line-height: 1.6;
+    position: absolute;
+    top: 30%;
+    /* transform: translateY(-50%); */
+  }
+  .btnx:hover .circle {
+    width: 105%;
+  }
+  .btnx:hover .circle .icon.arrow {
+    background: #fff !important;
+    -webkit-transform: translate(1rem, 0);
+            transform: translate(1rem, 0);
+  }
+  .btnx:hover .button-text {
+    color: #fff !important;
+  }
+
+  .ReactCollapse--collapse {
+    transition: height 500ms;
+  }

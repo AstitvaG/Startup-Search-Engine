@@ -38,51 +38,6 @@ userRoutes.route('/auth/google/callback').get(
     }
 );
 
-obj = [
-    {
-        "country": "IN",
-        "providers": [
-            {
-                "updateDate": 1574153541,
-                "name": "STARTUP_TRACKER"
-            },
-            {
-                "url": "https://fedger.io",
-                "name": "FEDGER"
-            }
-        ],
-        "size_employees": "51-100",
-        "facebook": {
-            "url": null,
-            "page": null
-        },
-        "twitter": {
-            "handle": "GetLeadMi",
-            "followers": 603
-        },
-        "linkedin": {
-            "url": null,
-            "page": null
-        },
-        "alexaviews": 42745,
-        "founders": {
-            "handles": [
-                {
-                    "profileImage": "https://pbs.twimg.com/profile_images/1181179727723126784/wUyjuOeq.png",
-                    "handle": "GetLeadMi",
-                    "name": "LeadMi"
-                }
-            ],
-            "startups": []
-        },
-        "foundingdate": 1575225000,
-        "city": "bangalore",
-        "website": "http://www.leadmi.io",
-        "alexarank": "111851",
-        "name": "LeadMi",
-        "description": "marketing automation platform to manage social media platforms and lead generation with CRM integration"
-    }
-]
 
 // API endpoints
 
@@ -97,6 +52,33 @@ userRoutes.route('/').get(function (req, res) {
         }
     });
 });
+
+// Getting all ind_startup searches 
+userRoutes.route('/allsearches_ind').get(function (req, res) {
+    View_individual.find(function (err, users) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json(users);
+        }
+    });
+});
+
+// Drop view_individuals
+userRoutes.route('/drop').get(function (req, res) {
+    View_individual.deleteMany({});
+});
+
+userRoutes.route('/show/showresult').post(function (req, res) {
+    Table.find({ searchid: req.body.id }, function (err, users) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.send({ body: users, val: searchval });
+        }
+    });
+});
+
 
 // Getting previous_searches
 userRoutes.route('/previoussearches').post(function (req, res) {
@@ -124,6 +106,7 @@ userRoutes.route('/show/showresult').get(function (req, res) {
         }
     });
 });
+
 
 // Add searchid
 userRoutes.route('/show').post(function (req, res) {
@@ -183,7 +166,7 @@ userRoutes.route('/schools').post(function (req, res) {
 
 //putting values in db
 userRoutes.route('/startups').post(function (req, res) {
-    if (!req.body.userid || !req.body.searchval || !req.body.domain || !req.body.country) {
+    if (!req.body.userid || !req.body.searchval || !req.body.domain) {
         res.send("Invalid");
         return;
     }
@@ -195,7 +178,7 @@ userRoutes.route('/startups').post(function (req, res) {
     table_sno.save().then(table_sno => {
 
         const { exec } = require("child_process");
-
+//look into this
         exec("sh crawl_startups.sh \"" + req.body.domain + "\" \"" + req.body.country + "\" ", (error, stdout, stderr) => {
             if (error) {
                 res.send("Error : " + error)
@@ -246,22 +229,9 @@ userRoutes.route('/viewdetails').post(function (req, res) {
                     res.send("Error2 :" + stderr)
                     return;
                 }
-                // res.send(JSON.parse(stdout))
                 stdout = JSON.parse(stdout)
                 console.log("STDOUT:",stdout)
                 temp = stdout[0]
-                // for (var i = 0; i < stdout.length; i++) {
-                //     var temp = stdout[i];
-                //     let table = new View_individual({
-                //         name: req.body.name,
-                //         // name: "test"
-                //     });
-                //     table.save();
-                // }
-                // // Table.collection.insertMany(stdout);
-                // res.send("Completed")
-
-                // console.log(obj[0].name);
                 let v = new View_individual({
                     name: temp.name,
                     website: temp.website,

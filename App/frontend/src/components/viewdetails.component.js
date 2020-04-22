@@ -34,20 +34,29 @@ export default class Viewdetails extends Component {
         document.body.style.backgroundRepeat = 'no-repeat'
         // document.body.style.fontFamily =
 
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+
         const h = {
-            name: localStorage.getItem("viewdetails")
+            name: decodeURI(urlParams.get('name'))
         }
         axios.post('http://localhost:4000/get_ind_details', h)
             .then(response => {
-                console.log("response:", response)
+                //   console.log("response:", response)
 
-                this.setState({ result: response.data[0] ,domains: response.data[0].domains});
-                // console.log("response:", this.state.result.country)
+                this.setState({ result: response.data[0], domains: response.data[0].domains });
+                //  console.log("response:", this.state.result.twitter.handle)
 
             })
             .catch(function (error) {
                 console.log(error);
             })
+    }
+
+    converttoHuman(num) {
+        if (num > 1e9) return (num / 1e9 + '').slice(0, 5) + 'B'
+        if (num > 1e6) return (num / 1e6 + '').slice(0, 5) + 'B'
+        if (num > 1e3) return (num / 1e3 + '').slice(0, 5) + 'K'
     }
 
     hashCode(str) { // java String#hashCode
@@ -90,8 +99,19 @@ export default class Viewdetails extends Component {
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
         const page_type = urlParams.get('domains')
-        console.log("Domains:", decodeURI(page_type));
-        if(alldomains[0]=="null") alldomains = JSON.parse(decodeURI(page_type))
+        //    console.log("Domains:", decodeURI(page_type));
+        if (alldomains[0] == "null" && alldomains.length == 1) alldomains = JSON.parse(decodeURI(page_type))
+        else {
+            alldomains = alldomains.map(function (x) { return x.toUpperCase() })
+            var final = new Set(alldomains)
+            var newx = JSON.parse(decodeURI(page_type))
+            for (var i in newx) {
+                final.add(newx[i].toUpperCase())
+            }
+            alldomains = Array.from(final)
+            console.log("Final:", alldomains)
+
+        }
 
         for (var i = 0; i < alldomains.length; i++) {
             if (alldomains[i] === "") continue;
@@ -111,9 +131,6 @@ export default class Viewdetails extends Component {
     }
 
     getMembers() {
-        // return (
-
-
         var temp = []
         try {
             for (var i = 0; i < this.state.result.founders.handles.length; i++) {
@@ -121,22 +138,89 @@ export default class Viewdetails extends Component {
                 temp.push(
                     <div key={i} className="col-sm-4 p-2">
                         <div className=" bg-light rounded-xlg shadow m-2">
-
                             <div className="row p-3">
                                 <div className="col-8 col-sm-6 m-auto">
                                     {/* Level 2: .col-8 .col-sm-6 */}
                                     <img className="w-75 mx-auto rounded-circle" src={person.profileImage} />
                                 </div>
                                 <div className="col-4 col-sm-6 m-auto">
-                                    <strong><p className="h4 m-auto" align="center" style={{wordWrap:"break-word"}}>{person.name}</p></strong>
+                                    <strong><p className="h4 m-auto" align="center" style={{ wordWrap: "break-word" }}>{person.name}</p></strong>
                                     <a href={"https://twitter.com/" + person.handle} target="_blank">
-                                        <p className="m-auto text-dark" align="center" style={{wordWrap:"break-word"}}>{person.handle} <i className="text-primary fab fa-twitter"></i></p>
+                                        <p className="m-auto text-dark" align="center" style={{ wordWrap: "break-word" }}>{person.handle} <i className="text-primary fab fa-twitter"></i></p>
                                     </a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    // </div>
+                )
+            }
+            return temp
+        }
+        catch{
+            return;
+        }
+    }
+
+    getButtons(e) {
+        var temp = []
+        try {
+            if (e === "all" && this.state.result.twitter.handle != null) {
+                temp.push(
+                    <a className="mx-2" href={"https://twitter.com/" + this.state.result.twitter.handle} target="_blank">
+                        <p className="text-center h1">
+                            <i className="fab fa-twitter-square m-auto"></i>
+                        </p>
+                    </a>
+                )
+            }
+            if (e === "all") {
+                if (this.state.result.facebook.page !== null) {
+                    temp.push(
+                        <a className="mx-2" href={"https://facebook.com/" + this.state.result.facebook.page} target="_blank">
+                            <p className="text-center h1">
+                                <i className="fab fa-facebook-square m-auto"></i>
+                            </p>
+                        </a>
+                    )
+                }
+                else if (this.state.result.facebook.url !== null) {
+                    temp.push(
+                        <a className="mx-2" href={this.state.result.facebook.url} target="_blank">
+                            <p className="text-center h1">
+                                <i className="fab fa-facebook-square m-auto"></i>
+                            </p>
+                        </a>
+                    )
+                }
+            }
+            if (e === "all") {
+                if (this.state.result.linkedin.url !== null) {
+                    temp.push(
+                        <a className="mx-2" href={this.state.result.linkedin.url} target="_blank">
+                            <p className="text-center h1">
+                                <i className="fab fa-linkedin m-auto"></i>
+                            </p>
+                        </a>
+                    )
+                }
+                else if (this.state.result.linkedin.page !== null) {
+                    temp.push(
+                        <a className="mx-2" href={"https://www.linkedin.com/company/" + this.state.result.linkedin.page} target="_blank">
+                            <p className="text-center h1">
+                                <i className="fab fa-linkedin m-auto"></i>
+                            </p>
+                        </a>
+                    )
+                }
+
+            }
+            if (this.state.result.website !== null) {
+                temp.push(
+                    <a className="mx-2" href={this.state.result.website} target="_blank">
+                        <p className="text-center h1">
+                            <i class="fas fa-horse m-auto"></i>
+                        </p>
+                    </a>
                 )
             }
             return temp
@@ -147,16 +231,14 @@ export default class Viewdetails extends Component {
     }
 
     render() {
-        const k = this.state.result;
-        // console.log("k", k);
+        var k = this.state.result;
+        console.log("k", k);
         return (
             <div className="w-100 container-fluid" >
                 <Navbar />
                 <br />
                 <br />
                 <br />
-
-
                 <div className="container-fluid text-center">
                     <div className="row content rounded-xlg p-3" >
 
@@ -168,11 +250,7 @@ export default class Viewdetails extends Component {
                                     className="rounded-xlg mx-auto d-block w-75 shadow-lg"
                                     alt={this.props.name}
                                     onError={this.onError} />
-                                {/* {console.log("USUSUS",this.customerprofile)} */}
                             </div>
-                            {/* <div className="w-75 mx-auto my-3" >
-                                <p className="h2" align="center">Select your university today</p>
-                            </div> */}
                             <fieldset className="scheduler-border rounded-xlg w-75 mx-auto mb-3 mt-5" >
                                 <legend className="scheduler-border">Location </legend>
                                 <p align="center">{k.city} <i className="fas fa-location-arrow"></i> India <i className="fas fa-globe-americas"></i></p>
@@ -187,12 +265,8 @@ export default class Viewdetails extends Component {
                             </fieldset>
                             <fieldset className="scheduler-border rounded-xlg w-75 mx-auto mb-3" >
                                 <legend className="scheduler-border">Ranking and Views</legend>
-                                <p align="center">{k.alexarank} <i className="fas fa-medal"></i> and {k.alexaviews} <i className="fab fa-searchengin"></i></p>
+                                <p align="center">{this.converttoHuman(k.alexarank)} <i className="fas fa-medal"></i> and {this.converttoHuman(k.alexaviews)} <i className="fab fa-searchengin"></i></p>
                             </fieldset>
-
-                            {/* <p><a href="#">Link</a></p>
-                            <p><a href="#">Link</a></p>
-                            <p><a href="#">Link</a></p> */}
                         </div>
                         <div className="col-sm-8 text-left align-items-end">
                             <div className="acrylic p-3 my-5 rounded-xlg shadow-lg">
@@ -212,36 +286,12 @@ export default class Viewdetails extends Component {
                                     <p className="h4 mx-4 my-3" align="center">
                                         {k.description}
                                     </p>
-                                    <div className="w-100" align="center">
-                                        <button type="button" className="btn btn-primary btn-circle btn-xl m-1">
-                                            <p className="text-center h1">
-                                                <i className="fab fa-facebook-f m-auto"></i>
-                                            </p>
-                                        </button>
-                                        <button type="button" className="btn btn-primary btn-circle btn-xl m-1">
-                                            <p className="text-center h1">
-                                                <i className="fab fa-facebook-f m-auto"></i>
-                                            </p>
-                                        </button>
-                                        <button type="button" className="btn btn-primary btn-circle btn-xl m-1">
-                                            <p className="text-center h1">
-                                                <i className="fab fa-facebook-f m-auto"></i>
-                                            </p>
-                                        </button>
-                                        <button type="button" className="btn btn-primary btn-circle btn-xl m-1">
-                                            <p className="text-center h1">
-                                                <i className="fab fa-facebook-f m-auto"></i>
-                                            </p>
-                                        </button>
 
+                                    <div className="w-100 row justify-content-md-center" align="center">
+                                        {this.getButtons("all")}
                                     </div>
-
                                 </div>
-                                {/* <h1>Welcome</h1>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p> */}
-
                             </div>
-                            {/* <br /> */}
                             <div className="acrylic my-5 rounded-xlg p-3  shadow-lg">
                                 <img src={ownersimg} className="w-25 ovfx"></img>
                                 <div className="w-75 mx-auto d-block" >

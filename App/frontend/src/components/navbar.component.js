@@ -24,6 +24,9 @@ export default class Navbar extends Component {
                         <li className="nav-item active">
                             <a href="/previoussearches" className="nav-link">Stealth Mode<span className="sr-only">(current)</span></a>
                         </li>
+                        <li className="nav-item active">
+                            <a href="/allsearches_ind" className="nav-link">Starups_searches<span className="sr-only">(current)</span></a>
+                        </li>
                     </ul>
                     <button className="navbar-toggler" type="button" onClick={this.toggle} data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
