@@ -1,9 +1,17 @@
 import scrapy
-# from prototype.item import StackItem
-import json
 from scrapy.item import Item, Field
 from scrapy.selector import Selector
+from twitter_scraper import get_tweets
 import time
+import requests
+import json
+url = "https://crunchbase-crunchbase-v1.p.rapidapi.com/odm-people"
+
+headers = {
+    'x-rapidapi-host': "crunchbase-crunchbase-v1.p.rapidapi.com",
+    'x-rapidapi-key': "b9c7209a81msh8f94c3377074de6p146eaajsne90cdf9920f9"
+    }
+
 class StackItem(Item):
     name = Field()
     website = Field()
@@ -24,6 +32,8 @@ class StackItem(Item):
     alexaviews = Field()
     founders = Field()
     providers = Field()
+    contactlist = Field()
+    tweets = Field()
 class QuotesSpider(scrapy.Spider):
     d = "none"
     def __init__(self,url=None, *args, **kwargs):
@@ -33,26 +43,14 @@ class QuotesSpider(scrapy.Spider):
     name = "indstupprototype"
 
     def parse(self, response):
-        # print("huadbcdiuscbhsdiuhcbsudbdcuhdbu  hbduo")
         page = response.url.split("/")[-2]
         item = StackItem()
-        # print("+++++++++++++++++++++++++++++++++++++++++++++++++++")
         questions = response.selector.xpath('/html/body/script[2]').get()
         q = questions[30:-10]
         false = False
         null = None
         true = True
         j = eval(q)
-        # print("=============================\n\n\n",j)
-        # print("-------------------------",type(j))
-        # print(j['startupProfile'])
-        # print('----------------------------------------------------------------------------------------------\n\n\n')
-        # i = j['startupProfile']
-        # print(i['data']['info'])
-        # print(i['data']['founders'])
-        # print("===========\n\n\n\n")
-        # yield item
-        # item['keywords'] = j['startupProfile']['data']['detailedInfo']['keywords']
         try:
             item['image'] = j['startupProfile']['data']['image']['url']
         except:
@@ -123,8 +121,20 @@ class QuotesSpider(scrapy.Spider):
             item['founders'] = null
         try:
             item['providers'] = j['startupProfile']['data']['providers']
+            l = j['startupProfile']['data']['providers']
+            for i in l:
+                if(i['name']=='CRUNCHBASE'):
+                    u = i['url']
+            ll = u.split('/')
+            querystring = {"query":ll[4]}
+            response = requests.request("GET", url, headers=headers, params=querystring)
+            item['contactlist'] = response.text
         except:
             item['providers'] = null
+        tw= []
+        for tweet in get_tweets(j['startupProfile']['data']['size']['twitter']['handle'], pages=1):
+            tw.append(tweet['text'])
+        item['tweets'] = tw
         print(item)
         yield item
         
