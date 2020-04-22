@@ -53,6 +53,12 @@ export default class Viewdetails extends Component {
             })
     }
 
+    converttoHuman(num) {
+        if (num > 1e9) return (num / 1e9 + '').slice(0, 5) + 'B'
+        if (num > 1e6) return (num / 1e6 + '').slice(0, 5) + 'B'
+        if (num > 1e3) return (num / 1e3 + '').slice(0, 5) + 'K'
+    }
+
     hashCode(str) { // java String#hashCode
         var hash = 0;
         for (var i = 0; i < str.length; i++) {
@@ -154,7 +160,7 @@ export default class Viewdetails extends Component {
             return;
         }
     }
-    
+
     getButtons(e) {
         var temp = []
         try {
@@ -259,7 +265,7 @@ export default class Viewdetails extends Component {
                             </fieldset>
                             <fieldset className="scheduler-border rounded-xlg w-75 mx-auto mb-3" >
                                 <legend className="scheduler-border">Ranking and Views</legend>
-                                <p align="center">{k.alexarank} <i className="fas fa-medal"></i> and {k.alexaviews} <i className="fab fa-searchengin"></i></p>
+                                <p align="center">{this.converttoHuman(k.alexarank)} <i className="fas fa-medal"></i> and {this.converttoHuman(k.alexaviews)} <i className="fab fa-searchengin"></i></p>
                             </fieldset>
                         </div>
                         <div className="col-sm-8 text-left align-items-end">
