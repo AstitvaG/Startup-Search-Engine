@@ -150,7 +150,7 @@ userRoutes.route('/schools').post(function (req, res) {
 
 //putting values in db
 userRoutes.route('/startups').post(function (req, res) {
-    if (!req.body.userid || !req.body.searchval || !req.body.domain || !req.body.country) {
+    if (!req.body.userid || !req.body.searchval || !req.body.domain) {
         res.send("Invalid");
         return;
     }
@@ -162,7 +162,7 @@ userRoutes.route('/startups').post(function (req, res) {
     table_sno.save().then(table_sno => {
 
         const { exec } = require("child_process");
-
+//look into this
         exec("sh crawl_startups.sh \"" + req.body.domain + "\" \"" + req.body.country + "\" ", (error, stdout, stderr) => {
             if (error) {
                 res.send("Error : " + error)

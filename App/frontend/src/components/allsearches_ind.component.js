@@ -49,7 +49,7 @@ export default class Allsearchesind extends Component {
                                         name={currentUser.name}
                                         description={currentUser.description}
                                         image={currentUser.image}
-                                        domains={currentUser.domains}
+                                        domains='[]'
                                         url={currentUser.website} />
                                 </div>
                             )
