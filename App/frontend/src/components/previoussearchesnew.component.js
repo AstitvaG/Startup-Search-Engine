@@ -101,7 +101,7 @@ export default class Previoussearches extends Component {
                                     </div>
                                 </div>
                                 <div className={"collapse " + "panel-collapse-" + i} id="description">
-                                    Yesterday
+                                    {currentUser.time}
                                 </div>
                             </div >)
                     })

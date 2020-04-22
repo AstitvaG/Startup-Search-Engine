@@ -7,6 +7,7 @@ import CreateUser from './components/create-user.component'
 import MainSearch from './components/search-main.component'
 import Showresult from './components/showresult.component'
 import Viewdetails from './components/viewdetails.component'
+import Allsearches_ind from './components/allsearches_ind.component'
 import Previoussearches from './components/previoussearches.component'
 import Previoussearchesnew from './components/previoussearchesnew.component'
 import LoginGoogle from './components/login-google.component'
@@ -25,8 +26,9 @@ function App() {
         <Route path="/" exact component={LoginGoogle} />
         <Route path="/users" exact component={UsersList} />
         <Route path="/create" component={CreateUser} />
-      </div>
       <Route path="/viewdetails" exact component={Viewdetails} />
+      <Route path="/allsearches_ind" exact component={Allsearches_ind} />
+      </div>
     </Router>
   );
 }

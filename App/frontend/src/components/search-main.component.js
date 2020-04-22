@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import queryString from "query-string";
 import Navbar from "./navbar.component";
-// import './search-main.component.css';
+//import './search-main.component.css';
 //import {Ripple} from 'react-spinners-css';
 import '../App.css';
 const Loading = require('react-loading-animation');

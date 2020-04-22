@@ -53,6 +53,17 @@ userRoutes.route('/').get(function (req, res) {
     });
 });
 
+// Getting all ind_startup searches 
+userRoutes.route('/allsearches_ind').get(function (req, res) {
+    View_individual.find(function (err, users) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json(users);
+        }
+    });
+});
+
 // Getting previous_searches
 userRoutes.route('/previoussearches').post(function (req, res) {
     Table_sno.find({ userid: req.body.userid })
@@ -80,15 +91,6 @@ userRoutes.route('/show/showresult').get(function (req, res) {
     });
 });
 
-userRoutes.route('/show/showresult').post(function (req, res) {
-    Table.find({ searchid: req.body.id }, function (err, users) {
-        if (err) {
-            console.log(err);
-        } else {
-            res.send({ body: users, val: searchval });
-        }
-    });
-});
 
 // Add searchid
 userRoutes.route('/show').post(function (req, res) {
