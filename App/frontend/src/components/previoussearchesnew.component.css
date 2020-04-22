@@ -1,4 +1,4 @@
-button {
+.btnx {
     position: relative;
     display: inline-block;
     cursor: pointer;
@@ -10,12 +10,10 @@ button {
     padding: 0;
     font-size: inherit;
     font-family: inherit;
-  }
-  button.btn {
     width: 12rem;
     height: auto;
   }
-  button.btn .circle {
+  .btnx .circle {
     transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
     position: relative;
     display: block;
@@ -25,7 +23,7 @@ button {
     background: #282936;
     border-radius: 1.625rem;
   }
-  button.btn .circle .icon {
+  .btnx .circle .icon {
     transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
     position: absolute;
     top: 0;
@@ -33,14 +31,14 @@ button {
     margin: auto;
     background: #fff;
   }
-  button.btn .circle .icon.arrow {
+  .btnx .circle .icon.arrow {
     transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
     left: 0.625rem;
     width: 1.125rem;
     height: 0.125rem;
     background: none;
   }
-  button.btn .circle .icon.arrow::before {
+  .btnx .circle .icon.arrow::before {
     position: absolute;
     content: '';
     top: -0.25rem;
@@ -54,7 +52,7 @@ button {
   }
 
 
-  button.btn .button-text {
+  .btnx .button-text {
     transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
     margin: 0 0 0 3.4rem;
     color: #282936;
@@ -64,14 +62,14 @@ button {
     top: 30%;
     /* transform: translateY(-50%); */
   }
-  button:hover .circle {
+  .btnx:hover .circle {
     width: 120%;
   }
-  button:hover .circle .icon.arrow {
+  .btnx:hover .circle .icon.arrow {
     background: #fff !important;
     -webkit-transform: translate(1rem, 0);
             transform: translate(1rem, 0);
   }
-  button:hover .button-text {
+  .btnx:hover .button-text {
     color: #fff !important;
   }

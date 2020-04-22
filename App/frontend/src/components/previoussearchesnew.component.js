@@ -86,7 +86,7 @@ export default class Previoussearches extends Component {
                                         <p className="h2">{currentUser.searchval}</p>
                                     </div>
                                     <div className="col m-auto d-block" >
-                                        <button className="btn m-auto d-block" onClick={e => this.onShow(currentUser._id, currentUser.searchval)}>
+                                        <button className="btnx m-auto d-block" onClick={e => this.onShow(currentUser._id, currentUser.searchval)}>
                                             <span className="circle">
                                                 <span className="icon arrow"></span>
                                             </span>
