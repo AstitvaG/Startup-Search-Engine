@@ -140,13 +140,30 @@ export default class Viewdetails extends Component {
             return;
         }
     }
+    getWebsite() {
+        var temp = []
+        try {
+                if(this.state.result.website!==null)
+                {   temp.push(
+                        <a href={this.state.result.website} target="_blank">
+                        <p className="text-center h1">
+                        <i class="fas fa-horse m-auto"></i>
+                        </p>
+                        </a>
+                    )
+                }
+            return temp
+        }
+        catch{
+            return;
+        }
+    }
     getButtons(e){
         var temp = []
         try
         {
             if(e==="twitter" && this.state.result.twitter.handle!=null)
             {
-              //  console.log(p);
                 temp.push(
                     <a href={"https://twitter.com/" + this.state.result.twitter.handle} target="_blank">
                     <p className="text-center h1">
@@ -180,7 +197,6 @@ export default class Viewdetails extends Component {
             }
             else if(e==="linkedin") 
             {
-             
                  if(this.state.result.linkedin.url!==null)
                 {
                     temp.push(
@@ -230,7 +246,6 @@ export default class Viewdetails extends Component {
                                     className="rounded-xlg mx-auto d-block w-75 shadow-lg"
                                     alt={this.props.name}
                                     onError={this.onError} />
-                                {/* {console.log("USUSUS",this.customerprofile)} */}
                             </div>
                             <fieldset className="scheduler-border rounded-xlg w-75 mx-auto mb-3 mt-5" >
                                 <legend className="scheduler-border">Location </legend>
@@ -272,39 +287,12 @@ export default class Viewdetails extends Component {
                                         {this.getButtons("facebook")}
                                         {this.getButtons("twitter")}
                                         {this.getButtons("linkedin")}
-                                          {/* //  k.facebook.length>0 && 
-                                            <button type="button" className="btn btn-primary btn-circle btn-xl m-1">
-                                            {this.getdomains()}
-                                            <p className="text-center h1">
-                                                <i className="fab fa-facebook-f m-auto"></i>
-                                            </p>
-                                           </button>   */}
-                                        
-                                        {/* {
-                                            //  k.twitter.length>0 && 
-                                              <button type="button" className="btn btn-primary btn-circle btn-xl m-1">
-                                              <p className="text-center h1">
-                                                  <i className="fab fa-facebook-f m-auto"></i>
-                                              </p>
-                                             </button>  
-                                        }
-                                        {
-                                            //  k.linkedin.length>0 && 
-                                              <button type="button" className="btn btn-primary btn-circle btn-xl m-1">
-                                              <p className="text-center h1">
-                                                  <i className="fab fa-facebook-f m-auto"></i>
-                                              </p>
-                                             </button>  
-                                        } */}
-                                      
                                     </div>
-
+                                    <div>
+                                    {this.getWebsite()}
+                                    </div>
                                 </div>
-                                {/* <h1>Welcome</h1>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p> */}
-
                             </div>
-                            {/* <br /> */}
                             <div className="acrylic my-5 rounded-xlg p-3  shadow-lg">
                                 <img src={ownersimg} className="w-25 ovfx"></img>
                                 <div className="w-75 mx-auto d-block" >

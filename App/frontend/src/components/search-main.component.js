@@ -25,7 +25,6 @@ export default class MainSearch extends Component {
 
 
         this.onSubmit = this.onSubmit.bind(this);
-        this.onChangeSearch = this.onChangeSearch.bind(this);
         this.onChangeCountry = this.onChangeCountry.bind(this);
         this.onChangeDomain = this.onChangeDomain.bind(this);
     }
@@ -50,11 +49,6 @@ export default class MainSearch extends Component {
     myDomains = ["Accounting and Legal", "Advertising", "AI", "Analytics", "AR/VR", "Automotive", "Big Data", "Biotech", "Blockchain", "Bots", "Communication", "Consulting", "Content", "Data", "Design", "E Commerce", "Education", "Energy", "Entertainment", "Events", "Fashion", "Finance", "Food and Beverages", "Gaming", "Governmental", "Hardware", "Health", "Hospitality", "HR and Recruitment", "Insurance", "IoT", "Manufacturing", "Marketing", "Media", "Medical", "Messaging", "Music", "Productivity", "Real Estate", "Retail", "Robotics", "Sales", "Security", "Sharing Economy", "Social Networks", "Software Dev", "Startups", "Travel", "Other"]
     listDomains = this.myDomains.map((mylist) => <option value={mylist} />)
 
-
-    onChangeSearch(e) {
-        this.setState({ search: e.target.value });
-    }
-
     onChangeCountry(e) {
         this.setState({ country: e.target.value });
     }
@@ -69,23 +63,10 @@ export default class MainSearch extends Component {
         console.log("made true",this.state.isFetching);
         this.setState({ state: this.state });
         this.forceUpdate();
-        if (this.state.search === "School" || this.state.search === "Schools") {
-            axios.post('http://localhost:4000/schools', {
-                userid: window.localStorage.getItem("email"),
-                searchval: this.state.search + ":" + "Hyderabad" + ":" + "India"
-            })
-                .then(response => {
-                    window.location = '/previoussearches';
-                    // this.setState({ result: response.data });
-                })
-                .catch(function (error) {
-                    console.log(error);
-                })
-        }
-        else if (this.state.search === "Startups") {
+     
             axios.post('http://localhost:4000/startups', {
                 userid: window.localStorage.getItem("email"),
-                searchval: this.state.search + ":" + this.state.dom + ":" + this.state.country,
+                searchval: "Startups" + ":" + this.state.dom + ":" + this.state.country,
                 country: this.state.country.toString().split(":")[0],
                 domain: this.state.dom.toString().toUpperCase()
             })
@@ -98,9 +79,6 @@ export default class MainSearch extends Component {
                 .catch(function (error) {
                     console.log(error);
                 })
-        }
-
-        else alert("Invalid input")
     }
 
     render() {
@@ -115,9 +93,6 @@ export default class MainSearch extends Component {
                         <div className="row h-100">
                             <div className="col-sm-12 mx-auto my-auto">
                                 <form onSubmit={this.onSubmit} style={{ display: "block", position: "absolute", top: 450, left: 500 }}>
-                                    <div className="form-group">
-                                        <input className="form-control rounded-pill" type="text" id="search" placeholder="Search.." onChange={this.onChangeSearch}></input>
-                                    </div>
                                     <div className="form-group">
                                         <input className="form-control rounded-pill" list="domainData" id="domain" placeholder="Domain" onChange={this.onChangeDomain} />
                                         <datalist id="domainData">
