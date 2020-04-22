@@ -246,22 +246,9 @@ userRoutes.route('/viewdetails').post(function (req, res) {
                     res.send("Error2 :" + stderr)
                     return;
                 }
-                // res.send(JSON.parse(stdout))
                 stdout = JSON.parse(stdout)
                 console.log("STDOUT:",stdout)
                 temp = stdout[0]
-                // for (var i = 0; i < stdout.length; i++) {
-                //     var temp = stdout[i];
-                //     let table = new View_individual({
-                //         name: req.body.name,
-                //         // name: "test"
-                //     });
-                //     table.save();
-                // }
-                // // Table.collection.insertMany(stdout);
-                // res.send("Completed")
-
-                // console.log(obj[0].name);
                 let v = new View_individual({
                     name: temp.name,
                     website: temp.website,

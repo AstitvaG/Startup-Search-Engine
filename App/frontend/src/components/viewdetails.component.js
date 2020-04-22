@@ -155,8 +155,10 @@ export default class Viewdetails extends Component {
                     </a>
                 )
             }
-            else if(e==="facebook" && this.state.result.facebook.page!==null)
+            else if(e==="facebook")
             {
+                if(this.state.result.facebook.page!==null)
+                {
                 temp.push(
                   <a href={"https://facebook.com/" + this.state.result.facebook.page} target="_blank">
                  <p className="text-center h1">
@@ -164,16 +166,42 @@ export default class Viewdetails extends Component {
                     </p>
                     </a>
                   )
+                }
+                else if(this.state.result.facebook.url!==null)
+                {
+                    temp.push(
+                        <a href={this.state.result.facebook.url} target="_blank">
+                       <p className="text-center h1">
+                              <i className="fab fa-facebook-square m-auto"></i>
+                          </p>
+                          </a>
+                        )
+                }
             }
-            else if(e==="linkedin" && this.state.result.linkedin.page!==null)
+            else if(e==="linkedin") 
             {
+             
+                 if(this.state.result.linkedin.url!==null)
+                {
+                    temp.push(
+                        <a href={this.state.result.linkedin.url} target="_blank">
+                       <p className="text-center h1">
+                       <i className="fab fa-linkedin m-auto"></i>
+                          </p>
+                          </a>
+                        )
+                }
+                else if(this.state.result.linkedin.page!==null)
+                {
                 temp.push(
-                  <a href={"https://www.linked.com/" + this.state.result.linkedin.page} target="_blank">
+                  <a href={"https://www.linkedin.com/company/" + this.state.result.linkedin.page} target="_blank">
                     <p className="text-center h1">
                         <i className="fab fa-linkedin m-auto"></i>
                     </p>
                     </a>
                 )
+                }
+
             }
             return temp
         }
