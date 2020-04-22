@@ -39,10 +39,10 @@ export default class Viewdetails extends Component {
         }
         axios.post('http://localhost:4000/get_ind_details', h)
             .then(response => {
-                console.log("response:", response)
+             //   console.log("response:", response)
 
                 this.setState({ result: response.data[0] ,domains: response.data[0].domains});
-                // console.log("response:", this.state.result.country)
+              //  console.log("response:", this.state.result.twitter.handle)
 
             })
             .catch(function (error) {
@@ -90,7 +90,7 @@ export default class Viewdetails extends Component {
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
         const page_type = urlParams.get('domains')
-        console.log("Domains:", decodeURI(page_type));
+    //    console.log("Domains:", decodeURI(page_type));
         if(alldomains[0]=="null") alldomains = JSON.parse(decodeURI(page_type))
 
         for (var i = 0; i < alldomains.length; i++) {
@@ -111,9 +111,6 @@ export default class Viewdetails extends Component {
     }
 
     getMembers() {
-        // return (
-
-
         var temp = []
         try {
             for (var i = 0; i < this.state.result.founders.handles.length; i++) {
@@ -121,7 +118,6 @@ export default class Viewdetails extends Component {
                 temp.push(
                     <div key={i} className="col-sm-4 p-2">
                         <div className=" bg-light rounded-xlg shadow m-2">
-
                             <div className="row p-3">
                                 <div className="col-8 col-sm-6 m-auto">
                                     {/* Level 2: .col-8 .col-sm-6 */}
@@ -136,7 +132,47 @@ export default class Viewdetails extends Component {
                             </div>
                         </div>
                     </div>
-                    // </div>
+                )
+            }
+            return temp
+        }
+        catch{
+            return;
+        }
+    }
+    getButtons(e){
+        var temp = []
+        try
+        {
+            if(e==="twitter" && this.state.result.twitter.handle!=null)
+            {
+              //  console.log(p);
+                temp.push(
+                    <a href={"https://twitter.com/" + this.state.result.twitter.handle} target="_blank">
+                    <p className="text-center h1">
+                        <i className="fab fa-twitter-square m-auto"></i>
+                    </p>
+                    </a>
+                )
+            }
+            else if(e==="facebook" && this.state.result.facebook.page!==null)
+            {
+                temp.push(
+                  <a href={"https://facebook.com/" + this.state.result.facebook.page} target="_blank">
+                 <p className="text-center h1">
+                        <i className="fab fa-facebook-square m-auto"></i>
+                    </p>
+                    </a>
+                  )
+            }
+            else if(e==="linkedin" && this.state.result.linkedin.page!==null)
+            {
+                temp.push(
+                  <a href={"https://www.linked.com/" + this.state.result.linkedin.page} target="_blank">
+                    <p className="text-center h1">
+                        <i className="fab fa-linkedin m-auto"></i>
+                    </p>
+                    </a>
                 )
             }
             return temp
@@ -147,16 +183,14 @@ export default class Viewdetails extends Component {
     }
 
     render() {
-        const k = this.state.result;
-        // console.log("k", k);
+        var k =this.state.result;
+        console.log("k", k);
         return (
             <div className="w-100 container-fluid" >
                 <Navbar />
                 <br />
                 <br />
                 <br />
-
-
                 <div className="container-fluid text-center">
                     <div className="row content rounded-xlg p-3" >
 
@@ -170,9 +204,6 @@ export default class Viewdetails extends Component {
                                     onError={this.onError} />
                                 {/* {console.log("USUSUS",this.customerprofile)} */}
                             </div>
-                            {/* <div className="w-75 mx-auto my-3" >
-                                <p className="h2" align="center">Select your university today</p>
-                            </div> */}
                             <fieldset className="scheduler-border rounded-xlg w-75 mx-auto mb-3 mt-5" >
                                 <legend className="scheduler-border">Location </legend>
                                 <p align="center">{k.city} <i className="fas fa-location-arrow"></i> India <i className="fas fa-globe-americas"></i></p>
@@ -189,10 +220,6 @@ export default class Viewdetails extends Component {
                                 <legend className="scheduler-border">Ranking and Views</legend>
                                 <p align="center">{k.alexarank} <i className="fas fa-medal"></i> and {k.alexaviews} <i className="fab fa-searchengin"></i></p>
                             </fieldset>
-
-                            {/* <p><a href="#">Link</a></p>
-                            <p><a href="#">Link</a></p>
-                            <p><a href="#">Link</a></p> */}
                         </div>
                         <div className="col-sm-8 text-left align-items-end">
                             <div className="acrylic p-3 my-5 rounded-xlg shadow-lg">
@@ -212,28 +239,36 @@ export default class Viewdetails extends Component {
                                     <p className="h4 mx-4 my-3" align="center">
                                         {k.description}
                                     </p>
-                                    <div className="w-100" align="center">
-                                        <button type="button" className="btn btn-primary btn-circle btn-xl m-1">
-                                            <p className="text-center h1">
-                                                <i className="fab fa-facebook-f m-auto"></i>
-                                            </p>
-                                        </button>
-                                        <button type="button" className="btn btn-primary btn-circle btn-xl m-1">
-                                            <p className="text-center h1">
-                                                <i className="fab fa-facebook-f m-auto"></i>
-                                            </p>
-                                        </button>
-                                        <button type="button" className="btn btn-primary btn-circle btn-xl m-1">
-                                            <p className="text-center h1">
-                                                <i className="fab fa-facebook-f m-auto"></i>
-                                            </p>
-                                        </button>
-                                        <button type="button" className="btn btn-primary btn-circle btn-xl m-1">
-                                            <p className="text-center h1">
-                                                <i className="fab fa-facebook-f m-auto"></i>
-                                            </p>
-                                        </button>
 
+                                    <div className="w-100" align="center">
+                                        {this.getButtons("facebook")}
+                                        {this.getButtons("twitter")}
+                                        {this.getButtons("linkedin")}
+                                          {/* //  k.facebook.length>0 && 
+                                            <button type="button" className="btn btn-primary btn-circle btn-xl m-1">
+                                            {this.getdomains()}
+                                            <p className="text-center h1">
+                                                <i className="fab fa-facebook-f m-auto"></i>
+                                            </p>
+                                           </button>   */}
+                                        
+                                        {/* {
+                                            //  k.twitter.length>0 && 
+                                              <button type="button" className="btn btn-primary btn-circle btn-xl m-1">
+                                              <p className="text-center h1">
+                                                  <i className="fab fa-facebook-f m-auto"></i>
+                                              </p>
+                                             </button>  
+                                        }
+                                        {
+                                            //  k.linkedin.length>0 && 
+                                              <button type="button" className="btn btn-primary btn-circle btn-xl m-1">
+                                              <p className="text-center h1">
+                                                  <i className="fab fa-facebook-f m-auto"></i>
+                                              </p>
+                                             </button>  
+                                        } */}
+                                      
                                     </div>
 
                                 </div>
@@ -290,5 +325,5 @@ export default class Viewdetails extends Component {
                 </footer> */}
             </div>
         )
-    };
+     };
 }

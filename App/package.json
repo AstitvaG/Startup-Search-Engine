@@ -14,7 +14,8 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "jquery": "^3.4.1",
-    "popper.js": "^1.16.1"
+    "popper.js": "^1.16.1",
+    "react-loading-animation": "^1.4.0"
   },
   "devDependencies": {
     "concurrently": "^4.1.2",
