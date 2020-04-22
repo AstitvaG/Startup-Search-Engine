@@ -63,7 +63,7 @@
     /* transform: translateY(-50%); */
   }
   .btnx:hover .circle {
-    width: 120%;
+    width: 105%;
   }
   .btnx:hover .circle .icon.arrow {
     background: #fff !important;
