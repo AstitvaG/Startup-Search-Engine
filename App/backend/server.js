@@ -64,6 +64,11 @@ userRoutes.route('/allsearches_ind').get(function (req, res) {
     });
 });
 
+// Drop view_individuals
+userRoutes.route('/drop').get(function (req, res) {
+    View_individual.deleteMany({});
+});
+
 // Getting previous_searches
 userRoutes.route('/previoussearches').post(function (req, res) {
     Table_sno.find({ userid: req.body.userid })

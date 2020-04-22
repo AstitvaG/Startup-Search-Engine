@@ -23,6 +23,18 @@ export default class Allsearchesind extends Component {
         })
     
     }
+    onClick() {
+        window.location = '/search';
+    }
+    Drop(){
+        axios.get('http://localhost:4000/drop')
+        .then(response => {
+            console.log(response);
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
+    }
     render() {
         return (
             <div className="container container-fluid">
@@ -36,6 +48,11 @@ export default class Allsearchesind extends Component {
                 <br />
                 <button className="rounded-pill btn btn-dark glogin" onClick={this.onClick}>
                     Add new Search
+                                </button>
+                <br />
+                <br />
+                <button className="rounded-pill btn btn-dark glogin" onClick={this.Drop}>
+                    Clear Search History
                                 </button>
                 <br />
                 <br />
