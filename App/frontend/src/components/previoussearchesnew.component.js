@@ -4,13 +4,13 @@ import queryString from "query-string";
 import Navbar from "./navbar.component";
 import "./previoussearchesnew.component.css"
 import $ from 'jquery';
-
+import { Collapse } from 'react-collapse';
 
 export default class Previoussearches extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { result: [] }
+        this.state = { result: [], display: -1 }
         this.onShow = this.onShow.bind(this);
         this.onClick = this.onClick.bind(this);
     }
@@ -39,18 +39,20 @@ export default class Previoussearches extends Component {
     }
     onShow(e, val) {
         // axios.post('http://localhost:4000/show', show)
-            // .then(function (res) {
-                window.location = '/showresult?id=' + encodeURI(e) + '&val=' + encodeURI(val)
-            // })
+        // .then(function (res) {
+        window.location = '/showresult?id=' + encodeURI(e) + '&val=' + encodeURI(val)
+        // })
     }
 
     displayitems(boolx, i) {
         if (boolx === true) {
-            $(".panel-collapse-" + i).show();
+            this.setState({ display: i });
+            // $(".panel-collapse-" + i).show();
         }
         else {
             // $(".parent-cont").mouseleave(function () {
-            $(".panel-collapse-" + i).hide();
+            this.setState({ display: -1 });
+            // $(".panel-collapse-" + i).hide();
         }
     }
 
@@ -100,9 +102,11 @@ export default class Previoussearches extends Component {
                                         </div>
                                     </div>
                                 </div>
-                                <div className={"collapse " + "panel-collapse-" + i} id="description">
-                                    {currentUser.time}
-                                </div>
+                                <Collapse isOpened={this.state.display==i}>
+                                    <div>
+                                        {currentUser.time}
+                                    </div>
+                                </Collapse>
                             </div >)
                     })
                 }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import basicimage from "./basic.png"
 import axios from 'axios';
+import { Collapse } from 'react-collapse';
 
 export default class SearchLayout extends Component {
 
@@ -10,7 +11,7 @@ export default class SearchLayout extends Component {
         this.state = {
             isHidden: true,
             domains: JSON.parse(props.domains),
-            url: encodeURI(props.image.substring(1, props.image.length - 1))
+            url: encodeURI(props.image)
         }
         this.onViewdetails = this.onViewdetails.bind(this);
     }
@@ -22,12 +23,8 @@ export default class SearchLayout extends Component {
         }
         axios.post('http://localhost:4000/viewdetails', show)
             .then(function (res) {
-                //  console.log(res.data)
                 localStorage.setItem("viewdetails", name);
-                // localStorage.setItem("viewdetails_img", this.state.url);
-                //console.log("ok cool fine yes")
-
-                window.location = '/viewdetails/?name='+encodeURI(name)+'&domains='+encodeURI(JSON.stringify(domains))
+                window.location = '/viewdetails/?name=' + encodeURI(name) + '&domains=' + encodeURI(JSON.stringify(domains))
 
             })
     }
@@ -114,9 +111,11 @@ export default class SearchLayout extends Component {
                         </div>
                     </div>
                 </div>
-                <div className={"collapse" + (this.state.isHidden ? '' : ' show')} id="description">
-                    <this.Description />
-                </div>
+                <Collapse isOpened={!this.state.isHidden}>
+                    <div>
+                        <this.Description />
+                    </div>
+                </Collapse>
             </div >
         )
     }

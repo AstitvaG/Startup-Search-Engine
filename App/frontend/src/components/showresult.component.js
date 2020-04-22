@@ -17,7 +17,7 @@ export default class Showresult extends Component {
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
         const id = decodeURI(urlParams.get('id'))
-        axios.post('http://localhost:4000/show/showresult',{id:id})
+        axios.post('http://localhost:4000/show/showresult', { id: id })
             .then(response => {
                 console.log("response:", response)
                 this.setState({ result: response.data.body, searchval: decodeURI(urlParams.get('val')) });
@@ -52,17 +52,22 @@ export default class Showresult extends Component {
                 <br />
                 {
                     this.state.result.map((currentUser, i) => {
-                        if (currentUser.c1)
+                        if (currentUser.c1) {
+                            var temp = currentUser.c4.split("@")[1].split("(")[1] ? currentUser.c4.split("@")[1].split("(")[1].split(")")[0] : " "
+                            if (temp != " ") {
+                                temp = temp.substring(1, temp.length - 1)
+                            }
                             return (
                                 <div>
                                     <SearchLayout key={i}
                                         name={currentUser.title}
                                         description={currentUser.c1.split(":")[1]}
-                                        image={currentUser.c4.split("@")[1].split("(")[1] ? currentUser.c4.split("@")[1].split("(")[1].split(")")[0]: "  "}
+                                        image={temp}
                                         domains={currentUser.c2.split(":")[1]}
                                         url={currentUser.c3.split("@")[1]} />
                                 </div>
                             )
+                        }
                     })
                 }
             </div>

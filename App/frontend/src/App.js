@@ -22,13 +22,13 @@ function App() {
         <Route path="/search" exact component={MainSearch} />
         <Route path="/showresult" exact component={Showresult} />
         <Route path="/previoussearches" exact component={Previoussearchesnew} />
-        {/* <Route path="/ls" exact component={Previoussearchesnew} /> */}
         <Route path="/" exact component={LoginGoogle} />
         <Route path="/users" exact component={UsersList} />
         <Route path="/create" component={CreateUser} />
-      <Route path="/viewdetails" exact component={Viewdetails} />
-      <Route path="/allsearches_ind" exact component={Allsearches_ind} />
+        <Route path="/allsearches_ind" exact component={Allsearches_ind} />
       </div>
+      {/* Keep this out of container only */}
+      <Route path="/viewdetails" exact component={Viewdetails} />
     </Router>
   );
 }

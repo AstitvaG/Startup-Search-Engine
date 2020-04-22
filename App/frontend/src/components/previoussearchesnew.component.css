@@ -73,3 +73,7 @@
   .btnx:hover .button-text {
     color: #fff !important;
   }
+
+  .ReactCollapse--collapse {
+    transition: height 500ms;
+  }

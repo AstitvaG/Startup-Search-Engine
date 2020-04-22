@@ -69,6 +69,17 @@ userRoutes.route('/drop').get(function (req, res) {
     View_individual.deleteMany({});
 });
 
+userRoutes.route('/show/showresult').post(function (req, res) {
+    Table.find({ searchid: req.body.id }, function (err, users) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.send({ body: users, val: searchval });
+        }
+    });
+});
+
+
 // Getting previous_searches
 userRoutes.route('/previoussearches').post(function (req, res) {
     Table_sno.find({ userid: req.body.userid })
