@@ -27,7 +27,7 @@ export default class SearchLayout extends Component {
                 // localStorage.setItem("viewdetails_img", this.state.url);
                 //console.log("ok cool fine yes")
 
-                window.location = '/viewdetails/?domains='+encodeURI(JSON.stringify(domains))
+                window.location = '/viewdetails/?name='+encodeURI(name)+'&domains='+encodeURI(JSON.stringify(domains))
 
             })
     }

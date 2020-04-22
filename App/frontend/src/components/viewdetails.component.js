@@ -34,8 +34,11 @@ export default class Viewdetails extends Component {
         document.body.style.backgroundRepeat = 'no-repeat'
         // document.body.style.fontFamily =
 
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+
         const h = {
-            name: localStorage.getItem("viewdetails")
+            name: decodeURI(urlParams.get('name'))
         }
         axios.post('http://localhost:4000/get_ind_details', h)
             .then(response => {
