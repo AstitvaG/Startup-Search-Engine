@@ -14,10 +14,13 @@ export default class Showresult extends Component {
     }
     componentDidMount() {
         document.body.style.background = '#444'
-        axios.get('http://localhost:4000/show/showresult')
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const id = decodeURI(urlParams.get('id'))
+        axios.post('http://localhost:4000/show/showresult',{id:id})
             .then(response => {
                 console.log("response:", response)
-                this.setState({ result: response.data.body, searchval: response.data.val });
+                this.setState({ result: response.data.body, searchval: decodeURI(urlParams.get('val')) });
             })
             .catch(function (error) {
                 console.log(error);

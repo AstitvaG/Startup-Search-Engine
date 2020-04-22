@@ -38,51 +38,6 @@ userRoutes.route('/auth/google/callback').get(
     }
 );
 
-obj = [
-    {
-        "country": "IN",
-        "providers": [
-            {
-                "updateDate": 1574153541,
-                "name": "STARTUP_TRACKER"
-            },
-            {
-                "url": "https://fedger.io",
-                "name": "FEDGER"
-            }
-        ],
-        "size_employees": "51-100",
-        "facebook": {
-            "url": null,
-            "page": null
-        },
-        "twitter": {
-            "handle": "GetLeadMi",
-            "followers": 603
-        },
-        "linkedin": {
-            "url": null,
-            "page": null
-        },
-        "alexaviews": 42745,
-        "founders": {
-            "handles": [
-                {
-                    "profileImage": "https://pbs.twimg.com/profile_images/1181179727723126784/wUyjuOeq.png",
-                    "handle": "GetLeadMi",
-                    "name": "LeadMi"
-                }
-            ],
-            "startups": []
-        },
-        "foundingdate": 1575225000,
-        "city": "bangalore",
-        "website": "http://www.leadmi.io",
-        "alexarank": "111851",
-        "name": "LeadMi",
-        "description": "marketing automation platform to manage social media platforms and lead generation with CRM integration"
-    }
-]
 
 // API endpoints
 
@@ -117,6 +72,16 @@ searchval = ""
 // Getting all the results
 userRoutes.route('/show/showresult').get(function (req, res) {
     Table.find({ searchid: show }, function (err, users) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.send({ body: users, val: searchval });
+        }
+    });
+});
+
+userRoutes.route('/show/showresult').post(function (req, res) {
+    Table.find({ searchid: req.body.id }, function (err, users) {
         if (err) {
             console.log(err);
         } else {
