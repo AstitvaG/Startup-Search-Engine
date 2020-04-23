@@ -66,7 +66,13 @@ userRoutes.route('/allsearches_ind').get(function (req, res) {
 
 // Drop view_individuals
 userRoutes.route('/drop').get(function (req, res) {
-    View_individual.deleteMany({});
+    View_individual.deleteMany({}, function(err, result) {
+        if (err) {
+          res.send(err);
+        } else {
+          res.send(result);
+        }
+      });
 });
 
 userRoutes.route('/show/showresult').post(function (req, res) {

@@ -71,4 +71,4 @@ let View_individual = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('ViewView_individual', View_individual);
+module.exports = mongoose.model('View_individual', View_individual);
