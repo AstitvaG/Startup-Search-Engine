@@ -133,6 +133,29 @@ export default class Viewdetails extends Component {
     getMembers() {
         var temp = []
         try {
+            for (var i = 0; i < this.state.result.contactlist.length; i++) {
+                var person = this.state.result.contactlist[i]
+                var sp = this.state.result.founders.handles[i]
+                temp.push(
+                    <div key={i} className="col-sm-4 p-2">
+                        <div className=" bg-light rounded-xlg shadow m-2">
+                            <div className="row p-3">
+                                <div className="col-8 col-sm-6 m-auto">
+                                    {/* Level 2: .col-8 .col-sm-6 */}
+                                    <img className="w-75 mx-auto rounded-circle" src={person.properties.profile_image_url} />
+                                </div>
+                                <div className="col-4 col-sm-6 m-auto">
+                                    <strong><p className="h4 m-auto" align="center" style={{ wordWrap: "break-word" }}>{person.properties.first_name + " " + person.properties.last_name}</p></strong>
+                                    <weak><p className="h5 m-auto" align="left" style={{ wordWrap: "break-word" }}>{person.properties.title}</p></weak>
+                                    <a href={person.properties.linkedin_url} target="_blank">
+                                        <p className="m-auto text-dark" align="center" style={{ wordWrap: "break-word" }}>{} <i className="text-primary fab fa-linkedin"></i></p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )
+            }
             for (var i = 0; i < this.state.result.founders.handles.length; i++) {
                 var person = this.state.result.founders.handles[i]
                 temp.push(
@@ -145,6 +168,7 @@ export default class Viewdetails extends Component {
                                 </div>
                                 <div className="col-4 col-sm-6 m-auto">
                                     <strong><p className="h4 m-auto" align="center" style={{ wordWrap: "break-word" }}>{person.name}</p></strong>
+                                    {/* <weak><p className="h5 m-auto" align="left" style={{ wordWrap: "break-word" }}>{person.properties.title}</p></weak> */}
                                     <a href={"https://twitter.com/" + person.handle} target="_blank">
                                         <p className="m-auto text-dark" align="center" style={{ wordWrap: "break-word" }}>{person.handle} <i className="text-primary fab fa-twitter"></i></p>
                                     </a>

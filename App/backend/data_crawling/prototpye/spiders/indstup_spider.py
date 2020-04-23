@@ -5,6 +5,7 @@ from twitter_scraper import get_tweets
 import time
 import requests
 import json
+MONGODB_COLLECTION = "profile"
 url = "https://crunchbase-crunchbase-v1.p.rapidapi.com/odm-people"
 
 headers = {
@@ -128,7 +129,8 @@ class QuotesSpider(scrapy.Spider):
             ll = u.split('/')
             querystring = {"query":ll[4]}
             response = requests.request("GET", url, headers=headers, params=querystring)
-            item['contactlist'] = response.text
+            q = eval(response.text)
+            item['contactlist'] = q['data']['items']
         except:
             item['providers'] = null
         tw= []

@@ -41,6 +41,14 @@ let View_individual = new mongoose.Schema({
         type: Object,
         default: null
     },
+    tweets: {
+        type: Object,
+        default: null
+    },
+    contactlist: {
+        type: Object,
+        default: null
+    },
     facebook: {
         type: Object,
         default: null

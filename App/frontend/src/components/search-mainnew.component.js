@@ -3,7 +3,7 @@ import axios from 'axios';
 import queryString from "query-string";
 import Navbar from "./navbar.component";
 //import './search-main.component.css';
-//import {Ripple} from 'react-spinners-css';
+import {Ripple} from 'react-spinners-css';
 import '../App.css';
 import './search-mainnew.component.css'
 
@@ -144,7 +144,7 @@ export default class MainSearch extends Component {
                 {/* <Navbar /> */}
                 {this.state.isFetching ? (
                     <div className="loading">
-                        {/* <Ripple color="#05bd26" /> */}
+                        <Ripple color=" #770992" />
                     </div>
                 ) : (
                         <div className="containerx">

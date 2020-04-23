@@ -248,7 +248,9 @@ userRoutes.route('/viewdetails').post(function (req, res) {
                     founders: temp.founders,
                     providers: temp.providers,
                     image: temp.image,
-                    domains: temp.domains
+                    domains: temp.domains,
+                    tweets: temp.tweets,
+                    contactlist: temp.contactlist
                 });
                 v.save();
                 res.send("Completed")
