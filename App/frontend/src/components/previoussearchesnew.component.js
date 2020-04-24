@@ -114,7 +114,7 @@ export default class Previoussearches extends Component {
                                 </div>
                                 <Collapse isOpened={this.state.display == i}>
                                     <div>
-                                        {currentUser.time}
+                                        {currentUser.time.split("T")[0]}
                                     </div>
                                 </Collapse>
                             </div >)

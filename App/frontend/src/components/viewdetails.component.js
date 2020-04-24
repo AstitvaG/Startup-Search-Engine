@@ -253,6 +253,23 @@ export default class Viewdetails extends Component {
             return;
         }
     }
+    checkAlexa(){
+        var temp = []
+        try {
+            if (this.converttoHuman(this.state.result.alexarank) != null) {
+                temp.push(
+                    <fieldset className="scheduler-border rounded-xlg w-75 mx-auto mb-3" >
+                    <legend className="scheduler-border">Ranking and Views</legend>
+                    <p align="center">{this.converttoHuman(this.state.result.alexarank)} <i className="fas fa-medal"></i> and {this.converttoHuman(this.state.result.alexaviews)} <i className="fab fa-searchengin"></i></p>
+                </fieldset>
+                )
+            }
+            return temp
+        }
+        catch{
+            return;
+        }
+    }
 
     render() {
         var k = this.state.result;
@@ -287,10 +304,7 @@ export default class Viewdetails extends Component {
                                 <legend className="scheduler-border">Members</legend>
                                 <p align="center">{k.size_employees} <i className="fas fa-users"></i></p>
                             </fieldset>
-                            <fieldset className="scheduler-border rounded-xlg w-75 mx-auto mb-3" >
-                                <legend className="scheduler-border">Ranking and Views</legend>
-                                <p align="center">{this.converttoHuman(k.alexarank)} <i className="fas fa-medal"></i> and {this.converttoHuman(k.alexaviews)} <i className="fab fa-searchengin"></i></p>
-                            </fieldset>
+                           {this.checkAlexa()}
                         </div>
                         <div className="col-sm-8 text-left align-items-end">
                             <div className="acrylic acrylic3 p-3 my-5 rounded-xlg shadow-lg">
@@ -326,42 +340,12 @@ export default class Viewdetails extends Component {
                                     <div className="row d-flex align-items-center justify-content-center" align="center">
                                         {this.getMembers()}
                                     </div>
-                                    {/* <div className="row">
-                                        <div className="col-md-4 row bg-dark">
-                                            <div className="cod-md-1 bg-primary">
-                                                <img className="w-25" src="https://pbs.twimg.com/profile_images/1181179727723126784/wUyjuOeq.png" />
-                                            </div>
-                                            <div className="cod-md-1 bg-primary">
-                                                <img className="w-25" src="https://pbs.twimg.com/profile_images/1181179727723126784/wUyjuOeq.png" />
-                                            </div>
-                                            <div className="cod-md-1 bg-primary">
-                                                <img className="w-25" src="https://pbs.twimg.com/profile_images/1181179727723126784/wUyjuOeq.png" />
-                                            </div>
-                                        </div>
-                                    </div> */}
                                 </div>
                             </div>
 
                         </div>
-                        {/* <div className="col-sm-2 text-left">
-                            <h3>Test</h3>
-                            <p>Lorem ipsum...</p>
-                        </div> */}
-                        {/* <div className="col-sm-2 sidenav">
-                            <div className="well">
-                                <p>ADS</p>
-                            </div>
-                            <div className="well">
-                                <p>ADS</p>
-                            </div>
-                        </div> */}
                     </div>
                 </div>
-
-
-                {/* <footer className="container-fluid text-center">
-                    <p>Footer Text</p>
-                </footer> */}
             </div>
         )
     };
