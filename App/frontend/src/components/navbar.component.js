@@ -7,7 +7,7 @@ export default class Navbar extends Component {
     constructor(props) {
         super(props);
         this.logout = this.logout.bind(this);
-        // if (window.localStorage.getItem('name') == "null") this.logout();
+        if (window.localStorage.getItem('name') == "null" && !window.location.href.includes('token')) this.logout();
     }
 
     logout() {
@@ -19,11 +19,11 @@ export default class Navbar extends Component {
 
     render() {
         return (
-            <nav id="main_nav" className={"navbar navbar-expand-lg navbar-dark fixed-top rounded-pill m-2 mx-5 mt-4 p-2 shadow-lg h5 bg-dark "+ this.props.className}>
+            <nav id="main_nav" className={"navbar navbar-expand-lg navbar-dark fixed-top rounded-pill m-2 mx-5 mt-4 p-2 shadow-lg h5 bg-dark " + this.props.className}>
                 <div className="container-fluid">
                     <ul className="navbar-nav mr-auto navbar-left  my-auto form-inline">
                         <li className="nav-item active">
-                            <a href="/previoussearches" className="nav-link h2" style={{fontFamily:"qb"}}><strong>Stealth Mode</strong><span className="sr-only">(current)</span></a>
+                            <a href="/previoussearches" className="nav-link h2" style={{ fontFamily: "qb" }}><strong>Stealth Mode</strong><span className="sr-only">(current)</span></a>
                         </li>
                         <li className="nav-item">
                             <a href="/allsearches_ind" className="nav-link">My Search History<span className="sr-only">(current)</span></a>
@@ -47,13 +47,8 @@ export default class Navbar extends Component {
                                     }} src={window.localStorage.getItem('picture')}></img>
                                 </a>
                             </li>
-                            <li className="nav-item dropdown">
-                                <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Account
-                            </a>
-                                <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a className="dropdown-item" href="#" onClick={this.logout}>Logout</a>
-                                </div>
+                            <li className="nav-item">
+                                <a className="nav-link" href="#" onClick={this.logout}>Logout</a>
                             </li>
                         </ul>
                     </div>

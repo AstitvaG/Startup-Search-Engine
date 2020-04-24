@@ -90,8 +90,8 @@ export default class Previoussearches extends Component {
                                     <div className="w-50 h-100 mx-3 my-auto" >
                                         { /* Company Name */}
                                         <p className="h2">
-                                            {currentUser.searchval.split(":")[1]} <i class="fas fa-arrow-right"></i>
-                                            {currentUser.searchval.split(":")[3]}
+                                            {currentUser.searchval.split(":")[1]!=null ? currentUser.searchval.split(":")[1] : "All"} <i class="fas fa-arrow-right"></i>
+                                            {currentUser.searchval.split(":")[3]!=null ? currentUser.searchval.split(":")[3] : "All"}
                                         </p>
                                     </div>
                                     <div className="col m-auto d-block" >

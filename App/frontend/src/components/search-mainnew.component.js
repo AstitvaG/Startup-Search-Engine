@@ -6,7 +6,6 @@ import Navbar from "./navbar.component";
 import {Ripple} from 'react-spinners-css';
 import '../App.css';
 import './search-mainnew.component.css'
-import { test } from './mail.js'
 const Loading = require('react-loading-animation');
 const { OAuth2Client } = require('google-auth-library');
 const client = [];
