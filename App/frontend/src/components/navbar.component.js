@@ -33,11 +33,18 @@ export default class Navbar extends Component {
                     </button>
 
                     <div className="navbar collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul className="navbar-nav mr-auto navbar-left">
-                        </ul>
-                        <ul className="navbar-nav navbar-right">
+                        <ul className="navbar-nav mr-auto navbar-left"></ul>
+                        <ul className="navbar-nav navbar-right my-auto form-inline">
                             <li className="nav-item">
-                                <a href="/search" className="nav-link" href="/previoussearches">Hey <strong>{window.localStorage.getItem('name')}</strong>!</a>
+                                <a className="nav-link" href="/previoussearches">Hey <strong>{window.localStorage.getItem('name')}</strong>!</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" href="/previoussearches">
+                                    <img style={{
+                                        width: "30px",
+                                        borderRadius: "50%"
+                                    }} src={window.localStorage.getItem('picture')}></img>
+                                </a>
                             </li>
                             <li className="nav-item dropdown">
                                 <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

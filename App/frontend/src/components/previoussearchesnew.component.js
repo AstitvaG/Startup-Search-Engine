@@ -21,6 +21,8 @@ export default class Previoussearches extends Component {
             window.localStorage.setItem("token", obj.token);
             window.localStorage.setItem("name", obj.name);
             window.localStorage.setItem("email", obj.email);
+            window.localStorage.setItem("picture", decodeURI(obj.picture));
+            // console.log("picture:",decodeURI(obj.picture))
             this.props.history.push("/previoussearches");
         }
         document.body.style.background = '#444'
