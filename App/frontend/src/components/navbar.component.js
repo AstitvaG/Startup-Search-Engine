@@ -7,7 +7,7 @@ export default class Navbar extends Component {
     constructor(props) {
         super(props);
         this.logout = this.logout.bind(this);
-        if (window.localStorage.getItem('name') == "null") this.logout();
+        // if (window.localStorage.getItem('name') == "null") this.logout();
     }
 
     logout() {
