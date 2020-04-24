@@ -25,7 +25,7 @@ export default class Navbar extends Component {
                             <a href="/previoussearches" className="nav-link h2" style={{fontFamily:"qb"}}><strong>Stealth Mode</strong><span className="sr-only">(current)</span></a>
                         </li>
                         <li className="nav-item">
-                            <a href="/allsearches_ind" className="nav-link">My all searches<span className="sr-only">(current)</span></a>
+                            <a href="/allsearches_ind" className="nav-link">My Search History<span className="sr-only">(current)</span></a>
                         </li>
                     </ul>
                     <button className="navbar-toggler" type="button" onClick={this.toggle} data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,7 +51,6 @@ export default class Navbar extends Component {
                                     Account
                             </a>
                                 <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a className="dropdown-item" href="/previoussearches">Search History</a>
                                     <a className="dropdown-item" href="#" onClick={this.logout}>Logout</a>
                                 </div>
                             </li>
