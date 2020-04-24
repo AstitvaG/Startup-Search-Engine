@@ -46,7 +46,7 @@ export default class Showresult extends Component {
                 <br />
                 <br />
                 <div className="container-fluid m-auto d-block">
-                    <p className="display-2 text-light" align="center">
+                    <p className="display-2 text-light" style={{textShadow:"3px 3px 100px"}} align="center">
                         <strong><b>Search Result</b></strong>
                     </p>
                     <p className="h1 text-light" align="center">

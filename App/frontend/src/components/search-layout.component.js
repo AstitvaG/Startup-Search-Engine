@@ -68,6 +68,7 @@ export default class SearchLayout extends Component {
     getdomains() {
         var temp = [];
         for (var i = 0; i < this.state.domains.length; i++) {
+            if (this.state.domains[i] === "" || this.state.domains[i]===" ") continue;
             temp.push(<div className="rounded-pill p-2 m-1 text-capitalize"
                 style={
                     {

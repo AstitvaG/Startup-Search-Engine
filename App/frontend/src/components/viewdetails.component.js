@@ -114,7 +114,7 @@ export default class Viewdetails extends Component {
         }
 
         for (var i = 0; i < alldomains.length; i++) {
-            if (alldomains[i] === "") continue;
+            if (alldomains[i] === "" || alldomains[i]===" ") continue;
             temp.push(<div key={i} className="rounded-pill p-2 m-1 text-capitalize fontx"
                 style={
                     {
