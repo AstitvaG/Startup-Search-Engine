@@ -31,10 +31,13 @@ export default class Showresult extends Component {
                 console.log(error);
             })
     }
+
+    count_total = 0;
+
     render() {
         return (
             <div className="container container-fluid">
-                <Navbar className="acrylic acrylic4"/>
+                <Navbar className="acrylic acrylic4" />
                 <br />
                 <br />
                 <br />
@@ -48,7 +51,7 @@ export default class Showresult extends Component {
                     </p>
                     <p className="h1 text-light" align="center">
                         <small>
-                            {this.state.searchval.split(":")[1]} <i class="fas fa-arrow-right"></i>
+                            {this.state.searchval.split(":")[1]} <i className="fas fa-arrow-right"></i>
                             {this.state.searchval.split(":")[3]}
                         </small>
                     </p>
@@ -56,6 +59,7 @@ export default class Showresult extends Component {
                 <br />
                 <br />
                 {
+                    // {var countnum=0}
                     this.state.result.map((currentUser, i) => {
                         if (currentUser.c1) {
                             var temp = currentUser.c4.split("@")[1].split("(")[1] ? currentUser.c4.split("@")[1].split("(")[1].split(")")[0] : " "
@@ -64,13 +68,16 @@ export default class Showresult extends Component {
                             }
                             return (
                                 <div>
-                                    <SearchLayout key={i}
-                                        name={currentUser.title}
-                                        description={currentUser.c1.split(":")[1]}
-                                        image={temp}
-                                        domains={currentUser.c2.split(":")[1]}
-                                        url={currentUser.c3.split("@")[1]}
-                                        className="bg-light"/>
+                                    {
+                                        currentUser.title &&
+                                        <SearchLayout
+                                            name={currentUser.title}
+                                            description={currentUser.c1.split(":")[1]}
+                                            image={temp}
+                                            domains={currentUser.c2.split(":")[1]}
+                                            url={currentUser.c3.split("@")[1]}
+                                            className="bg-light" />
+                                    }
                                 </div>
                             )
                         }
