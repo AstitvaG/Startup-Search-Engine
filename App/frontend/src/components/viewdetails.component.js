@@ -5,6 +5,7 @@ import bgimage from "./bg3.png"
 import blackcircle from "./black-circle.png"
 import detailsimg from "./details.png"
 import ownersimg from "./owners.png"
+import newsimg from "./news.png"
 import axios from 'axios'
 import { TwitterTweetEmbed } from 'react-twitter-embed';
 // import customerprofile from localStorage.getItem("viewdetails_img")
@@ -400,14 +401,14 @@ export default class Viewdetails extends Component {
 
                         </div>
                         <div className="col-sm-12 px-2">
-                            <div className="acrylic acrylic3 m-5 rounded-xlg p-3 shadow-lg">
-                                <img src={detailsimg} className="w-25 ovfx"></img>
+                            <div className="acrylic acrylic3 m-5 rounded-xlg shadow-lg">
+                                <img src={newsimg} className="w-25 ovfx"></img>
                                 <div className="w-75 mx-auto d-block" >
                                     { /* Tweets */}
                                     <p className="display-4 fontx" align="center">News</p>
                                 </div>
                                 <div className="container w-100 m-auto d-block" >
-                                    <div className="row d-flex align-items-center justify-content-center" align="center">
+                                    <div className="row align-items-center justify-content-center" align="center">
                                         {this.gettweets()}
                                     </div>
                                 </div>
