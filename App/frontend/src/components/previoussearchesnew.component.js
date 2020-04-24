@@ -45,10 +45,7 @@ export default class Previoussearches extends Component {
         window.location = '/search';
     }
     onShow(e, val) {
-        // axios.post('http://localhost:4000/show', show)
-        // .then(function (res) {
         window.location = '/showresult?id=' + encodeURI(e) + '&val=' + encodeURI(val)
-        // })
     }
 
     displayitems(boolx, i) {
