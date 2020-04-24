@@ -302,7 +302,7 @@ export default class Viewdetails extends Component {
         var temp = []
         try {
             for (var i = 0; i < this.state.result.tweets.length; i++) {
-                var t = this.state.result.tweets[i]
+                var t = this.state.result.tweets[i].text
                 temp.push(
                     <div className="bg-light rounded-xlg shadow-lg my-3">
                         <p>{t}</p>
