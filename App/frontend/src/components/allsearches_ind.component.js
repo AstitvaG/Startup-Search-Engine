@@ -55,17 +55,22 @@ export default class Allsearchesind extends Component {
             sortable.push(products[product]);
         }
 
-        if (this.state.sort_type == "Date") {
+        if (window.localStorage.getItem("sort_type") == "Date") {
             return (sortable.sort((a, b) => a.time > b.time ? -1 : (a.time < b.time ? 1 : 0)));
         }
-        else if (this.state.sort_type == "Size") {
+        else if (window.localStorage.getItem("sort_type") == "Size") {
             return (sortable.sort((a, b) => b.size_employees.split("-")[0] - a.size_employees.split("-")[0]));
         }
-        else if (this.state.sort_type == "Name") {
+        else if (window.localStorage.getItem("sort_type") == "Name") {
             return (sortable.sort((a, b) => a.name < b.name ? -1 : (a.name > b.name ? 1 : 0)));
         }
 
         return products;
+    }
+
+    gg(e) {
+        window.localStorage.setItem("sort_type",e)
+        window.location.reload(true);
     }
 
     render() {
@@ -92,12 +97,12 @@ export default class Allsearchesind extends Component {
 
                     <div className="dropdown">
                         <button className="rounded-pill btn btn-dark glogin dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Sort by: {this.state.sort_type}
+                            Sort by: {window.localStorage.getItem("sort_type")}
                         </button>
                         <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a className="dropdown-item" href="#" onClick={e => this.setState({ sort_type: "Name" })}>Name</a>
-                            <a className="dropdown-item" href="#" onClick={e => this.setState({ sort_type: "Size" })}>Number of employees</a>
-                            <a className="dropdown-item" href="#" onClick={e => this.setState({ sort_type: "Date" })}>Date</a>
+                            <a className="dropdown-item" href="#" onClick={e => this.gg("Name")}>Name</a>
+                            <a className="dropdown-item" href="#" onClick={e => this.gg("Size")}>Number of employees</a>
+                            <a className="dropdown-item" href="#" onClick={e => this.gg("Date")}>Date</a>
                         </div>
                     </div>
                     <button className="rounded-pill btn btn-dark glogin mx-2" onClick={this.Drop}>

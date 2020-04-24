@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './login-google.component.css';
+// import bgimage from "./bg3.png"
 import back from './PmdesY.png'
 
 
@@ -8,6 +9,14 @@ export default class LoginGoogle extends Component {
 
     constructor(props) {
         super(props);
+    }
+
+    componentDidMount() {
+        document.body.style.backgroundImage = `url(${back})`
+        document.body.style.backgroundPosition = 'center'
+        document.body.style.backgroundSize = 'cover'
+        document.body.style.backgroundAttachment = 'fixed'
+        document.body.style.backgroundRepeat = 'no-repeat'
     }
 
 
