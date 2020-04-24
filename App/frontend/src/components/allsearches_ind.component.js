@@ -10,7 +10,7 @@ export default class Allsearchesind extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { result: [] }
+        this.state = { result: [], sort_type: "Date" }
     }
     componentDidMount() {
         document.body.style.backgroundImage = `url(${bgimage})`
@@ -45,18 +45,27 @@ export default class Allsearchesind extends Component {
     getdomains(alldomains) {
         var temp = [];
         var alldomains = (alldomains + "").split(",")
-        //    console.log("Domains:", decodeURI(page_type));
         if (alldomains[0] == "null" && alldomains.length == 1) alldomains = [""]
-        // else {
-        //     alldomains = alldomains.map(function (x) { return x.toUpperCase() })
-        //     var final = new Set(alldomains)
-        //     var newx = JSON.parse(decodeURI(page_type))
-        //     for (var i in newx) {
-        //         final.add(newx[i].toUpperCase())
-        //     }
-        //     alldomains = Array.from(final)
-        // }
         return alldomains;
+    }
+
+    sortvalues(products) {
+        var sortable = [];
+        for (var product in products) {
+            sortable.push(products[product]);
+        }
+
+        if (this.state.sort_type == "Date") {
+            return (sortable.sort((a, b) => a.time > b.time ? -1 : (a.time < b.time ? 1 : 0)));
+        }
+        else if (this.state.sort_type == "Size") {
+            return (sortable.sort((a, b) => b.size_employees.split("-")[0] - a.size_employees.split("-")[0]));
+        }
+        else if (this.state.sort_type == "Name") {
+            return (sortable.sort((a, b) => a.name < b.name ? -1 : (a.name > b.name ? 1 : 0)));
+        }
+
+        return products;
     }
 
     render() {
@@ -71,7 +80,7 @@ export default class Allsearchesind extends Component {
                 <br />
                 <br />
                 <div className="container-fluid m-auto d-block">
-                    <p className="display-2 text-light" style={{textShadow:"3px 3px 100px"}} align="center">
+                    <p className="display-2 text-light" style={{ textShadow: "3px 3px 100px" }} align="center">
                         <strong><b>Search History</b></strong>
                     </p>
                 </div>
@@ -79,17 +88,28 @@ export default class Allsearchesind extends Component {
 
                     <button className="rounded-pill btn btn-dark glogin mx-2" onClick={this.onClick}>
                         Add new Search
-                </button>
+                    </button>
+
+                    <div className="dropdown">
+                        <button className="rounded-pill btn btn-dark glogin dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Sort by: {this.state.sort_type}
+                        </button>
+                        <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a className="dropdown-item" href="#" onClick={e => this.setState({ sort_type: "Name" })}>Name</a>
+                            <a className="dropdown-item" href="#" onClick={e => this.setState({ sort_type: "Size" })}>Number of employees</a>
+                            <a className="dropdown-item" href="#" onClick={e => this.setState({ sort_type: "Date" })}>Date</a>
+                        </div>
+                    </div>
                     <button className="rounded-pill btn btn-dark glogin mx-2" onClick={this.Drop}>
                         Clear Search History
-                </button>
+                    </button>
                 </div>
                 <br />
                 <br />
                 <br />
                 {
                     this.state.result.length > 0 &&
-                    this.state.result.map((currentUser, i) => {
+                    this.sortvalues(this.state.result).map((currentUser, i) => {
                         return (
                             <div>
                                 <SearchLayout key={i}
