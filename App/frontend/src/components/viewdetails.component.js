@@ -253,15 +253,15 @@ export default class Viewdetails extends Component {
             return;
         }
     }
-    checkAlexa(){
+    checkAlexa() {
         var temp = []
         try {
             if (this.converttoHuman(this.state.result.alexarank) != null) {
                 temp.push(
                     <fieldset className="scheduler-border rounded-xlg w-75 mx-auto mb-3" >
-                    <legend className="scheduler-border">Ranking and Views</legend>
-                    <p align="center">{this.converttoHuman(this.state.result.alexarank)} <i className="fas fa-medal"></i> and {this.converttoHuman(this.state.result.alexaviews)} <i className="fab fa-searchengin"></i></p>
-                </fieldset>
+                        <legend className="scheduler-border">Ranking and Views</legend>
+                        <p align="center">{this.converttoHuman(this.state.result.alexarank)} <i className="fas fa-medal"></i> and {this.converttoHuman(this.state.result.alexaviews)} <i className="fab fa-searchengin"></i></p>
+                    </fieldset>
                 )
             }
             return temp
@@ -270,22 +270,21 @@ export default class Viewdetails extends Component {
             return;
         }
     }
-    gettweets(){
+    gettweets() {
         var temp = []
         try {
-            for(var i=0;i<this.state.result.tweets.length;i++)
-            {
-                var t=this.state.result.tweets[i]
+            for (var i = 0; i < this.state.result.tweets.length; i++) {
+                var t = this.state.result.tweets[i]
                 temp.push(
-                    <div>
-                    <p>{t}</p>
-                    <br/>
+                    <div className="bg-light rounded-xlg shadow-lg my-3">
+                        <p>{t}</p>
+                        <br />
                     </div>
                 )
             }
             return temp
         }
-        
+
         catch{
             return;
         }
@@ -325,7 +324,7 @@ export default class Viewdetails extends Component {
                                 <legend className="scheduler-border">Members</legend>
                                 <p align="center">{k.size_employees} <i className="fas fa-users"></i></p>
                             </fieldset>
-                           {this.checkAlexa()}
+                            {this.checkAlexa()}
                         </div>
                         <div className="col-sm-8 text-left align-items-end">
                             <div className="acrylic acrylic3 p-3 my-5 rounded-xlg shadow-lg">
@@ -363,7 +362,11 @@ export default class Viewdetails extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <div className="acrylic acrylic3 my-5 rounded-xlg p-3  shadow-lg">
+
+
+                        </div>
+                        <div className="col-sm-12 px-2">
+                            <div className="acrylic acrylic3 m-5 rounded-xlg p-3 shadow-lg">
                                 <img src={detailsimg} className="w-25 ovfx"></img>
                                 <div className="w-75 mx-auto d-block" >
                                     { /* Tweets */}
@@ -371,11 +374,10 @@ export default class Viewdetails extends Component {
                                 </div>
                                 <div className="container w-100 m-auto d-block" >
                                     <div className="row d-flex align-items-center justify-content-center" align="center">
-                                    {this.gettweets()}
+                                        {this.gettweets()}
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
