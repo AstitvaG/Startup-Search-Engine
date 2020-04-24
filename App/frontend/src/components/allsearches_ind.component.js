@@ -29,6 +29,7 @@ export default class Allsearchesind extends Component {
     Drop(){
         axios.get('http://localhost:4000/drop')
         .then(response => {
+            window.location.reload(true);
             console.log(response);
         })
         .catch(function (error) {
