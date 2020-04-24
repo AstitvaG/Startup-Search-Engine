@@ -181,7 +181,8 @@ userRoutes.route('/startups').post(function (req, res) {
         userid: req.body.userid,
         searchval: req.body.searchval
     })
-    table_sno.save().then(table_sno => {
+    // table_sno.save().then(table_sno => 
+    {
 
         const { exec } = require("child_process");
 //look into this
@@ -211,8 +212,12 @@ userRoutes.route('/startups').post(function (req, res) {
             }
             Table.collection.insertMany(stdout);
             res.send("Completed")
+            table_sno.count=stdout.length;
+            table_sno.save()
         });
-    })
+
+
+    }
 })
 
 //putting values in db individual startup
