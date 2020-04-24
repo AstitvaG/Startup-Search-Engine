@@ -1,1 +1,3 @@
 node_modules/
+backend/data_crawling/items.json
+backend/data_crawling/items_ind.json
