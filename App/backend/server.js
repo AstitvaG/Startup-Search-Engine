@@ -7,6 +7,25 @@ var passport = require("passport");
 const app = express();
 const PORT = 4000;
 const userRoutes = express.Router();
+const nodemailer = require('nodemailer');
+async function test(email,domain,country){ 
+    let transporter = nodemailer.createTransport({
+        host: 'smtp.gmail.com',
+        port: 465,
+        secure: true,
+        auth: {
+          user: "seethesachin105@gmail.com",
+          pass: "Sachin105",
+        },
+      });
+      let info = await transporter.sendMail({
+        from: "seethesachin105@gmail.com",
+        to: email,
+        subject: "Search Completed",
+        text: "Your search for "+domain +" in " +country +" is completed. Login to access search results withing the search history.", // plain text body
+      });
+      console.log(info)
+    }
 
 let User = require('./models/user');
 let View_individual = require('./models/view_individual');
@@ -283,6 +302,12 @@ userRoutes.route('/get_ind_details').post(function (req, res) {
     });
 });
 
+
+userRoutes.route('/sendmail').post(function (req, res) {
+    console.log(req.body.email);
+
+    test(req.body.email,req.body.dom,req.body.con);
+});
 
 // Adding a new user
 userRoutes.route('/add').post(function (req, res) {

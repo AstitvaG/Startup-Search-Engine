@@ -6,7 +6,7 @@ import Navbar from "./navbar.component";
 import {Ripple} from 'react-spinners-css';
 import '../App.css';
 import './search-mainnew.component.css'
-
+import { test } from './mail.js'
 const Loading = require('react-loading-animation');
 const { OAuth2Client } = require('google-auth-library');
 const client = [];
@@ -127,6 +127,11 @@ export default class MainSearch extends Component {
             .then(response => {
                 this.state.isFetching = false;
                 console.log("made false", this.state.isFetching);
+                axios.post('http://localhost:4000/sendmail', {
+                    email: window.localStorage.getItem("email"),
+                    dom: this.state.dom,
+                    con: this.state.country,
+                })
                 window.location = '/previoussearches';
                 // this.setState({ result: response.data });
             })
