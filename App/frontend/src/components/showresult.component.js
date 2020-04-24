@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import queryString from "query-string";
 import Navbar from "./navbar.component";
+import bgimage from "./bg4.png"
 import SearchLayout from "./search-layout.component";
 
 export default class Showresult extends Component {
@@ -13,7 +14,11 @@ export default class Showresult extends Component {
 
     }
     componentDidMount() {
-        document.body.style.background = '#444'
+        document.body.style.backgroundImage = `url(${bgimage})`
+        document.body.style.backgroundPosition = 'center'
+        document.body.style.backgroundSize = 'cover'
+        document.body.style.backgroundAttachment = 'fixed'
+        document.body.style.backgroundRepeat = 'no-repeat'
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
         const id = decodeURI(urlParams.get('id'))
@@ -29,7 +34,7 @@ export default class Showresult extends Component {
     render() {
         return (
             <div className="container container-fluid">
-                <Navbar />
+                <Navbar className="acrylic acrylic4"/>
                 <br />
                 <br />
                 <br />
@@ -64,7 +69,8 @@ export default class Showresult extends Component {
                                         description={currentUser.c1.split(":")[1]}
                                         image={temp}
                                         domains={currentUser.c2.split(":")[1]}
-                                        url={currentUser.c3.split("@")[1]} />
+                                        url={currentUser.c3.split("@")[1]}
+                                        className="bg-light"/>
                                 </div>
                             )
                         }

@@ -146,6 +146,9 @@ code {
   .acrylic4.acrylic::after{
     background: #000;
   }
+  .acrylic4-light.acrylic4.acrylic::after{
+    background: #fff;
+  }
 
   .fontx{
       font-family: 'qb';

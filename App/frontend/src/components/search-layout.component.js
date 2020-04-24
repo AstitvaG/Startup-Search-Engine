@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import basicimage from "./basic.png"
 import axios from 'axios';
-import {Ripple} from 'react-spinners-css';
+import { Ripple } from 'react-spinners-css';
 import { Collapse } from 'react-collapse';
 
 export default class SearchLayout extends Component {
@@ -93,32 +93,32 @@ export default class SearchLayout extends Component {
 
     render() {
         return (
-            <div className={"container-fluid bg-light rounded-xlg m-2 p-4" + (this.state.isHidden ? ' active' : '')}
+            <div className={"container-fluid rounded-xlg mx-2 my-3 p-4 shadow-lg " + this.props.className}
                 onClick={this.toggleHidden.bind(this)}>
                 {this.state.isFetching ? (
                     <div className="loading">
-                    <Ripple color="#05bd26" />
+                        <Ripple color="#05bd26" />
                     </div>
-                    ) : (
-                        <div className="row" >
+                ) : (
+                        <div style={{cursor:"pointer"}} className="row" >
 
-                        <div className="col-sm" >
-                            { /* Image */}
-                            <img src={this.state.url}
-                                className="rounded-xlg mx-auto d-block w-50"
-                                alt={this.props.name}
-                                onError={this.onError} />
-                        </div>
-                        <div className="w-50 h-100 m-auto d-block" >
-                            { /* Company Name */}
-                            <p className="h2" align="center">{this.props.name}</p>
-                        </div>
-                        <div className="col m-auto d-block" >
-                            { /* Domain(s) */}
-                            <div className="row">
-                                {this.getdomains()}
+                            <div className="col-sm" >
+                                { /* Image */}
+                                <img src={this.state.url}
+                                    className="rounded-xlg mx-auto d-block w-50 shadow-lg"
+                                    alt={this.props.name}
+                                    onError={this.onError} />
                             </div>
-                        </div>
+                            <div className="w-50 h-100 m-auto d-block" >
+                                { /* Company Name */}
+                                <p className="h2" align="center">{this.props.name}</p>
+                            </div>
+                            <div className="col m-auto d-block" >
+                                { /* Domain(s) */}
+                                <div className="row">
+                                    {this.getdomains()}
+                                </div>
+                            </div>
                         </div>
                     )
                 }
@@ -137,5 +137,5 @@ export default class SearchLayout extends Component {
                 {this.props.description}
             </p>
         </div>
-        )
+    )
 }
