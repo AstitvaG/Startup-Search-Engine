@@ -135,7 +135,7 @@ class QuotesSpider(scrapy.Spider):
             item['providers'] = null
         tw= []
         for tweet in get_tweets(j['startupProfile']['data']['size']['twitter']['handle'], pages=1):
-            tw.append(tweet['text'])
+            tw.append(tweet)
         item['tweets'] = tw
         print(item)
         yield item
