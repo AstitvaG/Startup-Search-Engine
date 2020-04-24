@@ -18,14 +18,14 @@ export default class Navbar extends Component {
 
     render() {
         return (
-            <nav id="main_nav" className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top rounded-pill m-2 mt-4 p-2 shadow-lg h5">
+            <nav id="main_nav" className={"navbar navbar-expand-lg navbar-dark fixed-top rounded-pill m-2 mx-5 mt-4 p-2 shadow-lg h5 bg-dark "+ this.props.className}>
                 <div className="container-fluid">
-                    <ul className="navbar-nav mr-auto navbar-left">
+                    <ul className="navbar-nav mr-auto navbar-left  my-auto form-inline">
                         <li className="nav-item active">
-                            <a href="/previoussearches" className="nav-link">Stealth Mode<span className="sr-only">(current)</span></a>
+                            <a href="/previoussearches" className="nav-link h2" style={{fontFamily:"qb"}}><strong>Stealth Mode</strong><span className="sr-only">(current)</span></a>
                         </li>
-                        <li className="nav-item active">
-                            <a href="/allsearches_ind" className="nav-link">Starups_searches<span className="sr-only">(current)</span></a>
+                        <li className="nav-item">
+                            <a href="/allsearches_ind" className="nav-link">My all searches<span className="sr-only">(current)</span></a>
                         </li>
                     </ul>
                     <button className="navbar-toggler" type="button" onClick={this.toggle} data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

@@ -3,7 +3,7 @@ import axios from 'axios';
 import queryString from "query-string";
 import Navbar from "./navbar.component";
 import "./previoussearchesnew.component.css"
-import $ from 'jquery';
+import bgimage from "./bg4.png"
 import { Collapse } from 'react-collapse';
 
 export default class Previoussearches extends Component {
@@ -25,7 +25,12 @@ export default class Previoussearches extends Component {
             // console.log("picture:",decodeURI(obj.picture))
             this.props.history.push("/previoussearches");
         }
-        document.body.style.background = '#444'
+        // document.body.style.background = '#444'
+        document.body.style.backgroundImage = `url(${bgimage})`
+        document.body.style.backgroundPosition = 'center'
+        document.body.style.backgroundSize = 'cover'
+        document.body.style.backgroundAttachment = 'fixed'
+        document.body.style.backgroundRepeat = 'no-repeat'
         axios.post('http://localhost:4000/previoussearches', {
             userid: window.localStorage.getItem("email"),
         })
@@ -63,7 +68,7 @@ export default class Previoussearches extends Component {
     render() {
         return (
             <div className="container container-fluid">
-                <Navbar />
+                <Navbar className="acrylic acrylic4"/>
                 <br />
                 <br />
                 <br />
@@ -71,8 +76,8 @@ export default class Previoussearches extends Component {
                 <br />
                 <br />
                 <br />
-                <button className="rounded-pill btn btn-dark glogin" onClick={this.onClick}>
-                    Add new Search
+                <button className="rounded-pill btn-lg btn-dark glogin" onClick={this.onClick}>
+                    Add new Search <i class="fas fa-search"></i>
                 </button>
                 <br />
                 <br />
@@ -80,14 +85,17 @@ export default class Previoussearches extends Component {
                 {
                     this.state.result.map((currentUser, i) => {
                         return (
-                            <div key={i} className={"container-fluid bg-light rounded-xlg m-2 my-3 p-4 parent-cont"}
+                            <div key={i} className={"container-fluid acrylic acrylic4 text-light rounded-xlg m-2 my-3 p-4 parent-cont"}
                                 onMouseEnter={() => this.displayitems(true, i)}
                                 onMouseLeave={() => this.displayitems(false, i)}>
                                 <div className="row" >
 
                                     <div className="w-50 h-100 mx-3 my-auto" >
                                         { /* Company Name */}
-                                        <p className="h2">{currentUser.searchval}</p>
+                                        <p className="h2">
+                                            {currentUser.searchval.split(":")[1]} <i class="fas fa-arrow-right"></i>
+                                            {currentUser.searchval.split(":")[3]}
+                                        </p>
                                     </div>
                                     <div className="col m-auto d-block" >
                                         <button className="btnx m-auto d-block" onClick={e => this.onShow(currentUser._id, currentUser.searchval)}>
@@ -95,7 +103,7 @@ export default class Previoussearches extends Component {
                                                 <span className="icon arrow"></span>
                                             </span>
                                             <div className="button-text h-100">
-                                                <p className="d-block my-auto" align="center">Show Result</p>
+                                                <p className="d-block my-auto text-light" align="center">Show Result</p>
                                             </div>
                                         </button>
                                         { /* Domain(s) */}
@@ -104,7 +112,7 @@ export default class Previoussearches extends Component {
                                         </div>
                                     </div>
                                 </div>
-                                <Collapse isOpened={this.state.display==i}>
+                                <Collapse isOpened={this.state.display == i}>
                                     <div>
                                         {currentUser.time}
                                     </div>

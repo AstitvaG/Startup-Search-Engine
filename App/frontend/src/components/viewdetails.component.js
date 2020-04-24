@@ -266,7 +266,7 @@ export default class Viewdetails extends Component {
                 <div className="container-fluid text-center">
                     <div className="row content rounded-xlg p-3" >
 
-                        <div className="col-sm-3 acrylic rounded-xlg py-5 m-5 shadow-lg">
+                        <div className="col-sm-3 acrylic acrylic3 rounded-xlg py-5 m-5 shadow-lg">
                             <img src={blackcircle} className="w-100 ovf"></img>
                             <div className="w-75 mx-auto d-block">
                                 {/* Image here */}
@@ -293,7 +293,7 @@ export default class Viewdetails extends Component {
                             </fieldset>
                         </div>
                         <div className="col-sm-8 text-left align-items-end">
-                            <div className="acrylic p-3 my-5 rounded-xlg shadow-lg">
+                            <div className="acrylic acrylic3 p-3 my-5 rounded-xlg shadow-lg">
                                 <img src={detailsimg} className="w-25 ovfx"></img>
                                 <div className="w-75 mx-auto d-block" >
                                     { /* Company Name */}
@@ -316,7 +316,7 @@ export default class Viewdetails extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <div className="acrylic my-5 rounded-xlg p-3  shadow-lg">
+                            <div className="acrylic acrylic3 my-5 rounded-xlg p-3  shadow-lg">
                                 <img src={ownersimg} className="w-25 ovfx"></img>
                                 <div className="w-75 mx-auto d-block" >
                                     { /* Company Name */}

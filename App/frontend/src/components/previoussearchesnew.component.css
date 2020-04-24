@@ -23,6 +23,18 @@
     background: #282936;
     border-radius: 1.625rem;
   }
+
+  .acrylic4 .btnx .circle {
+    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+    position: relative;
+    display: block;
+    margin: 0;
+    width: 3rem;
+    height: 3rem;
+    background: #6E538D;
+    border-radius: 1.625rem;
+  }
+
   .btnx .circle .icon {
     transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
     position: absolute;
@@ -70,6 +82,7 @@
     -webkit-transform: translate(1rem, 0);
             transform: translate(1rem, 0);
   }
+
   .btnx:hover .button-text {
     color: #fff !important;
   }
