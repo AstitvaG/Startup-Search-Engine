@@ -270,6 +270,27 @@ export default class Viewdetails extends Component {
             return;
         }
     }
+    gettweets(){
+        var temp = []
+        try {
+            for(var i=0;i<this.state.result.tweets.length;i++)
+            {
+                var t=this.state.result.tweets[i]
+                temp.push(
+                    <div>
+                    <p>{t}</p>
+                    <br/>
+                    </div>
+                )
+            }
+            return temp
+        }
+        
+        catch{
+            return;
+        }
+    }
+
 
     render() {
         var k = this.state.result;
@@ -339,6 +360,18 @@ export default class Viewdetails extends Component {
                                 <div className="container w-100 m-auto d-block" >
                                     <div className="row d-flex align-items-center justify-content-center" align="center">
                                         {this.getMembers()}
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="acrylic acrylic3 my-5 rounded-xlg p-3  shadow-lg">
+                                <img src={detailsimg} className="w-25 ovfx"></img>
+                                <div className="w-75 mx-auto d-block" >
+                                    { /* Tweets */}
+                                    <p className="display-4 fontx" align="center">News</p>
+                                </div>
+                                <div className="container w-100 m-auto d-block" >
+                                    <div className="row d-flex align-items-center justify-content-center" align="center">
+                                    {this.gettweets()}
                                     </div>
                                 </div>
                             </div>
